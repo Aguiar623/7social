@@ -1,0 +1,46 @@
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .chatbot-window {
+    width: 350px;
+    height: 460px;
+    background-color: rgb(19, 5, 5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .chatbot-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .chatbot-toggle {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(203, 10, 10, 0.2);
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  

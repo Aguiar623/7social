@@ -1,11 +1,33 @@
-# Node
-frontend/node_modules/
-
-# Python
-backend/venv/
+# --- Archivos y carpetas de Python ---
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.log
 
-# SO
+# Entornos virtuales
+venv/
+.env/
+.env.local
+*.env
+
+# --- Archivos y carpetas de Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de build
+dist/
+build/
+
+# --- Sistema ---
 .DS_Store
 Thumbs.db
+
+# Archivos de configuración de editor
+.vscode/
+.idea/
+

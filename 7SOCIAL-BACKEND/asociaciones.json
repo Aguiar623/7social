@@ -1,0 +1,39 @@
+{
+    "prueba": {
+        "fear": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
+            }
+        },
+        "joy": {
+            "Libro": {
+                "Historia de Las Imagenes Para Niños": {
+                    "calificacion": 5
+                },
+                "Cultural Techniques": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "Yeferson Aguiar": {
+        "joy": {
+            "Libro": {
+                "Crónicas marcianas": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "Yeferson30": {
+        "joy": {
+            "Libro": {
+                "Crónicas marcianas": {
+                    "calificacion": 4
+                }
+            }
+        }
+    }
+}

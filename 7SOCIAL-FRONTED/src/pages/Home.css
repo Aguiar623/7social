@@ -1,0 +1,205 @@
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita scroll horizontal */
+  }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }  
+  
+  .titulo-home{
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: auto;
+    top: 0;
+    left: 0;
+    text-align: center; /* Centrar el texto */
+    background-color: #f5f5f5; /* Fondo claro */
+    padding: 30px 10px;
+    z-index: 1000; /* Para que esté por encima del resto */
+  }  
+  
+  .titulo-home h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #007bff;
+  }
+
+  .home-container {
+    width: auto;
+    height: auto; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: #f5f5f5; /* Fondo claro */
+    padding: 40px; /* Espaciado interno */
+    padding-top: 10px;
+    gap: 30px;
+    padding-left: 30px;
+  }
+  
+  .home-content {
+    text-align: left;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-content h1 {
+    font-size: 2.5rem;
+    color: #007bff; /* Color principal */
+    margin-bottom: 20px;
+  }
+  
+  .home-content p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .home-button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+  }
+
+/* Contenedor del carrete */
+  .carousel {
+    flex: 2;
+    max-width: 600px; /* Ajusta el ancho máximo */
+    overflow: hidden; /* Oculta las imágenes que no están visibles */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+
+/* Track para las imágenes */
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    animation: scroll 10s infinite linear; /* Animación para desplazamiento */
+  }
+
+/* Imágenes dentro del track */
+  .carousel-image {
+    width: 100%; /* Cada imagen ocupa el ancho del contenedor */
+    max-height: 400px;
+    flex-shrink: 0; /* Evita que las imágenes se redimensionen */
+    object-fit: cover;
+  }
+
+/* Animación de desplazamiento */
+  @keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-300%); /* Ajusta dependiendo del número de imágenes */
+    }
+  }
+
+  .login-bar {
+    flex: 1;
+    width: 100%;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    text-align: center;
+  }
+  
+  .login-bar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    color: rgb(14, 14, 14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+  }
+  
+  .form-group input {
+    width: 40%;
+    padding: 10px;
+    color: black;
+    background-color: rgb(253, 252, 252);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center; 
+  }
+
+  .form-group input::placeholder{
+    color:#090909;
+    opacity: 1;
+  }
+
+  .form-group .info {
+  margin-top: 5px;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+  }
+
+  .login-button {
+    width: 60%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+
+  .loading-spinner {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+
+  .input-container {
+      position: relative;
+      width: 250px;
+    }
+    input {
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+      font-size: 16px;
+    }
+  
+  .toggle-eye {
+      position: absolute;
+      right: 220px;
+      top: 58%;
+      transform: translateY(-100%);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+
+  .toggle-eye1 {
+      position: absolute;
+      right: 215px;
+      top: 102%;
+      transform: translateY(-130%);
+      cursor: pointer;
+      font-size: 18px;
+    }
