@@ -34,62 +34,59 @@ if modo == "Mastodon":
         api_base_url="https://mastodon.social"
     )
 
-    # Si ya tenemos token en la sesión → usarlo directo
+    usuario_nombre = None
+
+    # Intentar usar token previo
     if "mastodon_token" in st.session_state:
-        mastodon = Mastodon(
-            access_token=st.session_state.mastodon_token,
-            api_base_url="https://mastodon.social",
-        )
-        usuario_nombre = mastodon.me()["acct"]
-        st.success(f"✅ Sesión iniciada como {usuario_nombre}")
-
-    else:
-        # URL de login
-        login_url = mastodon.auth_request_url(scopes=["read"])
-        st.markdown(f"[🔑 Iniciar sesión con Mastodon]({login_url})")
-
-        # Ver si Mastodon redirigió con ?code=...
-        query_params = st.query_params
-        if "code" in query_params:
-            auth_code = (
-                query_params["code"][0]
-                if isinstance(query_params["code"], list)
-                else query_params["code"]
-            )
-        else:
-            auth_code = st.text_input("Pega aquí el código de autorización de Mastodon")
-
-        if auth_code:  # cambiar code por access token
-            access_token = mastodon.log_in(
-                code=auth_code,
-                scopes=["read"],
-                redirect_uri="urn:ietf:wg:oauth:2.0:oob",
-            )
-
-            # Guardar token en la sesión (no en archivo)
-            st.session_state.mastodon_token = access_token
-            st.success("✅ Sesión iniciada con Mastodon")
-
+        try:
             mastodon = Mastodon(
                 access_token=st.session_state.mastodon_token,
                 api_base_url="https://mastodon.social",
             )
-            usuario_nombre = mastodon.me()["acct"]
+            usuario_nombre = mastodon.me()["acct"]  # valida token
+            st.success(f"✅ Sesión iniciada como {usuario_nombre}")
+        except Exception:
+            st.warning("⚠️ Token inválido o expirado. Inicia sesión de nuevo.")
+            del st.session_state["mastodon_token"]
 
-    # Si ya hay usuario autenticado
-    if "mastodon_token" in st.session_state:
+    # Si no hay token válido → mostrar login
+    if not usuario_nombre:
+        login_url = mastodon.auth_request_url(scopes=["read"])
+        st.markdown(f"[🔑 Iniciar sesión con Mastodon]({login_url})")
+
+        auth_code = st.text_input("Pega aquí el código de autorización de Mastodon")
+
+        if auth_code:
+            try:
+                access_token = mastodon.log_in(
+                    code=auth_code,
+                    scopes=["read"],
+                    redirect_uri="urn:ietf:wg:oauth:2.0:oob",
+                )
+                st.session_state.mastodon_token = access_token
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error al autenticar: {e}")
+
+    # Si tenemos token válido → mostrar info
+    if usuario_nombre:
         st.write(f"👤 Usuario: {usuario_nombre}")
 
-        # Último toot
-        posts = mastodon.account_statuses(mastodon.me()["id"], limit=1)
-        if posts:
-            texto = re.sub(r"<[^>]+>", "", posts[0]["content"])
-            st.write(f"📝 Último toot: {texto}")
+        try:
+            posts = mastodon.account_statuses(mastodon.me()["id"], limit=1)
+            if posts:
+                texto = re.sub(r"<[^>]+>", "", posts[0]["content"])
+                st.write(f"📝 Último toot: {texto}")
 
-            # Analizar emoción
-            analisis = analizar_emocion(texto)
-            emocion = analisis.output
-            st.markdown(f"**Emoción detectada:** `{emocion}`")
+                analisis = analizar_emocion(texto)
+                emocion = analisis.output
+                if emocion:
+                    st.markdown(f"**Emoción detectada:** `{emocion}`")
+            else:
+                st.warning("⚠️ No se encontró ningún toot para analizar.")
+        except Exception as e:
+            st.error(f"Error al obtener toots: {e}")
+
 
 elif modo == "Chatbot local":
     query_params = st.query_params
