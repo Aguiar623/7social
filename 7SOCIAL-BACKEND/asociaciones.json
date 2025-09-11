@@ -35,5 +35,130 @@
                 }
             }
         }
+    },
+    "diego123_": {
+        "others": {
+            "Libro": {
+                "Walden, la vida en los bosques": {
+                    "calificacion": 4
+                }
+            }
+        },
+        "sadness": {
+            "Película": {
+                "The Mechanics of Love": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "Ronaldoalam": {
+        "sadness": {
+            "Película": {
+                "The Mechanics of Love": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "nora547": {
+        "sadness": {
+            "Libro": {
+                "Historia de Las Imagenes Para Niños": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "The Mechanics of Love": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "felipenunez": {
+        "fear": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Himlen falder": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Sam Barber: North America Tour": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "anitavalencia": {
+        "joy": {
+            "Libro": {
+                "Cultural Techniques": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "xXx": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mike Delguidice": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "ninapaz": {
+        "anger": {
+            "Libro": {
+                "El poder del ahora": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Champagne Charlie": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Sam Barber: North America Tour": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "lopezmelissa": {
+        "surprise": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Les amants du tage": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                }
+            }
+        }
     }
 }

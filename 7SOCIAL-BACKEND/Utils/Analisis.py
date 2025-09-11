@@ -38,12 +38,5 @@ def analizar_emocion(posts):
     else:
         raise TypeError("La entrada debe ser string o lista")
 
-    try:
-        idioma = detect(texto_total)
-        if idioma != "es":
-            return None
-    except:
-        return None
-
     resultado = analyzer.predict(texto_total)
     return AnalisisWrapper(resultado.output, resultado.probas, texto_total)

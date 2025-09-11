@@ -442,4 +442,3 @@ if usuario_nombre and emocion:
                 st.info("✅ ¡Tu calificación se ha guardado como una recomendación útil!")
     else:
         st.warning("⚠️ No se encontró una recomendación adecuada.")
-
