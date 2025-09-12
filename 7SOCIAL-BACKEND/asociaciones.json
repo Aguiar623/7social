@@ -41,9 +41,9 @@
             "Libro": {
                 "Walden, la vida en los bosques / Walden, Life in the Woods": {
                     "calificacion": 4,
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                }
+                    "Un asunto pendiente": {
+                        "calificacion": 5
+                    }
                 }
             }
         },
@@ -232,6 +232,9 @@
                 },
                 "Writing the Revolution": {
                     "calificacion": 5
+                },
+                "El poder del ahora": {
+                    "calificacion": 5
                 }
             },
             "Película": {
@@ -243,6 +246,54 @@
                 },
                 "Champagne Charlie": {
                     "calificacion": 5
+                }
+            }
+        }
+    },
+    "jennigarcia": {
+        "joy": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                },
+                "El poder del ahora": {
+                    "calificacion": 5
+                },
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "My Bloody Valentine": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "oscarcalderon12": {
+        "sadness": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Praise Marx and Pass the Ammunition": {
+                    "calificacion": 4
+                },
+                "Les amants du tage": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                },
+                "Sam Barber: North America Tour": {
+                    "calificacion": 4
                 }
             }
         }

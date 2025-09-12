@@ -313,15 +313,20 @@ if usuario_nombre and emocion:
                     for item in predicciones
                     if conteos[item] > 0 and pd.isna(calificaciones_usuario.get(item))
                 }
+
             else:
                 st.write("⚠️ No hay suficientes items preferidos para activar colaborativo (se requieren ≥ 2).")
 
         st.session_state.usar_colaborativo = usar_colaborativo
 
         if usar_colaborativo and recomendaciones:
-            st.info("Usando algoritmo Slope One para recomendación.")
+            st.info(f"Usando algoritmo Slope One para {tipo}.")
+            recomendaciones_filtradas = [
+                (titulo, score) for titulo, score in recomendaciones.items()
+                if titulo in df[df["tipo"] == tipo]["titulo"].values
+            ]
             st.session_state.recomendaciones_ordenadas = sorted(
-                recomendaciones.items(), key=lambda x: x[1], reverse=True
+                recomendaciones_filtradas, key=lambda x: x[1], reverse=True
             )
         else:
             st.info("Usando recomendaciones basadas en emoción y popularidad.")
