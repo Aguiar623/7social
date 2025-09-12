@@ -39,8 +39,11 @@
     "diego123_": {
         "others": {
             "Libro": {
-                "Walden, la vida en los bosques": {
-                    "calificacion": 4
+                "Walden, la vida en los bosques / Walden, Life in the Woods": {
+                    "calificacion": 4,
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
                 }
             }
         },
@@ -156,6 +159,89 @@
             },
             "Evento": {
                 "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "jeisonlopez234": {
+        "fear": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Wer reißt denn gleich vorm Teufel aus": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "juanholguin23": {
+        "anger": {
+            "Libro": {
+                "El poder del ahora": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Pass the Ammo": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "alejandro24267": {
+        "joy": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "xXx": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mike Delguidice": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "luisalavarez03": {
+        "others": {
+            "Libro": {
+                "Walden, la vida en los bosques / Walden, Life in the Woods": {
+                    "calificacion": 5
+                },
+                "Siete estrategias para sacar partido a los libros de autoayuda": {
+                    "calificacion": 5
+                },
+                "Writing the Revolution": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "My Bloody Valentine": {
+                    "calificacion": 5
+                },
+                "Pass the Ammo": {
+                    "calificacion": 5
+                },
+                "Champagne Charlie": {
                     "calificacion": 5
                 }
             }
