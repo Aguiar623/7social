@@ -215,21 +215,26 @@ if usuario_nombre and emocion:
 
         rows = []
         for usuario, emociones in data.items():
-            for emocion, tipos in emociones.items():
-                for tipo, titulos in tipos.items():
+            for emocion_key, tipos in emociones.items():
+                for tipo_item, titulos in tipos.items():
                     for titulo, detalles in titulos.items():
                         calificacion = detalles.get("calificacion")
                         if calificacion is not None:
                             rows.append({
                                 "usuario": usuario,
-                                "emocion": emocion,
-                                "tipo": tipo,
+                                "emocion": emocion_key,
+                                "tipo": tipo_item,
                                 "titulo": titulo,
                                 "calificacion": calificacion,
                             })
 
-        return pd.DataFrame(rows)
-
+        df = pd.DataFrame(rows)
+        if tipo:
+            df = df[df["tipo"] == tipo]
+        if emocion:
+            df = df[df["emocion"] == emocion]
+        return df
+    
     # === Inicializar variables de estado ===
     generar_nueva = st.button("🎲 Generar Nueva Recomendación")
 
@@ -245,112 +250,139 @@ if usuario_nombre and emocion:
     tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
 
     # === Generar nueva recomendación si cambia el tipo o se pide explícitamente ===
-    if st.session_state.tipo != tipo or generar_nueva:
-        if st.session_state.tipo != tipo:
-            st.session_state.recomendacion_index = 0
-            st.session_state.recomendaciones_ordenadas = []
+    if "tipo" not in st.session_state or st.session_state.tipo != tipo or generar_nueva:
+        st.session_state.tipo = tipo
+        st.session_state.recomendacion_actual = None
+        st.session_state.recomendacion_index = 0
+        st.session_state.recomendaciones_ordenadas = []
+    # === Cargar calificaciones ===
+    df = cargar_calificaciones(tipo=tipo, emocion=emocion)
 
-        df = cargar_calificaciones(tipo=tipo, emocion=emocion)
+    # === Obtener lista de títulos del tipo actual ===
+    if df.empty:
+        titulos_tipo_list = []
+    else:
+        titulos_tipo_list = df[df["tipo"] == tipo]["titulo"].dropna().unique().tolist()
 
-        # --- POPULARIDAD ---
-        def obtener_recomendaciones_populares(df, usuario, top_n=5):
-            if df.empty:
+    # === Función de popularidad con fallback ===
+    def obtener_recomendaciones_populares(df_local, usuario, titulos_disponibles, top_n=5):
+        if df_local.empty:
+            if not titulos_disponibles:
                 return []
-            titulos_usuario = df[df["usuario"] == usuario]["titulo"].tolist()
-            df_altas = df[df["calificacion"] >= 4]
-            populares = (
-                df_altas[~df_altas["titulo"].isin(titulos_usuario)]
-                .groupby("titulo")
-                .size()
-                .sort_values(ascending=False)
-                .head(top_n)
-                .index.tolist()
-            )
-            return populares
+            return random.sample(titulos_disponibles, min(top_n, len(titulos_disponibles)))
 
-        # --- MATRIZ DE UTILIDAD ---
-        if df.empty or "calificacion" not in df.columns:
-            matriz = pd.DataFrame()
-        else:
-            matriz = df.pivot_table(index="usuario", columns="titulo", values="calificacion")
+        titulos_usuario = df_local[df_local["usuario"] == usuario]["titulo"].tolist()
+        df_altas = df_local[df_local["calificacion"] >= 4]
 
-        usar_colaborativo = False
-        recomendaciones = {}
+        populares = (
+            df_altas[~df_altas["titulo"].isin(titulos_usuario)]
+            .groupby("titulo")
+            .size()
+            .sort_values(ascending=False)
+            .head(top_n)
+            .index.tolist()
+        )
 
-        # --- COLABORATIVO (Slope One) ---
-        if not matriz.empty and usuario_nombre in matriz.index:
-            calificaciones_usuario = matriz.loc[usuario_nombre]
-            items_preferidos = calificaciones_usuario[calificaciones_usuario >= 4]
+        if not populares:
+            disponibles = [t for t in titulos_disponibles if t not in titulos_usuario]
+            if not disponibles:
+                disponibles = titulos_disponibles
+            if not disponibles:
+                return []
+            return random.sample(disponibles, min(top_n, len(disponibles)))
 
-            if len(items_preferidos) >= 2:
-                usar_colaborativo = True
-                diferencias, frecuencias = {}, {}
+        return populares
 
-                for user, ratings in matriz.iterrows():
-                    rated_items = ratings.dropna()
-                    for i in rated_items.index:
-                        for j in rated_items.index:
-                            if i != j:
-                                diferencias.setdefault((i, j), 0.0)
-                                frecuencias.setdefault((i, j), 0)
-                                diferencias[(i, j)] += rated_items[i] - rated_items[j]
-                                frecuencias[(i, j)] += 1
+    # === Crear matriz de utilidad ===
+    if df.empty or "calificacion" not in df.columns:
+        matriz = pd.DataFrame()
+    else:
+        matriz = df.pivot_table(index="usuario", columns="titulo", values="calificacion")
 
-                predicciones, conteos = {}, {}
-                for item_p, rating_p in items_preferidos.items():
-                    for item in matriz.columns:
-                        if item == item_p or item in items_preferidos:
+    usar_colaborativo = False
+    recomendaciones = {}
+
+    # === Algoritmo colaborativo (Slope One) ===
+    if not matriz.empty and usuario_nombre in matriz.index:
+        calificaciones_usuario = matriz.loc[usuario_nombre].dropna()
+        items_preferidos = calificaciones_usuario[calificaciones_usuario >= 4]
+
+        calificaciones_usuario = calificaciones_usuario[
+        calificaciones_usuario.index.isin(titulos_tipo_list)
+        ]
+        items_preferidos = calificaciones_usuario[calificaciones_usuario >= 4]
+
+        st.write(f"🔎 Ítems preferidos para {tipo}: {len(items_preferidos)}")
+        st.write(f"📋 Lista: {items_preferidos.to_dict()}")
+
+        if len(items_preferidos) >= 2:
+            usar_colaborativo = True
+            diferencias, frecuencias = {}, {}
+
+            for user, ratings in matriz.iterrows():
+                rated_items = ratings.dropna()
+                rated_items = rated_items[rated_items.index.isin(titulos_tipo_list)]
+                for i in rated_items.index:
+                    for j in rated_items.index:
+                        if i == j:
                             continue
-                        pair = (item, item_p)
-                        if pair in diferencias and frecuencias[pair] > 0:
-                            predicciones.setdefault(item, 0.0)
-                            conteos.setdefault(item, 0)
-                            predicciones[item] += (diferencias[pair] / frecuencias[pair]) + rating_p
-                            conteos[item] += 1
+                        diferencias.setdefault((i, j), 0.0)
+                        frecuencias.setdefault((i, j), 0)
+                        diferencias[(i, j)] += rated_items[i] - rated_items[j]
+                        frecuencias[(i, j)] += 1
+            
+            st.write(f"📊 Pares de diferencias calculados: {len(diferencias)}")
 
-                recomendaciones = {
-                    item: predicciones[item] / conteos[item]
-                    for item in predicciones
-                    if conteos[item] > 0 and pd.isna(calificaciones_usuario.get(item))
-                }
+            predicciones, conteos = {}, {}
+            for item_p, rating_p in items_preferidos.items():
+                for item in titulos_tipo_list:
+                    if item == item_p or item in items_preferidos.index:
+                        continue
+                    pair = (item, item_p)
+                    if pair in diferencias and frecuencias.get(pair, 0) > 0:
+                        predicciones.setdefault(item, 0.0)
+                        conteos.setdefault(item, 0)
+                        predicciones[item] += (diferencias[pair] / frecuencias[pair]) + rating_p
+                        conteos[item] += 1
 
-            else:
-                st.write("⚠️ No hay suficientes items preferidos para activar colaborativo (se requieren ≥ 2).")
+            recomendaciones = {
+                item: predicciones[item] / conteos[item]
+                for item in predicciones
+                if conteos.get(item, 0) > 0 and pd.isna(calificaciones_usuario.get(item))
+            }
 
-        st.session_state.usar_colaborativo = usar_colaborativo
-
-        if usar_colaborativo and recomendaciones:
-            st.info(f"Usando algoritmo Slope One para {tipo}.")
-            recomendaciones_filtradas = [
-                (titulo, score) for titulo, score in recomendaciones.items()
-                if titulo in df[df["tipo"] == tipo]["titulo"].values
-            ]
-            st.session_state.recomendaciones_ordenadas = sorted(
-                recomendaciones_filtradas, key=lambda x: x[1], reverse=True
-            )
+            st.write(f"📊 Recomendaciones generadas por Slope One: {len(recomendaciones)}")
+            st.write(recomendaciones)
         else:
-            st.info("Usando recomendaciones basadas en emoción y popularidad.")
-            titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, top_n=5)
-            st.session_state.recomendaciones_ordenadas = [(titulo, 1.0) for titulo in titulos_populares]
+            st.write("⚠️ No hay suficientes items preferidos para activar colaborativo (se requieren ≥ 2).")
 
-        # === Intentar recomendar según la lista ===
+    st.session_state.usar_colaborativo = usar_colaborativo
+
+    # === Preparar lista de recomendaciones ===
+    if usar_colaborativo and recomendaciones:
+        st.info(f"Usando algoritmo Slope One para {tipo}.")
+        st.session_state.recomendaciones_ordenadas = sorted(
+            recomendaciones.items(), key=lambda x: x[1], reverse=True
+        )
+    else:
+        st.info("Usando recomendaciones basadas en emoción y popularidad.")
+        titulos_populares = obtener_recomendaciones_populares(
+            df, usuario_nombre, titulos_tipo_list, top_n=5
+        )
+        st.session_state.recomendaciones_ordenadas = [(titulo, 1.0) for titulo in titulos_populares]
+
+    # === Selección de la recomendación actual ===
+    if "recomendacion_actual" not in st.session_state:
+        st.session_state.recomendacion_actual = None
+    
+    if st.session_state.recomendacion_actual is None:
         recomendacion = None
+        
         if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
-            titulo_aleatorio = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index][0]
-            st.session_state.recomendacion_index += 1
-        else:
-            for _ in range(5):
-                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-                if tipo == "Libro":
-                    recomendacion = buscar_api_libro(titulo_aleatorio)
-                elif tipo == "Película":
-                    recomendacion = buscar_api_pelicula(titulo_aleatorio)
-                elif tipo == "Evento":
-                    recomendacion = buscar_api_evento(titulo_aleatorio)
-                if recomendacion:
-                    break
-
-        if not recomendacion:
+            titulo_aleatorio = st.session_state.recomendaciones_ordenadas[
+                st.session_state.recomendacion_index
+            ][0]
+        
             if tipo == "Libro":
                 recomendacion = buscar_api_libro(titulo_aleatorio)
             elif tipo == "Película":
@@ -358,11 +390,23 @@ if usuario_nombre and emocion:
             elif tipo == "Evento":
                 recomendacion = buscar_api_evento(titulo_aleatorio)
 
-        st.session_state.recomendacion = recomendacion
-        st.session_state.tipo = tipo
+        if recomendacion is None:
+            for _ in range(5): 
+                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+                if tipo == "Libro":
+                    recomendacion = buscar_api_libro(titulo_aleatorio)
+                elif tipo == "Película":
+                    recomendacion = buscar_api_pelicula(titulo_aleatorio)
+                elif tipo == "Evento":
+                    recomendacion = buscar_api_evento(titulo_aleatorio)
+                
+        st.session_state.recomendacion_actual = recomendacion
+    else:    
+        recomendacion = st.session_state.recomendacion_actual
+
+    st.session_state.tipo = tipo
 
     # === Mostrar recomendación ===
-    recomendacion = st.session_state.recomendacion
     if recomendacion:
         # --- Mostrar según el tipo ---
         if tipo == "Libro":
@@ -404,5 +448,8 @@ if usuario_nombre and emocion:
                     json.dump(asociaciones, f, indent=4, ensure_ascii=False)
                 st.success(f"¡Gracias por calificar con {calificacion} estrellas!")
                 st.info("✅ ¡Tu calificación se ha guardado como una recomendación útil!")
+    
+            st.session_state.recomendacion_index += 1
+            st.session_state.recomendacion_actual = None
     else:
         st.warning("⚠️ No se encontró una recomendación adecuada.")

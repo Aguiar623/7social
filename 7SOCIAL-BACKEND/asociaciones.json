@@ -4,6 +4,9 @@
             "Libro": {
                 "Un asunto pendiente": {
                     "calificacion": 5
+                },
+                "Cultural Techniques": {
+                    "calificacion": 4
                 }
             }
         },
@@ -291,6 +294,65 @@
             "Evento": {
                 "ALESTORM FALL 2025 TOUR": {
                     "calificacion": 5
+                },
+                "Sam Barber: North America Tour": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "santiagosalda": {
+        "anger": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "El poder del ahora": {
+                    "calificacion": 4
+                },
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Les amants du tage": {
+                    "calificacion": 4
+                },
+                "Champagne Charlie": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Sam Barber: North America Tour": {
+                    "calificacion": 5
+                },
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "erikreyes45": {
+        "fear": {
+            "Libro": {
+                "Cultural Techniques": {
+                    "calificacion": 4
+                },
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Himlen falder": {
+                    "calificacion": 4
+                },
+                "Wer reißt denn gleich vorm Teufel aus": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 4
                 },
                 "Sam Barber: North America Tour": {
                     "calificacion": 4
