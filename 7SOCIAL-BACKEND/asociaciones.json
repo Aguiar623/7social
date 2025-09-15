@@ -359,5 +359,33 @@
                 }
             }
         }
+    },
+    "stivenfernandez": {
+        "fear": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "Cultural Techniques": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Himlen falder": {
+                    "calificacion": 5
+                },
+                "Wer reißt denn gleich vorm Teufel aus": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 5
+                },
+                "Sam Barber: North America Tour": {
+                    "calificacion": 5
+                }
+            }
+        }
     }
 }
