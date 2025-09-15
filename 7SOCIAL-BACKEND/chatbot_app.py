@@ -240,7 +240,7 @@ if usuario_nombre and emocion:
         st.session_state.recomendacion_actual = None
     if "tipo" not in st.session_state:
         st.session_state.tipo = None
-
+    
     tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
 
     # === Generar nueva recomendación si cambia el tipo o se pide explícitamente ===
@@ -366,59 +366,38 @@ if usuario_nombre and emocion:
 
     st.session_state.usar_colaborativo = usar_colaborativo
 
-    # === Preparar lista de recomendaciones ===
-    if usar_colaborativo and recomendaciones:
-        st.info(f"Usando algoritmo Slope One para {tipo}.")
-        st.session_state.recomendaciones_ordenadas = sorted(
-            recomendaciones.items(), key=lambda x: x[1], reverse=True
-        )
-    else:
-        if not st.session_state.recomendaciones_ordenadas: 
-            titulos_populares = obtener_recomendaciones_populares(
-                df, usuario_nombre, titulos_tipo_list, top_n=5
-            )
-            st.session_state.recomendaciones_ordenadas = [(titulo, 1.0) for titulo in titulos_populares]
-
-    # === Selección de la recomendación actual ===
-    if "recomendacion_actual" not in st.session_state:
-        st.session_state.recomendacion_actual = None
-
-    recomendacion = st.session_state.recomendacion_actual
+    recomendaciones_ordenadas = []
+    recomendacion = st.session_state.get("recomendacion_actual", None)
     fuente = None
-    
-    if not st.session_state.recomendaciones_ordenadas:
-       st.session_state.usar_colaborativo = False
-       st.session_state.recomendacion_index = 0
+# 1️ Populares
+    titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
+    titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
+    titulos_populares = [t for t in titulos_populares if t not in titulos_ya_calificados]
+    recomendaciones_ordenadas.extend([(t, 1.0) for t in titulos_populares])
 
+# 2️ Slope One
+    if usar_colaborativo and recomendaciones:
+        slope_items = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
+        recomendaciones_ordenadas.extend(slope_items)
+
+    st.session_state.recomendaciones_ordenadas = recomendaciones_ordenadas
+
+    titulo_aleatorio = None
+# === Selección de la recomendación actual ===
     if st.session_state.recomendacion_actual is None:
-# --- PRIORIDAD 1: POPULARES ---
-            titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
-            titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
-            titulos_populares = [t for t in titulos_populares if t not in titulos_ya_calificados]
-            
-            if titulos_populares:
-                fuente = "populares"
-                st.session_state.recomendaciones_ordenadas = [(t, 1.0) for t in titulos_populares]        
-# --- PRIORIDAD 2: SLOPE ONE ---
-            elif st.session_state.usar_colaborativo and st.session_state.recomendaciones_ordenadas:
-                fuente = "slope"       
-# --- PRIORIDAD 3: ALEATORIAS---
-            else:
-                fuente = "aleatorias"
-                st.session_state.recomendacion_index = 0
-    
-            if fuente in ("populares", "slope") and st.session_state.recomendaciones_ordenadas:
-                if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
-                    titulo_aleatorio = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index][0]
-                    st.session_state.recomendacion_index += 1
-                else:
-                    # Si se acaban las recomendaciones, pasar a aleatorias
-                    fuente = "aleatorias"
-                    st.session_state.recomendaciones_ordenadas = []
-                    st.session_state.recomendacion_index = 0
-                    titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-            else:
-                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+        if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
+            titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index][0]
+            st.session_state.recomendacion_index += 1
+            titulo_aleatorio = titulo_actual
+        # Determinar fuente según posición
+            fuente = "populares" if titulo_actual in titulos_populares else "slope"
+
+        else:
+        # Si se acaban todas, pasar a aleatorias
+            fuente = "aleatorias"
+            st.session_state.recomendacion_index = 0
+            titulo_actual = seleccionar_titulo(titulos, tipo)
+
     # Para que se muestre siempre la fuente aunque no se haya recalculado
             
     st.write(f"🎯 **Fuente seleccionada:** {fuente}")
