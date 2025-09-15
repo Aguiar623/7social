@@ -371,8 +371,11 @@ if usuario_nombre and emocion:
 
     st.session_state.usar_colaborativo = usar_colaborativo
 
+    if "fuente_actual" not in st.session_state:
+        st.session_state.fuente_actual = "populares"
+
 # 1️ Populares
-    if not st.session_state.recomendaciones_ordenadas:
+    if not st.session_state.recomendaciones_ordenadas and st.session_state.fuente_actual == "populares":
         if not st.session_state.titulos_populares:
             titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
             titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
@@ -395,14 +398,15 @@ if usuario_nombre and emocion:
             st.session_state.recomendaciones_ordenadas = []
             st.session_state.recomendacion_index = 0
             st.session_state.recomendacion_actual = None  
+            st.session_state.fuente_actual = "aleatorias"
             fuente = "aleatorias"
-            titulo_actual = seleccionar_titulo(titulos, tipo)
+            titulo_actual = None
         else:
         # Si aún hay recomendaciones en la lista, tomar la siguiente
                 titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
-
                 titulo_aleatorio = titulo_actual
                 fuente = "populares" if titulo_actual in st.session_state.titulos_populares else "slope"
+                st.session_state.fuente_actual = fuente
     else:
         # Ya existe recomendación actual, mantenemos la fuente previa
         titulo_actual = st.session_state.recomendacion_actual["titulo"]
@@ -410,19 +414,23 @@ if usuario_nombre and emocion:
             fuente = "populares" if not st.session_state.usar_colaborativo else "slope"
         else:
             fuente = "aleatorias"
-    # Para que se muestre siempre la fuente aunque no se haya recalculado
-            
+        st.session_state.fuente_actual = fuente
     st.write(f"🎯 **Fuente seleccionada:** {fuente}")
     st.write(f"📋 **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
     st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
     st.write(f"📌 **usar_colaborativo:** {st.session_state.usar_colaborativo}")
 
-    recomendacion = st.session_state.get("recomendacion_actual", None)
-        
-    if recomendacion is None:
+    recomendacion = None    
+    
+    if titulo_actual is None or fuente== "aleatorias":
         for _ in range(5): 
             if fuente == "aleatorias":
-                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+                titulos_excluir = set(st.session_state.titulos_populares)
+                for _ in range(10):
+                    titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+                    if titulo_aleatorio not in titulos_excluir:
+                        break
+                st.session_state.recomendacion_actual = None
             if tipo == "Libro":
                 recomendacion = buscar_api_libro(titulo_aleatorio)
             elif tipo == "Película":
@@ -433,17 +441,19 @@ if usuario_nombre and emocion:
                 break
             else:
                 titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-        
         st.session_state.recomendacion_actual = recomendacion
-        
+
     else:
-    # Ya existe recomendación actual
+        if tipo == "Libro":
+            recomendacion = buscar_api_libro(titulo_actual)
+        elif tipo == "Película":
+            recomendacion = buscar_api_pelicula(titulo_actual)
+        elif tipo == "Evento":
+            recomendacion = buscar_api_evento(titulo_actual)
+    st.session_state.recomendacion_actual = recomendacion  
+    if recomendacion:
         titulo_actual = recomendacion["titulo"]
-        if st.session_state.recomendaciones_ordenadas:
-            fuente = "populares" if not st.session_state.usar_colaborativo else "slope"
-        else:
-            fuente = "aleatorias"
-    
+
     if fuente == "slope":
         st.info("📊 Usando algoritmo **Slope One** para recomendaciones.")
     elif fuente == "populares":
