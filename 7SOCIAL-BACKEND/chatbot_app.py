@@ -373,68 +373,61 @@ if usuario_nombre and emocion:
             recomendaciones.items(), key=lambda x: x[1], reverse=True
         )
     else:
-        titulos_populares = obtener_recomendaciones_populares(
-            df, usuario_nombre, titulos_tipo_list, top_n=5
-        )
-        st.session_state.recomendaciones_ordenadas = [(titulo, 1.0) for titulo in titulos_populares]
+        if not st.session_state.recomendaciones_ordenadas: 
+            titulos_populares = obtener_recomendaciones_populares(
+                df, usuario_nombre, titulos_tipo_list, top_n=5
+            )
+            st.session_state.recomendaciones_ordenadas = [(titulo, 1.0) for titulo in titulos_populares]
 
     # === Selección de la recomendación actual ===
     if "recomendacion_actual" not in st.session_state:
         st.session_state.recomendacion_actual = None
 
+    recomendacion = st.session_state.recomendacion_actual
     fuente = None
-    recomendacion = None
     
     if not st.session_state.recomendaciones_ordenadas:
        st.session_state.usar_colaborativo = False
-     
+       st.session_state.recomendacion_index = 0
+
     if st.session_state.recomendacion_actual is None:
-    # --- PRIORIDAD 1: POPULARES ---
+# --- PRIORIDAD 1: POPULARES ---
             titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
             titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
             titulos_populares = [t for t in titulos_populares if t not in titulos_ya_calificados]
+            
             if titulos_populares:
                 fuente = "populares"
-                st.session_state.recomendaciones_ordenadas = [(t, 1.0) for t in titulos_populares]
-    # --- PRIORIDAD 2: SLOPE ONE ---
+                st.session_state.recomendaciones_ordenadas = [(t, 1.0) for t in titulos_populares]        
+# --- PRIORIDAD 2: SLOPE ONE ---
             elif st.session_state.usar_colaborativo and st.session_state.recomendaciones_ordenadas:
-                fuente = "slope"
-    # --- Fallback a aleatorias ---
+                fuente = "slope"       
+# --- PRIORIDAD 3: ALEATORIAS---
             else:
                 fuente = "aleatorias"
                 st.session_state.recomendaciones_ordenadas = []
-            
-            st.write(f"🎯 **Fuente seleccionada:** {fuente}")
-            st.write(f"📋 **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
-            st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
-            st.write(f"📌 **usar_colaborativo:** {st.session_state.usar_colaborativo}")
-
+    
             if fuente in ("populares", "slope") and st.session_state.recomendaciones_ordenadas:
                 if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
                     titulo_aleatorio = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index][0]
                     st.session_state.recomendacion_index += 1
                 else:
-            # Se acabaron las recomendaciones,pasar a la siguiente fuente
-                    st.session_state.recomendacion_index = 0
+                    # Si se acaban las recomendaciones, pasar a aleatorias
+                    fuente = "aleatorias"
                     st.session_state.recomendaciones_ordenadas = []
-                    if fuente == "slope":
-                        st.session_state.usar_colaborativo = False  # Desactiva colaborativo si ya no hay más
-            # reintenta generar de nuevo pero con populares o aleatorias
-                    titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
-                    if titulos_populares:
-                        fuente = "populares"
-                        st.session_state.recomendaciones_ordenadas = [(t, 1.0) for t in titulos_populares]
-                        titulo_aleatorio = st.session_state.recomendaciones_ordenadas[0][0]
-                        st.session_state.recomendacion_index = 1
-                    else:
-                        fuente = "aleatorias"
-                        titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-
+                    st.session_state.recomendacion_index = 0
+                    titulo_aleatorio = seleccionar_titulo(titulos, tipo)
             elif fuente == "aleatorias":
                 titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-
-    else:
-        recomendacion = st.session_state.recomendacion_actual 
+    
+            else:
+                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+    # Para que se muestre siempre la fuente aunque no se haya recalculado
+            
+    st.write(f"🎯 **Fuente seleccionada:** {fuente}")
+    st.write(f"📋 **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
+    st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
+    st.write(f"📌 **usar_colaborativo:** {st.session_state.usar_colaborativo}")
 
     if recomendacion is None:
         for _ in range(5): 
@@ -448,8 +441,19 @@ if usuario_nombre and emocion:
                 recomendacion = buscar_api_evento(titulo_aleatorio)
             if recomendacion:
                 break
+            else:
+                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+        
         st.session_state.recomendacion_actual = recomendacion
 
+    else:
+    # Ya existe recomendación actual
+        titulo_actual = recomendacion["titulo"]
+        if st.session_state.recomendaciones_ordenadas:
+            fuente = "populares" if not st.session_state.usar_colaborativo else "slope"
+        else:
+            fuente = "aleatorias"
+    
     if fuente == "slope":
         st.info("📊 Usando algoritmo **Slope One** para recomendaciones.")
     elif fuente == "populares":
