@@ -388,8 +388,13 @@ if usuario_nombre and emocion:
         if usar_colaborativo and recomendaciones:
             slope_items = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
             slope_items = [(t, score) for t, score in slope_items if t not in titulos_ya_calificados]
-
-        st.session_state.recomendaciones_ordenadas = titulos_populares + [t[0] for t in slope_items]
+        if slope_items:
+            st.session_state.recomendaciones_ordenadas = [t[0] for t in slope_items]
+            st.session_state.fuente_actual = "slope"
+        else:
+            st.session_state.recomendaciones_ordenadas = titulos_populares
+            st.session_state.fuente_actual = "populares"
+    
     recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
 
 # === Selección de la recomendación actual ===
