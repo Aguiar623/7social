@@ -405,7 +405,7 @@ if usuario_nombre and emocion:
 # --- PRIORIDAD 3: ALEATORIAS---
             else:
                 fuente = "aleatorias"
-                st.session_state.recomendaciones_ordenadas = []
+                st.session_state.recomendacion_index = 0
     
             if fuente in ("populares", "slope") and st.session_state.recomendaciones_ordenadas:
                 if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
@@ -417,9 +417,6 @@ if usuario_nombre and emocion:
                     st.session_state.recomendaciones_ordenadas = []
                     st.session_state.recomendacion_index = 0
                     titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-            elif fuente == "aleatorias":
-                titulo_aleatorio = seleccionar_titulo(titulos, tipo)
-    
             else:
                 titulo_aleatorio = seleccionar_titulo(titulos, tipo)
     # Para que se muestre siempre la fuente aunque no se haya recalculado
