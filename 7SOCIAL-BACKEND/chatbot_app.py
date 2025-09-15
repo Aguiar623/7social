@@ -11,7 +11,6 @@ from Utils.Analisis import analizar_emocion
 
 st.title("7Chatbot")
 st.write("Recomendaciones según tu **emoción actual**.")
-
 # seleccion de fuente
 modo = st.radio("Fuente de emoción:", ["Chatbot local", "Mastodon"])
 emocion = None  # inicializamos
@@ -113,7 +112,6 @@ elif modo == "Chatbot local":
         st.markdown(f"**Emoción detectada:** `{emocion}`")
 
 if usuario_nombre and emocion:
-
     # === Cargar títulos desde JSON ===
     def cargar_titulos():
         try:
@@ -130,9 +128,7 @@ if usuario_nombre and emocion:
             return random.choice(titulos.get("titulos_peliculas", []))
         elif tipo == "Evento":
             return random.choice(titulos.get("titulos_eventos", []))
-
     titulos = cargar_titulos()
-
     # === APIs para búsqueda de información ===
     def buscar_api_libro(titulo_aleatorio):
         for _ in range(5):
@@ -200,7 +196,6 @@ if usuario_nombre and emocion:
                         "lugar": lugar,
                         "fecha": fecha_formateada,
                     }
-
     # === Cargar matriz de calificaciones ===
     def cargar_calificaciones(path="asociaciones.json", tipo=None, emocion=None):
         try:
@@ -234,7 +229,6 @@ if usuario_nombre and emocion:
         if emocion:
             df = df[df["emocion"] == emocion]
         return df
-    
     # === Inicializar variables de estado ===
     generar_nueva = st.button("🎲 Generar Nueva Recomendación")
 
@@ -258,15 +252,14 @@ if usuario_nombre and emocion:
     
     if generar_nueva:
         st.session_state.recomendacion_actual = None
-        st.session_state.recomendacion_index += 1
-        if st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
+        
+        if st.session_state.recomendaciones_ordenadas:
+            if st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
+                st.session_state.recomendacion_index = 0
+                st.session_state.recomendaciones_ordenadas = []
+        else:
+        # Si no hay lista, reiniciamos índice
             st.session_state.recomendacion_index = 0
-            st.session_state.recomendaciones_ordenadas = []
-    
-    st.write(f"🛠 generar_nueva={generar_nueva}")
-    st.write(f"🔄 recomendacion_actual={st.session_state.recomendacion_actual}")
-    st.write(f"📊 recomendacion_index={st.session_state.recomendacion_index}")
-    st.write(f"📋 recomendaciones_ordenadas={st.session_state.recomendaciones_ordenadas}")
 
     # === Cargar calificaciones ===
     df = cargar_calificaciones(tipo=tipo, emocion=emocion)
@@ -421,7 +414,7 @@ if usuario_nombre and emocion:
                     titulo_aleatorio = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index][0]
                     st.session_state.recomendacion_index += 1
                 else:
-            # Se acabaron las recomendaciones → pasar a la siguiente fuente
+            # Se acabaron las recomendaciones,pasar a la siguiente fuente
                     st.session_state.recomendacion_index = 0
                     st.session_state.recomendaciones_ordenadas = []
                     if fuente == "slope":
