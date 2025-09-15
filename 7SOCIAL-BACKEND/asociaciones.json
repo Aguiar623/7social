@@ -387,5 +387,17 @@
                 }
             }
         }
+    },
+    "franciscojotape": {
+        "joy": {
+            "Libro": {
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                },
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 5
+                }
+            }
+        }
     }
 }
