@@ -391,10 +391,32 @@
     "franciscojotape": {
         "joy": {
             "Libro": {
-                "\"And Pass the Ammunition,\"": {
+                "Cultural Techniques": {
                     "calificacion": 4
                 },
                 "El poder del ahora": {
+                    "calificacion": 5
+                },
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Pass the Ammo": {
+                    "calificacion": 4
+                },
+                "Glücksritterinnen": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mike Delguidice": {
+                    "calificacion": 5
+                },
+                "Tacarra Williams": {
+                    "calificacion": 4
+                },
+                "Nate Bargatze: Big Dumb Eyes World Tour": {
                     "calificacion": 4
                 }
             }
