@@ -130,72 +130,90 @@ if usuario_nombre and emocion:
             return random.choice(titulos.get("titulos_eventos", []))
     titulos = cargar_titulos()
     # === APIs para búsqueda de información ===
-    def buscar_api_libro(titulo_aleatorio):
+    def buscar_api_libro(titulo_aleatorio):   
+        if not titulo_aleatorio:
+            return None
         for _ in range(5):
-            titulo_encoded = quote(titulo_aleatorio)
-            url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{titulo_encoded}"
-            r = requests.get(url).json()
-            if "items" in r:
-                for item in r["items"]:
-                    info = item.get("volumeInfo", {})
-                    imagen = info.get("imageLinks", {}).get("thumbnail", "")
-                    descripcion = info.get("description", "")
-                    if imagen and descripcion:
-                        return {
-                            "titulo": info.get("title", "Título desconocido"),
-                            "autor": ", ".join(info.get("authors", ["Autor desconocido"])),
-                            "imagen": imagen,
-                            "descripcion": descripcion,
-                        }
+            try:
+                titulo_encoded = quote(titulo_aleatorio)
+                url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{titulo_encoded}"
+                r = requests.get(url).json()
+                if "items" in r:
+                    for item in r["items"]:
+                        info = item.get("volumeInfo", {})
+                        imagen = info.get("imageLinks", {}).get("thumbnail", "")
+                        descripcion = info.get("description", "")
+                        if imagen and descripcion:
+                            return {
+                                "titulo": info.get("title", "Título desconocido"),
+                                "autor": ", ".join(info.get("authors", ["Autor desconocido"])),
+                                "imagen": imagen,
+                                "descripcion": descripcion,
+                            }
+            except Exception as e:
+                st.error(f"Error al buscar el libro: {e}")
+        return None
 
     def buscar_api_pelicula(titulo_aleatorio):
+        if not titulo_aleatorio:
+            return None
         omdb_key = "b0f7d269"
         for _ in range(5):
-            titulo_encoded = quote(titulo_aleatorio)
-            url = f"http://www.omdbapi.com/?t={titulo_encoded}&apikey={omdb_key}"
-            r = requests.get(url).json()
-            poster = r.get("Poster", "")
-            plot = r.get("Plot", "")
-            titulo = r.get("Title", titulo_aleatorio)
+            try:
+                titulo_encoded = quote(str(titulo_aleatorio))
+                url = f"http://www.omdbapi.com/?t={titulo_encoded}&apikey={omdb_key}"
+                r = requests.get(url).json()
+                poster = r.get("Poster", "")
+                plot = r.get("Plot", "")
+                titulo = r.get("Title", titulo_aleatorio)
 
-            if poster and poster != "N/A" and plot and plot != "N/A":
-                return {
-                    "titulo": titulo,
-                    "poster": poster,
-                    "plot": plot,
-                }
-
-    def buscar_api_evento(titulo_aleatorio):
-        apikey = "2l39pYhlAH1CmKry7R0aoqTUhFCdeFm7"
-        for _ in range(2):
-            titulo_encoded = quote(titulo_aleatorio)
-            url = f"https://app.ticketmaster.com/discovery/v2/events.json?apikey={apikey}&keyword={titulo_encoded}&size=1"
-            r = requests.get(url).json()
-            eventos = r.get("_embedded", {}).get("events", [])
-            if eventos:
-                seleccion = random.choice(eventos)
-                titulo = seleccion.get("name", "Evento sin nombre")
-                descripcion = seleccion.get("info") or seleccion.get("pleaseNote", "")
-                imagen = seleccion["images"][0]["url"] if seleccion.get("images") else None
-                lugar = seleccion.get("_embedded", {}).get("venues", [{}])[0].get("name", "Lugar no disponible")
-                fecha_iso = seleccion.get("dates", {}).get("start", {}).get("dateTime", None)
-                fecha_formateada = "Fecha no disponible"
-                if fecha_iso:
-                    try:
-                        fecha_str = fecha_iso.split(".")[0].replace("Z", "")
-                        fecha_obj = datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%S")
-                        fecha_formateada = fecha_obj.strftime("%d/%m/%Y a las %H:%M")
-                    except Exception as e:
-                        st.error(f"Error al convertir fecha: {e}")
-
-                if titulo and imagen and descripcion:
+                if poster and poster != "N/A" and plot and plot != "N/A":
                     return {
                         "titulo": titulo,
-                        "descripcion": descripcion[:300],
-                        "imagen": imagen,
-                        "lugar": lugar,
-                        "fecha": fecha_formateada,
-                    }
+                        "poster": poster,
+                        "plot": plot,
+                    } 
+            except Exception as e:
+                st.error(f"Error al buscar la pelicula {e}")
+        return None
+    
+    def buscar_api_evento(titulo_aleatorio):
+        if not titulo_aleatorio:
+            return None
+        apikey = "2l39pYhlAH1CmKry7R0aoqTUhFCdeFm7"
+        for _ in range(2):
+            try:
+                titulo_encoded = quote(str(titulo_aleatorio))
+                url = f"https://app.ticketmaster.com/discovery/v2/events.json?apikey={apikey}&keyword={titulo_encoded}&size=1"
+                r = requests.get(url).json()
+                eventos = r.get("_embedded", {}).get("events", [])
+                if eventos:
+                    seleccion = random.choice(eventos)
+                    titulo = seleccion.get("name", "Evento sin nombre")
+                    descripcion = seleccion.get("info") or seleccion.get("pleaseNote", "")
+                    imagen = seleccion["images"][0]["url"] if seleccion.get("images") else None
+                    lugar = seleccion.get("_embedded", {}).get("venues", [{}])[0].get("name", "Lugar no disponible")
+                    fecha_iso = seleccion.get("dates", {}).get("start", {}).get("dateTime", None)
+                    fecha_formateada = "Fecha no disponible"
+                    if fecha_iso:
+                        try:
+                            fecha_str = fecha_iso.split(".")[0].replace("Z", "")
+                            fecha_obj = datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%S")
+                            fecha_formateada = fecha_obj.strftime("%d/%m/%Y a las %H:%M")
+                        except Exception as e:
+                             st.error(f"Error al convertir fecha: {e}")
+
+                    if titulo and imagen and descripcion:
+                        return {
+                            "titulo": titulo,
+                            "descripcion": descripcion[:300],
+                            "imagen": imagen,
+                            "lugar": lugar,
+                            "fecha": fecha_formateada,
+                        }
+            except Exception as e:
+                st.error(f"Error al buscar evento: {e}")
+        return None       
     # === Cargar matriz de calificaciones ===
     def cargar_calificaciones(path="asociaciones.json", tipo=None, emocion=None):
         try:
@@ -401,7 +419,8 @@ if usuario_nombre and emocion:
 
 # === Selección de la recomendación actual ===
     titulo_actual = None
-    
+    fuente = st.session_state.fuente_actual
+
     if st.session_state.recomendacion_actual is None:
         if len(st.session_state.recomendaciones_ordenadas) > 0 and \
             st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
@@ -456,6 +475,8 @@ if usuario_nombre and emocion:
                     titulo_aleatorio = seleccionar_titulo(titulos, tipo)
                     if titulo_aleatorio not in titulos_excluir:
                         break
+            else:
+                titulo_aleatorio = titulo_actual
                 st.session_state.recomendacion_actual = None
             if tipo == "Libro":
                 recomendacion = buscar_api_libro(titulo_aleatorio)
