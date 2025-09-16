@@ -268,12 +268,12 @@ if usuario_nombre and emocion:
     tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
 
     # === Generar nueva recomendación si cambia el tipo o se pide explícitamente ===
-    if st.session_state.tipo != tipo:
+    if "tipo" not in st.session_state or st.session_state.tipo != tipo:
+        st.session_state.fuente_actual = "populares"
         st.session_state.tipo = tipo
         st.session_state.recomendacion_actual = None
         st.session_state.recomendacion_index = 0
         st.session_state.recomendaciones_ordenadas = []
-        st.session_state.titulos_populares = []
 
     if generar_nueva:
             st.session_state.recomendacion_actual = None  
@@ -283,7 +283,6 @@ if usuario_nombre and emocion:
                 st.session_state.recomendaciones_ordenadas = []
                 st.session_state.recomendacion_index = 0
                 st.session_state.recomendacion_actual = None
-                st.session_state.titulos_populares = []
                 st.write("🔄 Lista de populares terminada, pasando a aleatorias ✅")
 
     # === Cargar calificaciones ===
@@ -394,64 +393,95 @@ if usuario_nombre and emocion:
     if "fuente_actual" not in st.session_state:
         st.session_state.fuente_actual = "populares"
 
+    # Inicializar populares por tipo
+    if "titulos_populares" not in st.session_state or not isinstance(st.session_state.titulos_populares, dict):
+        st.session_state.titulos_populares = {}
+
+# Seleccionar o inicializar populares para el tipo actual
+    if tipo not in st.session_state.titulos_populares:
+        st.session_state.titulos_populares[tipo] = []
+    
+    titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
+
 # 1️ Populares
     if not st.session_state.recomendaciones_ordenadas and st.session_state.fuente_actual == "populares":
-        if not st.session_state.titulos_populares:
+        titulos_populares = st.session_state.titulos_populares.get(tipo, [])
+        if not titulos_populares:
             titulos_populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
-            titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
             titulos_populares = [t for t in titulos_populares if t not in titulos_ya_calificados]
-            st.session_state.titulos_populares = titulos_populares
-        else:
-            titulos_populares = st.session_state.titulos_populares
-# 2️ Slope One
-        slope_items = []
-        if usar_colaborativo and recomendaciones:
-            slope_items = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
-            slope_items = [(t, score) for t, score in slope_items if t not in titulos_ya_calificados]
-        if slope_items:
-            st.session_state.recomendaciones_ordenadas = [t[0] for t in slope_items]
-            st.session_state.fuente_actual = "slope"
-        else:
+            st.session_state.titulos_populares[tipo] = titulos_populares
+        
+        if titulos_populares:
             st.session_state.recomendaciones_ordenadas = titulos_populares
             st.session_state.fuente_actual = "populares"
-    
-    recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
-
+# 2️ Slope One
+        if not st.session_state.recomendaciones_ordenadas and usar_colaborativo and recomendaciones:
+            slope_items = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
+            slope_items = [(t, score) for t, score in slope_items if t not in titulos_ya_calificados]
+            if slope_items:
+                st.session_state.recomendaciones_ordenadas = [t[0] for t in slope_items]
+                st.session_state.fuente_actual = "slope"
+        
+        if not st.session_state.recomendaciones_ordenadas:
+            titulos_excluir = (
+                st.session_state.titulos_populares.get(tipo, [])
+                + st.session_state.historial_mostrados
+                + titulos_ya_calificados
+            )
+            titulos_aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+            if titulos_aleatorios:
+                st.session_state.recomendaciones_ordenadas = random.sample(
+                    titulos_aleatorios, min(5, len(titulos_aleatorios))
+                )
+            st.session_state.fuente_actual = "aleatorias"
+            
 # === Selección de la recomendación actual ===
     titulo_actual = None
     fuente = st.session_state.fuente_actual
-
+    recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
+ 
     if st.session_state.recomendacion_actual is None:
         if len(st.session_state.recomendaciones_ordenadas) > 0 and \
             st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
         # Ya se acabaron las recomendaciones actuales, pasamos a aleatorias
-            if st.session_state.fuente_actual in ("slope", "populares"):
+            if st.session_state.fuente_actual == "populares":
+                slope_items = []
+                if usar_colaborativo and recomendaciones:
+                    slope_items = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
+                    slope_items = [(t, score) for t, score in slope_items if t not in titulos_ya_calificados]
+                if slope_items:
+                    st.session_state.recomendaciones_ordenadas = [t[0] for t in slope_items]
+                    st.session_state.recomendacion_index = 0
+                    st.session_state.fuente_actual = "slope"   
+                else:    
+                    st.session_state.recomendaciones_ordenadas = []
+                    st.session_state.recomendacion_index = 0
+                    st.session_state.fuente_actual = "aleatorias"
+            elif st.session_state.fuente_actual == "slope":
                 st.session_state.recomendaciones_ordenadas = []
                 st.session_state.recomendacion_index = 0
-                st.session_state.recomendacion_actual = None  
+                st.session_state.recomendacion_actual = None 
                 st.session_state.fuente_actual = "aleatorias"
-                fuente = "aleatorias"
-            
-            #  Aquí agregamos el filtro para evitar repetidos en aleatorias
-                titulos_excluir = (
-                    st.session_state.titulos_populares
-                    + [t for t in st.session_state.historial_mostrados]
-                    + df[df["usuario"] == usuario_nombre]["titulo"].tolist()
+
+        if st.session_state.fuente_actual == "aleatorias" and not st.session_state.recomendaciones_ordenadas:
+            titulos_excluir = (
+                st.session_state.titulos_populares.get(tipo, [])
+                + st.session_state.historial_mostrados
+                + titulos_ya_calificados
+            )
+            titulos_aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+            if titulos_aleatorios:
+                st.session_state.recomendaciones_ordenadas = random.sample(
+                    titulos_aleatorios, min(5, len(titulos_aleatorios))
                 )
 
-            # Generar nuevas aleatorias excluyendo repetidos
-                titulos_aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
-                if titulos_aleatorios:
-                    st.session_state.recomendaciones_ordenadas = random.sample(
-                        titulos_aleatorios, min(5, len(titulos_aleatorios))
-                    )
         if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
             fuente = st.session_state.fuente_actual
     else:
         # Ya existe recomendación actual, mantenemos la fuente previa
         titulo_actual = st.session_state.recomendacion_actual["titulo"]
-        fuente = st.session_state.recomendacion_actual["fuente"]
+        fuente = st.session_state.recomendacion_actual.get("fuente", st.session_state.fuente_actual)
     
     if titulo_actual and titulo_actual not in st.session_state.historial_mostrados:
         st.session_state.historial_mostrados.append(titulo_actual)
@@ -467,7 +497,7 @@ if usuario_nombre and emocion:
         for _ in range(5): 
             if fuente == "aleatorias":
                 titulos_excluir = set(
-                    st.session_state.titulos_populares
+                    st.session_state.titulos_populares.get(tipo,[])
                     + st.session_state.historial_mostrados
                     + df[df["usuario"] == usuario_nombre]["titulo"].tolist()
                 )
@@ -488,6 +518,9 @@ if usuario_nombre and emocion:
                 break
             else:
                 titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+        
+        if recomendacion:
+            recomendacion["fuente"] = fuente
         st.session_state.recomendacion_actual = recomendacion
 
     else:
@@ -497,10 +530,14 @@ if usuario_nombre and emocion:
             recomendacion = buscar_api_pelicula(titulo_actual)
         elif tipo == "Evento":
             recomendacion = buscar_api_evento(titulo_actual)
-    st.session_state.recomendacion_actual = recomendacion  
+      
+        if recomendacion:
+            recomendacion["fuente"] = fuente
+        st.session_state.recomendacion_actual = recomendacion
+    
     if recomendacion:
         titulo_actual = recomendacion["titulo"]
-
+    
     if fuente == "slope":
         st.info("📊 Usando algoritmo **Slope One** para recomendaciones.")
     elif fuente == "populares":
