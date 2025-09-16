@@ -403,7 +403,9 @@ if usuario_nombre and emocion:
     titulo_actual = None
     
     if st.session_state.recomendacion_actual is None:
-        if st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
+        if len(st.session_state.recomendaciones_ordenadas) > 0 and \
+            st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
+        # Ya se acabaron las recomendaciones actuales, pasamos a aleatorias
             if st.session_state.fuente_actual in ("slope", "populares"):
                 st.session_state.recomendaciones_ordenadas = []
                 st.session_state.recomendacion_index = 0
@@ -420,12 +422,11 @@ if usuario_nombre and emocion:
 
             # Generar nuevas aleatorias excluyendo repetidos
                 titulos_aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
-                if len(titulos_aleatorios) > 0:
+                if titulos_aleatorios:
                     st.session_state.recomendaciones_ordenadas = random.sample(
                         titulos_aleatorios, min(5, len(titulos_aleatorios))
                     )
-        else:
-        # Si aún hay recomendaciones en la lista, tomar la siguiente
+        if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
             fuente = st.session_state.fuente_actual
     else:
@@ -446,7 +447,11 @@ if usuario_nombre and emocion:
     if titulo_actual is None or fuente== "aleatorias":
         for _ in range(5): 
             if fuente == "aleatorias":
-                titulos_excluir = set(st.session_state.titulos_populares)
+                titulos_excluir = set(
+                    st.session_state.titulos_populares
+                    + st.session_state.historial_mostrados
+                    + df[df["usuario"] == usuario_nombre]["titulo"].tolist()
+                )
                 for _ in range(10):
                     titulo_aleatorio = seleccionar_titulo(titulos, tipo)
                     if titulo_aleatorio not in titulos_excluir:
