@@ -421,5 +421,94 @@
                 }
             }
         }
+    },
+    "nataliagallego": {
+        "sadness": {
+            "Libro": {
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "Correspondencia con Horacio Quiroga": {
+                    "calificacion": 4
+                },
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Les amants du tage": {
+                    "calificacion": 5
+                },
+                "Glücksritterinnen": {
+                    "calificacion": 5
+                },
+                "Skin: A History of Nudity in the Movies": {
+                    "calificacion": 5
+                },
+                "The Mechanics of Love": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 5
+                },
+                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 4
+                },
+                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "lauraz34": {
+        "fear": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 4
+                },
+                "Correspondencia con Horacio Quiroga": {
+                    "calificacion": 4
+                },
+                "Chasing Rainbows": {
+                    "calificacion": 4
+                },
+                "National Union Catalog of Manuscript Collections": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Glücksritterinnen": {
+                    "calificacion": 4
+                },
+                "Skin: A History of Nudity in the Movies": {
+                    "calificacion": 5
+                },
+                "DORA - Flucht in die Musik": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 4
+                },
+                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
+                    "calificacion": 4
+                },
+                "Ozomatli": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "diegoc467": {
+        "anger": {
+            "Libro": {
+                "El poder del ahora": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }

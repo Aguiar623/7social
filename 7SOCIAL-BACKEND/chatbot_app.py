@@ -486,6 +486,7 @@ if usuario_nombre and emocion:
     if titulo_actual and titulo_actual not in st.session_state.historial_mostrados:
         st.session_state.historial_mostrados.append(titulo_actual)
 
+        #-------------DEBUG-------BORRAR AL REALIZAR
         st.write(f"🎯 **Fuente seleccionada:** {fuente}")
         st.write(f"📋 **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
         st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
@@ -550,6 +551,7 @@ if usuario_nombre and emocion:
     # === Mostrar recomendación ===
     if recomendacion:
         # --- Mostrar según el tipo ---
+        titulo_para_calificar = recomendacion["titulo"]
         if tipo == "Libro":
             st.markdown(f"📚 **Libro recomendado:** {recomendacion['titulo']}")
             st.markdown(f"**Autor:** {recomendacion['autor']}")
@@ -590,6 +592,8 @@ if usuario_nombre and emocion:
                 st.success(f"¡Gracias por calificar con {calificacion} estrellas!")
                 st.info("✅ ¡Tu calificación se ha guardado como una recomendación útil!")
     
+            st.session_state.recomendacion_index += 1
             st.session_state.recomendacion_actual = None
+            st.rerun()
     else:
         st.warning("⚠️ No se encontró una recomendación adecuada.")
