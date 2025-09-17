@@ -516,6 +516,9 @@
                 },
                 "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
                     "calificacion": 4
+                },
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 4
                 }
             },
             "Película": {
@@ -537,6 +540,46 @@
                     "calificacion": 4
                 },
                 "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "dianbovi": {
+        "surprise": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 4
+                },
+                "Correspondencia con Horacio Quiroga": {
+                    "calificacion": 4
+                },
+                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
+                    "calificacion": 5
+                },
+                "Los cuadernos malditos de Federico Gamboa": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Les amants du tage": {
+                    "calificacion": 5
+                },
+                "Saint Amour": {
+                    "calificacion": 4
+                },
+                "Bye Bye Berlusconi!": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 4
+                },
+                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
+                    "calificacion": 5
+                },
+                "Ozomatli": {
                     "calificacion": 4
                 }
             }
