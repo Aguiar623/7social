@@ -507,6 +507,37 @@
             "Libro": {
                 "El poder del ahora": {
                     "calificacion": 4
+                },
+                "The Nature Books of Henry David Thoreau – 6 Titles in One Volume (Illustrated Edition)": {
+                    "calificacion": 4
+                },
+                "Anna Karenina in Our Time": {
+                    "calificacion": 4
+                },
+                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Champagne Charlie": {
+                    "calificacion": 4
+                },
+                "Pass the Ammo": {
+                    "calificacion": 5
+                },
+                "Les amants du tage": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 4
+                },
+                "Bebeshito": {
+                    "calificacion": 4
+                },
+                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 4
                 }
             }
         }

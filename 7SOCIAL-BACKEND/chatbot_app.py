@@ -594,6 +594,5 @@ if usuario_nombre and emocion:
     
             st.session_state.recomendacion_index += 1
             st.session_state.recomendacion_actual = None
-            st.rerun()
     else:
         st.warning("⚠️ No se encontró una recomendación adecuada.")
