@@ -584,5 +584,94 @@
                 }
             }
         }
+    },
+    "sandralopez": {
+        "joy": {
+            "Libro": {
+                "Crónicas marcianas": {
+                    "calificacion": 4
+                },
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 5
+                },
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "Espiritualidad emocionalmente sana - Guía de estudio": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "My Bloody Valentine": {
+                    "calificacion": 4
+                },
+                "Willy Fog en viaje al centro de la Tierra": {
+                    "calificacion": 4
+                },
+                "Carry on Up the Khyber": {
+                    "calificacion": 5
+                },
+                "C'est tout pour moi": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
+                    "calificacion": 4
+                },
+                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
+                    "calificacion": 4
+                },
+                "Ozomatli": {
+                    "calificacion": 4
+                },
+                "East Nash Grass": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "natavillegas": {
+        "others": {
+            "Libro": {
+                "Siete estrategias para sacar partido a los libros de autoayuda": {
+                    "calificacion": 4
+                },
+                "Plato and Socrates (RLE: Plato)": {
+                    "calificacion": 4
+                },
+                "Boletín mensual de información económica 1986. Enero. Volumen X, número 1": {
+                    "calificacion": 4
+                },
+                "Hannibal": {
+                    "calificacion": 4
+                },
+                "Shakespeare and the First Hamlet": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "My Bloody Valentine": {
+                    "calificacion": 4
+                },
+                "xXx": {
+                    "calificacion": 4
+                },
+                "Willy Fog en viaje al centro de la Tierra": {
+                    "calificacion": 4
+                },
+                "Glücksritterinnen": {
+                    "calificacion": 4
+                },
+                "The Mechanics of Love": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Black Violin": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }
