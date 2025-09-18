@@ -408,16 +408,32 @@ if usuario_nombre and emocion:
         if st.session_state.recomendaciones_ordenadas:
             st.session_state.recomendacion_index += 1
             if st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
-                if st.session_state.usar_colaborativo and st.session_state.recomendaciones_slope:
-                    st.session_state.recomendaciones_ordenadas = st.session_state.recomendaciones_slope.copy()
-                    st.session_state.recomendacion_index = 0
-                    st.session_state.fuente_actual = "slope"
-                    st.write("lista populares terminada , pasando a slope one")
-                else:
-                    st.session_state.recomendaciones_ordenadas = []
-                    st.session_state.recomendacion_index = 0
-                    st.session_state.fuente_actual = "aleatorias"
-                    st.write("Lista de recomendaciones terminada, pasando a aleatorias")
+                if st.session_state.fuente_actual == "populares":
+                    if st.session_state.usar_colaborativo and st.session_state.recomendaciones_slope:
+                       st.session_state.recomendaciones_ordenadas = st.session_state.recomendaciones_slope.copy()
+                       st.session_state.recomendacion_index = 0
+                       st.session_state.fuente_actual = "slope"
+                       st.write("lista populares terminada , pasando a slope one")
+                    else:
+                       st.session_state.recomendaciones_ordenadas = []
+                       st.session_state.recomendacion_index = 0
+                       st.session_state.fuente_actual = "aleatorias"
+                       st.write("Lista de recomendaciones terminada, pasando a aleatorias")
+                
+                elif st.session_state.fuente_actual == "slope":
+                    excluidos = set(st.session_state.historial_mostrados)
+                    aleatorios = [t for t in titulos_tipo_list if t not in excluidos]
+                    if aleatorios:
+                        st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
+                        st.session_state.recomendacion_index = 0
+                        st.session_state.fuente_actual = "aleatorias"
+                        st.write("Lista de Slope One terminada, pasando a aleatorias")
+                    else:
+                        st.session_state.recomendaciones_ordenadas = []
+                        st.session_state.recomendacion_index = 0
+                        st.session_state.fuente_actual = "aleatorias"
+                        st.write("No hay aleatorias disponibles, reiniciando flujo")
+
 # === Selección de la recomendación actual ===
     titulo_actual = None
     fuente = st.session_state.fuente_actual
