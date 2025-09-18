@@ -285,17 +285,16 @@ if usuario_nombre and emocion:
 
     generar_nueva = st.button("🎲 Generar Nueva Recomendación")
     if generar_nueva:
-        st.session_state.recomendacion_actual = None  
-        
+        st.session_state.recomendacion_actual = None     
         if "titulo_aleatorio_guardado" in st.session_state:
             del st.session_state.titulo_aleatorio_guardado
-        
-        if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
+
+        if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas) - 1:
             st.session_state.recomendacion_index += 1
         else:
-            st.session_state.recomendaciones_ordenadas = []
             st.session_state.recomendacion_index = 0
-            st.session_state.recomendacion_actual = None
+            st.session_state.recomendaciones_ordenadas = []
+            st.session_state.fuente_actual = "aleatorias"
             st.write("🔄 Lista de populares terminada, pasando a aleatorias ✅")
 
     # === Cargar calificaciones ===
@@ -625,5 +624,6 @@ if usuario_nombre and emocion:
             st.session_state.recomendacion_actual = None
             if "titulo_aleatorio_guardado" in st.session_state:
                 del st.session_state.titulo_aleatorio_guardado
+            st.rerun()
     else:
         st.warning("⚠️ No se encontró una recomendación adecuada.")

@@ -673,5 +673,17 @@
                 }
             }
         }
+    },
+    "alezgonzales": {
+        "joy": {
+            "Libro": {
+                "Cultural Techniques": {
+                    "calificacion": 4
+                },
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }
