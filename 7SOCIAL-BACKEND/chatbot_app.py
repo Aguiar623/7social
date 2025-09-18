@@ -122,12 +122,16 @@ if usuario_nombre and emocion:
             return None
 
     def seleccionar_titulo(titulos, tipo):
+        if isinstance(titulos,list):
+            return random.choice(titulos) if titulos else None
+        
         if tipo == "Libro":
             return random.choice(titulos.get("titulos_libros", []))
         elif tipo == "Película":
             return random.choice(titulos.get("titulos_peliculas", []))
         elif tipo == "Evento":
             return random.choice(titulos.get("titulos_eventos", []))
+        return None
     titulos = cargar_titulos()
     # === APIs para búsqueda de información ===
     def buscar_api_libro(titulo_aleatorio):   
@@ -262,6 +266,10 @@ if usuario_nombre and emocion:
         st.session_state.titulos_populares = []
     if "historial_mostrados" not in st.session_state:
         st.session_state.historial_mostrados = set()
+    if "titulos_populares" not in st.session_state or not isinstance(st.session_state.titulos_populares, dict):
+        st.session_state.titulos_populares = {}
+    if "fuente_actual" not in st.session_state:
+        st.session_state.fuente_actual = "populares"
     
     tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
 
@@ -295,9 +303,25 @@ if usuario_nombre and emocion:
 
     # === Obtener lista de títulos del tipo actual ===
     if df.empty:
-        titulos_tipo_list = []
+        if isinstance(titulos, dict):
+            if tipo == "Libro":
+                titulos_tipo_list = titulos.get("titulos_libros", [])
+            elif tipo == "Película":
+                titulos_tipo_list = titulos.get("titulos_peliculas", [])
+            elif tipo == "Evento":
+                titulos_tipo_list = titulos.get("titulos_eventos", [])
+        else:
+            titulos_tipo_list = []
     else:
         titulos_tipo_list = df[df["tipo"] == tipo]["titulo"].dropna().unique().tolist()
+        if not titulos_tipo_list and isinstance(titulos, dict):
+            if tipo == "Libro":
+                titulos_tipo_list = titulos.get("titulos_libros", [])
+            elif tipo == "Película":
+                titulos_tipo_list = titulos.get("titulos_peliculas", [])
+            elif tipo == "Evento":
+                titulos_tipo_list = titulos.get("titulos_eventos", [])
+
 
     # === Función de popularidad con fallback ===
     def obtener_recomendaciones_populares(df_local, usuario, titulos_disponibles, top_n=5):
@@ -391,13 +415,6 @@ if usuario_nombre and emocion:
 
     st.session_state.usar_colaborativo = usar_colaborativo
 
-    if "fuente_actual" not in st.session_state:
-        st.session_state.fuente_actual = "populares"
-
-    # Inicializar populares por tipo
-    if "titulos_populares" not in st.session_state or not isinstance(st.session_state.titulos_populares, dict):
-        st.session_state.titulos_populares = {}
-
 # Seleccionar o inicializar populares para el tipo actual
     if tipo not in st.session_state.titulos_populares:
         st.session_state.titulos_populares[tipo] = []
@@ -440,7 +457,8 @@ if usuario_nombre and emocion:
     titulo_actual = None
     fuente = st.session_state.fuente_actual
     recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
- 
+    titulo_aleatorio = None
+
     if st.session_state.recomendacion_actual is None:
         if len(st.session_state.recomendaciones_ordenadas) > 0 and \
             st.session_state.recomendacion_index >= len(st.session_state.recomendaciones_ordenadas):
@@ -468,18 +486,18 @@ if usuario_nombre and emocion:
                 if "titulo_aleatorio_guardado" in st.session_state:
                     del st.session_state.titulo_aleatorio_guardado
 
-
         if st.session_state.fuente_actual == "aleatorias" and not st.session_state.recomendaciones_ordenadas:
-            titulos_excluir = (
-                st.session_state.titulos_populares.get(tipo, [])
-                + st.session_state.historial_mostrados
-                + titulos_ya_calificados
-            )
+            titulos_excluir = set(st.session_state.titulos_populares.get(tipo, [])) \
+                | set(st.session_state.historial_mostrados) \
+                | set(titulos_ya_calificados)
+            
             titulos_aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
             if titulos_aleatorios:
                 st.session_state.recomendaciones_ordenadas = random.sample(
                     titulos_aleatorios, min(5, len(titulos_aleatorios))
                 )
+            else:
+                st.write("no ahi titulos disponibles para recomendaciones aleatorias")
 
         if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
@@ -498,15 +516,16 @@ if usuario_nombre and emocion:
         st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
         st.write(f"📌 **usar_colaborativo:** {st.session_state.usar_colaborativo}")
         
+    recomendacion = None
+    
     if titulo_actual is None or fuente == "aleatorias":
             if "titulo_aleatorio_guardado" not in st.session_state or st.session_state.recomendacion_actual is None:    
-                titulos_excluir = set(
-                    st.session_state.titulos_populares.get(tipo,[])
-                    + st.session_state.historial_mostrados
-                    + df[df["usuario"] == usuario_nombre]["titulo"].tolist()
-                )
+                titulos_excluir = set(st.session_state.titulos_populares.get(tipo,[])) \
+                    | set(st.session_state.historial_mostrados) \
+                    | set(df[df["usuario"] == usuario_nombre]["titulo"].tolist())
+                
                 for _ in range(10):
-                    titulo_aleatorio = seleccionar_titulo(titulos, tipo)
+                    titulo_aleatorio = seleccionar_titulo(titulos_tipo_list, tipo)
                     if titulo_aleatorio not in titulos_excluir:
                         st.session_state.titulo_aleatorio_guardado = titulo_aleatorio
                         break
@@ -595,6 +614,10 @@ if usuario_nombre and emocion:
                     st.success(f"¡Gracias por calificar con {calificacion} estrellas!")
                     st.info("✅ ¡Tu calificación se ha guardado como una recomendación útil!")
     
+                if "titulos_populares" in st.session_state and tipo in st.session_state.titulos_populares:
+                    if titulo_calificado in st.session_state.titulos_populares[tipo]:
+                        st.session_state.titulos_populares[tipo].remove(titulo_calificado)
+            
             if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
                 st.session_state.recomendacion_index += 1
             

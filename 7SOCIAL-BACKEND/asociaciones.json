@@ -673,5 +673,17 @@
                 }
             }
         }
+    },
+    "alezgonzales": {
+        "joy": {
+            "Libro": {
+                "Crónicas marcianas": {
+                    "calificacion": 4
+                },
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }
