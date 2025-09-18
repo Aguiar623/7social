@@ -285,7 +285,8 @@ if usuario_nombre and emocion:
 
     generar_nueva = st.button("🎲 Generar Nueva Recomendación")
     if generar_nueva:
-        st.session_state.recomendacion_actual = None     
+        st.session_state.recomendacion_actual = None  
+        
         if "titulo_aleatorio_guardado" in st.session_state:
             del st.session_state.titulo_aleatorio_guardado
 
@@ -312,7 +313,7 @@ if usuario_nombre and emocion:
         else:
             titulos_tipo_list = []
     else:
-        titulos_tipo_list = df[df["tipo"] == tipo]["titulo"].dropna().unique().tolist()
+        titulos_tipo_list = (df[df["tipo"] == tipo]["titulo"].dropna().unique().tolist())
         if not titulos_tipo_list and isinstance(titulos, dict):
             if tipo == "Libro":
                 titulos_tipo_list = titulos.get("titulos_libros", [])
