@@ -614,12 +614,13 @@ if usuario_nombre and emocion:
                     st.success(f"¡Gracias por calificar con {calificacion} estrellas!")
                     st.info("✅ ¡Tu calificación se ha guardado como una recomendación útil!")
     
-                if "titulos_populares" in st.session_state and tipo in st.session_state.titulos_populares:
-                    if titulo_calificado in st.session_state.titulos_populares[tipo]:
-                        st.session_state.titulos_populares[tipo].remove(titulo_calificado)
-            
-            if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
+            if st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas) - 1:
                 st.session_state.recomendacion_index += 1
+            else:
+                st.session_state.recomendacion_index = 0
+                st.session_state.recomendaciones_ordenadas = []
+                st.session_state.fuente_actual = "aleatorias"
+                st.write("🔄 Lista de populares terminada, pasando a aleatorias ✅")
             
             st.session_state.recomendacion_actual = None
             if "titulo_aleatorio_guardado" in st.session_state:
