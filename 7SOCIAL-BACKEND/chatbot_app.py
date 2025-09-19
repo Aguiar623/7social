@@ -371,11 +371,15 @@ if usuario_nombre and emocion:
 
             st.write(f"📊 Recomendaciones generadas por Slope One: {len(recomendaciones)}")
             st.write(recomendaciones)
+            
             if recomendaciones:
                 usar_colaborativo = True
                 recomendaciones_ordenadas = sorted(recomendaciones.items(), key=lambda x: x[1], reverse=True)
-                st.session_state.recomendaciones_slope = [titulo for titulo, _ in recomendaciones_ordenadas]
-        else:
+                ya_populares = set(st.session_state.titulos_populares.get(tipo, []))
+                filtradas = [titulo for titulo, _ in recomendaciones_ordenadas if titulo not in ya_populares]
+
+                st.session_state.recomendaciones_slope = filtradas
+        else:    
             st.write("⚠️ No hay suficientes items preferidos para activar colaborativo (se requieren ≥ 2).")
 
     st.session_state.usar_colaborativo = usar_colaborativo
@@ -383,20 +387,29 @@ if usuario_nombre and emocion:
     
     ##-- recomendaciones ordenadas --##
     if not st.session_state.recomendaciones_ordenadas:
+        excluidos_global = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
+    
+        if usar_colaborativo and st.session_state.recomendaciones_slope:
+            excluidos_global |= set(st.session_state.recomendaciones_slope)
     # 1) Populares preferidas (mantener comportamiento original)
         populares = obtener_recomendaciones_populares(df, usuario_nombre, titulos_tipo_list, top_n=5)
-        populares = [t for t in populares if t not in titulos_ya_calificados]
+        populares = [t for t in populares if t not in excluidos_global]
         if populares:
             st.session_state.recomendaciones_ordenadas = populares
             st.session_state.fuente_actual = "populares"
             st.session_state.titulos_populares[tipo] = populares
+            excluidos_global |= set(populares)
     # 2) Si no hay populares y hay slope disponible, usar slope
-        elif usar_colaborativo and st.session_state.recomendaciones_slope:
-            st.session_state.recomendaciones_ordenadas = st.session_state.recomendaciones_slope
-            st.session_state.fuente_actual = "slope"
+        if not st.session_state.recomendaciones_ordenadas and usar_colaborativo and st.session_state.recomendaciones_slope:
+            excluidos_slope = excluidos_global | set(st.session_state.titulos_populares.get(tipo, []))
+            slope_filtrado = [t for t in st.session_state.recomendaciones_slope if t not in excluidos_slope]
+            if slope_filtrado:
+                st.session_state.recomendaciones_ordenadas = slope_filtrado
+                st.session_state.fuente_actual = "slope"
+                excluidos_global |= set(slope_filtrado)
     # 3) Por último, aleatorias si no encontré nada arriba
-        else:
-            excluidos = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados) | set(st.session_state.titulos_populares.get(tipo, []))
+        if not st.session_state.recomendaciones_ordenadas:
+            excluidos = excluidos_global | set(st.session_state.titulos_populares.get(tipo, [])) | set(st.session_state.recomendaciones_slope)
             aleatorios = [t for t in titulos_tipo_list if t not in excluidos]
             if aleatorios:
                 st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
