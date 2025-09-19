@@ -259,13 +259,13 @@ if usuario_nombre and emocion:
     if "recomendacion_actual" not in st.session_state:
         st.session_state.recomendacion_actual = None
     if "tipo" not in st.session_state:
-        st.session_state.tipo = None
-    if "usar_colaborativo" not in st.session_state:
         st.session_state.usar_colaborativo = False
     if "historial_mostrados" not in st.session_state:
         st.session_state.historial_mostrados = set()
-    if "titulos_populares" not in st.session_state or not isinstance(st.session_state.titulos_populares, dict):
+    if "titulos_populares" not in st.session_state or not isinstance(st.session_state.titulos_populares, dict): 
         st.session_state.titulos_populares = {}
+    if "usar_colaborativo" not in st.session_state: 
+        st.session_state.usar_colaborativo = False
     if "fuente_actual" not in st.session_state:
         st.session_state.fuente_actual = "populares"
     if "recomendaciones_slope" not in st.session_state:
@@ -283,6 +283,10 @@ if usuario_nombre and emocion:
         if "titulo_aleatorio_guardado" in st.session_state:
             del st.session_state.titulo_aleatorio_guardado
 
+    # === Cargar lista global de títulos desde JSON ===
+    with open("titulos.json", "r", encoding="utf-8") as f:
+        titulos = json.load(f)
+    
     # === Cargar calificaciones y lista de titulos ===
     df = cargar_calificaciones(tipo=tipo, emocion=emocion)
     if df.empty:
@@ -409,11 +413,23 @@ if usuario_nombre and emocion:
                 excluidos_global |= set(slope_filtrado)
     # 3) Por último, aleatorias si no encontré nada arriba
         if not st.session_state.recomendaciones_ordenadas:
-            excluidos = excluidos_global | set(st.session_state.titulos_populares.get(tipo, [])) | set(st.session_state.recomendaciones_slope)
-            aleatorios = [t for t in titulos_tipo_list if t not in excluidos]
+            excluidos_global |= set(st.session_state.titulos_populares.get(tipo, []))
+            excluidos_global |= set(st.session_state.recomendaciones_slope)
+            excluidos_global |= set(st.session_state.historial_mostrados)
+            
+            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            aleatorios = [t for t in lista_global if t not in excluidos_global]
+            
             if aleatorios:
                 st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
+                st.session_state.recomendacion_index = 0
                 st.session_state.fuente_actual = "aleatorias"
+            else:
+        # Si no hay mas en la lista local , llamar a API para traer algo nuevo
+                aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+                if aleatorios:
+                    titulo_actual = random.choice(aleatorios)
+                    st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": "aleatorias"}
 
     # === Boton de recomendacion === #
     generar_nueva = st.button("🎲 Generar Nueva Recomendación")
@@ -434,8 +450,10 @@ if usuario_nombre and emocion:
                        st.write("Lista de recomendaciones terminada, pasando a aleatorias")
                 
                 elif st.session_state.fuente_actual == "slope":
-                    excluidos = set(st.session_state.historial_mostrados)
-                    aleatorios = [t for t in titulos_tipo_list if t not in excluidos]
+                    excluidos_global = set(st.session_state.historial_mostrados)| set(titulos_ya_calificados)
+                    excluidos_global |= set(st.session_state.titulos_populares.get(tipo, []))
+                    excluidos_global |= set(st.session_state.recomendaciones_slope)
+                    aleatorios = [t for t in titulos_tipo_list if t not in excluidos_global]
                     if aleatorios:
                         st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
                         st.session_state.recomendacion_index = 0
@@ -452,12 +470,22 @@ if usuario_nombre and emocion:
     fuente = st.session_state.fuente_actual
     recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
 
+    # Crear conjunto de exclusión
+    titulos_excluir = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
+
+    if "recomendaciones_slope" in st.session_state:
+        rec_slope = st.session_state.recomendaciones_slope
+        if isinstance(rec_slope, dict):
+            titulos_excluir |= set(rec_slope.keys())
+        elif isinstance(rec_slope, list):
+        # Si es lista, agregamos los títulos directamente
+            titulos_excluir |= set(rec_slope)
+
     if st.session_state.recomendacion_actual is None:
         if st.session_state.recomendaciones_ordenadas:
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
             st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": st.session_state.fuente_actual}       
         else:
-            titulos_excluir = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
             aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
             if aleatorios:
                 titulo_actual = random.choice(aleatorios)
