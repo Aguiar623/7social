@@ -673,5 +673,42 @@
                 }
             }
         }
+    },
+    "alezgonzales": {
+        "joy": {
+            "Libro": {
+                "Cultural Techniques": {
+                    "calificacion": 4
+                },
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                },
+                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "xXx": {
+                    "calificacion": 4
+                },
+                "Carry on Up the Khyber": {
+                    "calificacion": 5
+                },
+                "Willy Fog en viaje al centro de la Tierra": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "East Nash Grass": {
+                    "calificacion": 5
+                },
+                "Ozomatli": {
+                    "calificacion": 4
+                },
+                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }
