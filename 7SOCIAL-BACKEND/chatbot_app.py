@@ -453,7 +453,8 @@ if usuario_nombre and emocion:
                     excluidos_global = set(st.session_state.historial_mostrados)| set(titulos_ya_calificados)
                     excluidos_global |= set(st.session_state.titulos_populares.get(tipo, []))
                     excluidos_global |= set(st.session_state.recomendaciones_slope)
-                    aleatorios = [t for t in titulos_tipo_list if t not in excluidos_global]
+                    lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+                    aleatorios = [t for t in lista_global if t not in excluidos_global]
                     if aleatorios:
                         st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
                         st.session_state.recomendacion_index = 0
@@ -486,7 +487,8 @@ if usuario_nombre and emocion:
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
             st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": st.session_state.fuente_actual}       
         else:
-            aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            aleatorios = [t for t in lista_global if t not in titulos_excluir]
             if aleatorios:
                 titulo_actual = random.choice(aleatorios)
                 st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": "aleatorias"} 
@@ -509,7 +511,8 @@ if usuario_nombre and emocion:
             st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": st.session_state.fuente_actual}
         else:    
             titulos_excluir = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
-            aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            aleatorios = [t for t in lista_global if t not in titulos_excluir]
             if aleatorios:
                 titulo_actual = random.choice(aleatorios)
                 st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": "aleatorias"} 

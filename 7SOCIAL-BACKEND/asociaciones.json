@@ -710,5 +710,20 @@
                 }
             }
         }
+    },
+    "camimunoz": {
+        "anger": {
+            "Libro": {
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 4
+                },
+                "Anna Karenina in Our Time": {
+                    "calificacion": 4
+                },
+                "The Politics of Presidential Appointments": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }
