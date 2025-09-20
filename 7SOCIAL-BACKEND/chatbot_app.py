@@ -273,6 +273,16 @@ if usuario_nombre and emocion:
 
     tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
 
+    mapa_tipos = {
+    "libro": "libros",
+    "película": "peliculas",
+    "evento": "eventos"
+    }
+    clave_tipo = mapa_tipos.get(tipo.lower(), None)
+    if not clave_tipo:
+        st.error(f"Tipo '{tipo}' no reconocido")
+        st.stop()
+    
     # === Generar nueva recomendación si cambia el tipo o se pide explícitamente ===
     if "tipo" not in st.session_state or st.session_state.tipo != tipo:
         st.session_state.tipo = tipo
@@ -417,7 +427,7 @@ if usuario_nombre and emocion:
             excluidos_global |= set(st.session_state.recomendaciones_slope)
             excluidos_global |= set(st.session_state.historial_mostrados)
             
-            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            lista_global = titulos.get(f"titulos_{clave_tipo}", [])
             aleatorios = [t for t in lista_global if t not in excluidos_global]
             
             if aleatorios:
@@ -426,7 +436,8 @@ if usuario_nombre and emocion:
                 st.session_state.fuente_actual = "aleatorias"
             else:
         # Si no hay mas en la lista local , llamar a API para traer algo nuevo
-                aleatorios = [t for t in titulos_tipo_list if t not in titulos_excluir]
+                lista_global = titulos.get(f"titulos_{clave_tipo}", [])
+                aleatorios = [t for t in lista_global if t not in excluidos_global]
                 if aleatorios:
                     titulo_actual = random.choice(aleatorios)
                     st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": "aleatorias"}
@@ -453,7 +464,7 @@ if usuario_nombre and emocion:
                     excluidos_global = set(st.session_state.historial_mostrados)| set(titulos_ya_calificados)
                     excluidos_global |= set(st.session_state.titulos_populares.get(tipo, []))
                     excluidos_global |= set(st.session_state.recomendaciones_slope)
-                    lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+                    lista_global = titulos.get(f"titulos_{clave_tipo}", [])
                     aleatorios = [t for t in lista_global if t not in excluidos_global]
                     if aleatorios:
                         st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
@@ -487,7 +498,7 @@ if usuario_nombre and emocion:
             titulo_actual = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
             st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": st.session_state.fuente_actual}       
         else:
-            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            lista_global = titulos.get(f"titulos_{clave_tipo}", [])
             aleatorios = [t for t in lista_global if t not in titulos_excluir]
             if aleatorios:
                 titulo_actual = random.choice(aleatorios)
@@ -511,7 +522,7 @@ if usuario_nombre and emocion:
             st.session_state.recomendacion_actual = {"titulo": titulo_actual, "fuente": st.session_state.fuente_actual}
         else:    
             titulos_excluir = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
-            lista_global = titulos.get(f"titulos_{tipo.lower()}s", [])
+            lista_global = titulos.get(f"titulos_{clave_tipo}", [])
             aleatorios = [t for t in lista_global if t not in titulos_excluir]
             if aleatorios:
                 titulo_actual = random.choice(aleatorios)

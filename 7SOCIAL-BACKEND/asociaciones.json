@@ -714,13 +714,30 @@
     "camimunoz": {
         "anger": {
             "Libro": {
-                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
-                    "calificacion": 4
-                },
                 "Anna Karenina in Our Time": {
                     "calificacion": 4
                 },
-                "The Politics of Presidential Appointments": {
+                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
+                    "calificacion": 4
+                },
+                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
+                    "calificacion": 4
+                },
+                "La Facultad de Medicina de Valencia. Cinco siglos de historia": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Champagne Charlie": {
+                    "calificacion": 4
+                },
+                "Pass the Ammo": {
+                    "calificacion": 4
+                },
+                "Max Havoc: Ring of Fire": {
+                    "calificacion": 4
+                },
+                "Two for the Road": {
                     "calificacion": 4
                 }
             }
