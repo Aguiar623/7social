@@ -284,9 +284,6 @@
                 }
             },
             "Película": {
-                "Praise Marx and Pass the Ammunition": {
-                    "calificacion": 4
-                },
                 "Les amants du tage": {
                     "calificacion": 5
                 }
@@ -437,9 +434,6 @@
             },
             "Película": {
                 "Les amants du tage": {
-                    "calificacion": 5
-                },
-                "Glücksritterinnen": {
                     "calificacion": 5
                 },
                 "Skin: A History of Nudity in the Movies": {
@@ -747,6 +741,55 @@
                 },
                 "4th ANNUAL HONKY TONKTOBERFEST Hosted by WILD EARP": {
                     "calificacion": 4
+                }
+            }
+        }
+    },
+    "yeisonzapat": {
+        "sadness": {
+            "Libro": {
+                "Correspondencia con Horacio Quiroga": {
+                    "calificacion": 4
+                },
+                "Paraguay en la historia, la literatura y la memoria": {
+                    "calificacion": 4
+                },
+                "Cumbres Borrascosas": {
+                    "calificacion": 4
+                },
+                "Historia de la filosofía": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Skin: A History of Nudity in the Movies": {
+                    "calificacion": 5
+                },
+                "My Bloody Valentine": {
+                    "calificacion": 5
+                },
+                "The Wild Blue Yonder": {
+                    "calificacion": 5
+                },
+                "Agatha Christie: A Life in Pictures": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Jay Webb": {
+                    "calificacion": 5
+                },
+                "PhaseOne": {
+                    "calificacion": 5
+                },
+                "The Paper Kites": {
+                    "calificacion": 5
+                },
+                "Algonquin Commons Theatre presents:  HELP! A Tribute to the Beatles": {
+                    "calificacion": 5
+                },
+                "BERTHA: Grateful Drag": {
+                    "calificacion": 5
                 }
             }
         }

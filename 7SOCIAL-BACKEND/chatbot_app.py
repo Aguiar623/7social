@@ -112,7 +112,7 @@ elif modo == "Chatbot local":
         st.markdown(f"**Emoción detectada:** `{emocion}`")
 
 if usuario_nombre and emocion:
-    # === Cargar títulos desde JSON ===
+    # === Cargar titulos desde JSON ===
     def cargar_titulos():
         try:
             with open("titulos.json", "r", encoding="utf-8") as f:
@@ -133,7 +133,7 @@ if usuario_nombre and emocion:
             return random.choice(titulos.get("titulos_eventos", []))
         return None
     titulos = cargar_titulos()
-    # === APIs para búsqueda de información ===
+    # === APIs para busqueda de información ===
     def buscar_api_libro(titulo_aleatorio):   
         if not titulo_aleatorio:
             return None
@@ -191,7 +191,7 @@ if usuario_nombre and emocion:
                 url = f"https://app.ticketmaster.com/discovery/v2/events.json?apikey={apikey}&keyword={titulo_encoded}&size=1"
                 r = requests.get(url).json()
                 eventos = r.get("_embedded", {}).get("events", [])
-                st.write(f"🔎 Eventos encontrados para '{titulo_aleatorio}': {len(eventos)}")  # 👈 DEBUG
+                #st.write(f"🔎 Eventos encontrados para '{titulo_aleatorio}': {len(eventos)}")
                 if eventos:
                     seleccion = random.choice(eventos)
                     titulo = seleccion.get("name", "Evento sin nombre")
@@ -284,7 +284,7 @@ if usuario_nombre and emocion:
         st.error(f"Tipo '{tipo}' no reconocido")
         st.stop()
     
-    # === Generar nueva recomendación si cambia el tipo o se pide explícitamente ===
+    # === Generar nueva recomendacion si cambia el tipo o se pide explicitamente ===
     if "tipo" not in st.session_state or st.session_state.tipo != tipo:
         st.session_state.tipo = tipo
         st.session_state.fuente_actual = "populares"
@@ -294,7 +294,7 @@ if usuario_nombre and emocion:
         if "titulo_aleatorio_guardado" in st.session_state:
             del st.session_state.titulo_aleatorio_guardado
 
-    # === Cargar lista global de títulos desde JSON ===
+    # === Cargar lista global de titulos desde JSON ===
     with open("titulos.json", "r", encoding="utf-8") as f:
         titulos = json.load(f)
     
@@ -347,8 +347,8 @@ if usuario_nombre and emocion:
         calificaciones_usuario = calificaciones_usuario[calificaciones_usuario.index.isin(titulos_tipo_list)]
         items_preferidos = calificaciones_usuario[calificaciones_usuario >= 4]
 
-        st.write(f"🔎 Ítems preferidos para {tipo}: {len(items_preferidos)}")
-        st.write(f"📋 Lista: {items_preferidos.to_dict()}")
+        #st.write(f"🔎 Ítems preferidos para {tipo}: {len(items_preferidos)}")
+        #st.write(f"📋 Lista: {items_preferidos.to_dict()}")
 
         if len(items_preferidos) >= 2:
             diferencias, frecuencias = {}, {}
@@ -364,7 +364,7 @@ if usuario_nombre and emocion:
                         diferencias[(i, j)] += rated_items[i] - rated_items[j]
                         frecuencias[(i, j)] += 1
             
-            st.write(f"📊 Pares de diferencias calculados: {len(diferencias)}")
+            #st.write(f" Pares de diferencias calculados: {len(diferencias)}")
 
             predicciones, conteos = {}, {}
             for item_p, rating_p in items_preferidos.items():
@@ -384,8 +384,8 @@ if usuario_nombre and emocion:
                 if conteos.get(item, 0) > 0 and pd.isna(calificaciones_usuario.get(item))
             }
 
-            st.write(f"📊 Recomendaciones generadas por Slope One: {len(recomendaciones)}")
-            st.write(recomendaciones)
+            #st.write(f" Recomendaciones generadas por Slope One: {len(recomendaciones)}")
+            #st.write(recomendaciones)
             
             if recomendaciones:
                 usar_colaborativo = True
@@ -408,8 +408,8 @@ if usuario_nombre and emocion:
 
         if tiene_datos_para_slope:
             slope_filtrado = [t for t in st.session_state.recomendaciones_slope if t not in excluidos_global]
-            st.write("📊 Slope crudo:", st.session_state.recomendaciones_slope)
-            st.write("✅ Filtrado:", slope_filtrado)
+            #st.write(" Slope crudo:", st.session_state.recomendaciones_slope)
+            #st.write(" Filtrado:", slope_filtrado)
             
             if slope_filtrado:
                 st.session_state.recomendaciones_ordenadas = slope_filtrado
@@ -435,7 +435,7 @@ if usuario_nombre and emocion:
                 st.session_state.recomendaciones_ordenadas = slope_filtrado
                 st.session_state.fuente_actual = "slope"
                 excluidos_global |= set(slope_filtrado)
-    # 3) Por último, aleatorias si no encontré nada arriba
+    # 3) Por ultimo, aleatorias si no encontre nada arriba
         if not st.session_state.recomendaciones_ordenadas:
             excluidos_global |= set(st.session_state.titulos_populares.get(tipo, []))
             excluidos_global |= set(st.session_state.recomendaciones_slope)
@@ -468,12 +468,12 @@ if usuario_nombre and emocion:
                        st.session_state.recomendaciones_ordenadas = st.session_state.recomendaciones_slope.copy()
                        st.session_state.recomendacion_index = 0
                        st.session_state.fuente_actual = "slope"
-                       st.write("lista populares terminada , pasando a slope one")
+                       #st.write("lista populares terminada , pasando a slope one")
                     else:
                        st.session_state.recomendaciones_ordenadas = []
                        st.session_state.recomendacion_index = 0
                        st.session_state.fuente_actual = "aleatorias"
-                       st.write("Lista de recomendaciones terminada, pasando a aleatorias")
+                       #st.write("Lista de recomendaciones terminada, pasando a aleatorias")
                 
                 elif st.session_state.fuente_actual == "slope":
                     excluidos_global = set(st.session_state.historial_mostrados)| set(titulos_ya_calificados)
@@ -485,19 +485,19 @@ if usuario_nombre and emocion:
                         st.session_state.recomendaciones_ordenadas = random.sample(aleatorios, min(5, len(aleatorios)))
                         st.session_state.recomendacion_index = 0
                         st.session_state.fuente_actual = "aleatorias"
-                        st.write("Lista de Slope One terminada, pasando a aleatorias")
+                        #st.write("Lista de Slope One terminada, pasando a aleatorias")
                     else:
                         st.session_state.recomendaciones_ordenadas = []
                         st.session_state.recomendacion_index = 0
                         st.session_state.fuente_actual = "aleatorias"
-                        st.write("No hay aleatorias disponibles, reiniciando flujo")
+                        #st.write("No hay aleatorias disponibles, reiniciando flujo")
 
-# === Selección de la recomendación actual ===
+# === Seleccion de la recomendacion actual ===
     titulo_actual = None
     fuente = st.session_state.fuente_actual
     recomendaciones_ordenadas = st.session_state.recomendaciones_ordenadas
 
-    # Crear conjunto de exclusión
+    # Crear conjunto de exclusion
     titulos_excluir = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
 
     if st.session_state.recomendacion_actual is None:
@@ -519,20 +519,20 @@ if usuario_nombre and emocion:
         if isinstance(rec_slope, dict):
             titulos_excluir |= set(rec_slope.keys())
         elif isinstance(rec_slope, list):
-        # Si es lista, agregamos los títulos directamente
+        # Si es lista, agregamos los titulos directamente
             titulos_excluir |= set(rec_slope)
 
-    #-------------DEBUG-------BORRAR AL REALIZAR
-    st.write(f"🎯 **Fuente seleccionada:** {fuente}")
-    st.write(f"📋 **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
-    st.write(f"📊 **Índice actual:** {st.session_state.recomendacion_index}")
-    st.write(f"📌 **usar_colaborativo:** {st.session_state.usar_colaborativo}")
+    #-------------DEBUG-------COMENTADO POR SI ALGUN BUG EN EL FUTURO-----
+    #st.write(f" **Fuente seleccionada:** {fuente}")
+    #st.write(f" **Recomendaciones ordenadas:** {st.session_state.recomendaciones_ordenadas}")
+    #st.write(f" **Índice actual:** {st.session_state.recomendacion_index}")
+    #st.write(f" **usar_colaborativo:** {st.session_state.usar_colaborativo}")
         
     #-- recomendacion final --#
     recomendacion = None
     titulo_aleatorio = None
 
-    # Asegurar que hay una lista; si está vacía, forzamos aleatorias simples (sin API en el filtro)
+    # Asegurar que hay una lista; si esta vacia, forzamos aleatorias simples (sin API en el filtro)
     if not st.session_state.recomendaciones_ordenadas:
         lista_global = titulos.get(f"titulos_{clave_tipo}", [])
         excluidos_global = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
@@ -549,7 +549,7 @@ if usuario_nombre and emocion:
 
     while intentos < max_intentos and st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
         candidato = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
-        st.write(f"🎯 Intentando API para: {candidato}")
+        #st.write(f"🎯 Intentando API para: {candidato}")
         try:
             if tipo == "Libro":
                 rec = buscar_api_libro(candidato)
@@ -561,7 +561,7 @@ if usuario_nombre and emocion:
                 rec = None
         except Exception as e:
             rec = None
-            st.write("⚠️ Error llamando API para candidato:", candidato, e)
+            #st.write("⚠️ Error llamando API para candidato:", candidato, e)
 
         if rec:
             rec["fuente"] = fuente
@@ -571,13 +571,13 @@ if usuario_nombre and emocion:
             found = True
             break
         else:
-            st.write(f"⚠️ No hay detalles para '{candidato}', probando siguiente...")
+            #st.write(f"⚠️ No hay detalles para '{candidato}', probando siguiente...")
             st.session_state.historial_mostrados.add(candidato)
             st.session_state.recomendacion_index += 1
             intentos += 1
 
     if not found:
-    # Si no obtuvimos nada en MAX intentos, regenerar aleatorias limpias y rerun
+    # Si no obtuvimos nada en MAX intentos, regeneramos aleatorias limpias y rerun
         st.write("⚠️ No se encontraron recomendaciones válidas en la lista actual. Generando aleatorias...")
         lista_global = titulos.get(f"titulos_{clave_tipo}", [])
         excluidos_global = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
@@ -600,9 +600,9 @@ if usuario_nombre and emocion:
     
     st.session_state.tipo = tipo
 
-    # === Mostrar recomendación ===
+    # === Mostrar recomendacion ===
     if recomendacion:
-        # --- Mostrar según el tipo ---
+        # --- Mostrar segun el tipo ---
         if tipo == "Libro":
             st.markdown(f"📚 **Libro recomendado:** {recomendacion['titulo']}")
             st.markdown(f"**Autor:** {recomendacion['autor']}")
@@ -622,7 +622,7 @@ if usuario_nombre and emocion:
             st.markdown(f"📍 **Lugar:** {recomendacion['lugar']}")
             st.markdown(f"🕒 **Fecha y hora:** {recomendacion['fecha']}")
 
-        # --- Formulario de calificación ---
+        # --- Formulario de calificacion ---
         with st.form("calificacion_form"):
             st.markdown("### ⭐ ¿Qué tan útil fue esta recomendación?")
             calificacion = st.slider("Califica de 1 (poco útil) a 5 (muy útil)", 1, 5, 3)
@@ -650,7 +650,7 @@ if usuario_nombre and emocion:
                     st.session_state.titulo_para_calificar = None
                     st.session_state.recomendacion_actual = None
         
-                     # Avanzar índice si hay lista, o forzar regenerar aleatorias
+                     # Avanzar indice si hay lista, o forzar regenerar aleatorias
                     if st.session_state.recomendaciones_ordenadas and st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas) - 1:
                         st.session_state.recomendacion_index += 1
                     else:
