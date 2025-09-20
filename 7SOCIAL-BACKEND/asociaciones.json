@@ -737,6 +737,17 @@
                 "Two for the Road": {
                     "calificacion": 4
                 }
+            },
+            "Evento": {
+                "The Queens: 4 Legends, 1 Stage": {
+                    "calificacion": 4
+                },
+                "ALESTORM FALL 2025 TOUR": {
+                    "calificacion": 4
+                },
+                "4th ANNUAL HONKY TONKTOBERFEST Hosted by WILD EARP": {
+                    "calificacion": 4
+                }
             }
         }
     }
