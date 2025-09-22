@@ -152,7 +152,7 @@ def update_post(post_id: int, updated_post: PostCreate, user_id: int = Query(...
 # Endpoint para el registro
 @app.post("/register", response_model=UserResponse)
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
-    print("Datos recibidos del frontend:", user.model_dump())
+    #print("Datos recibidos del frontend:", user.model_dump())
     # Verifica si el usuario o correo ya existe
     existing_user = db.query(User).filter((User.username == user.username) | (User.email == user.email)).first()
     if existing_user:
