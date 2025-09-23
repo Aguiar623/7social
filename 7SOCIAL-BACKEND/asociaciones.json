@@ -857,5 +857,14 @@
                 }
             }
         }
+    },
+    "pruebanew": {
+        "joy": {
+            "Libro": {
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                }
+            }
+        }
     }
 }

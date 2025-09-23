@@ -6,112 +6,42 @@ import random
 from datetime import datetime
 import pandas as pd
 from urllib.parse import quote
-from mastodon import Mastodon
-from Utils.Analisis import analizar_emocion
 
 st.title("7Chatbot")
 st.write("Recomendaciones según tu **emoción actual**.")
-# seleccion de fuente
-modo = st.radio("Fuente de emoción:", ["Chatbot local", "Mastodon"])
-emocion = None  # inicializamos
-user_id = None  # inicializamos
+
+emocion = None  # inicializamos las variables
+user_id = None
 usuario_nombre = None
 
-if modo == "Mastodon":
-    # Crear la app si no existe
-    if not os.path.exists("mastodon_clientcred.secret"):
-        Mastodon.create_app(
-            "7ChatbotApp",
-            api_base_url="https://mastodon.social",
-            to_file="mastodon_clientcred.secret",
-            redirect_uris="urn:ietf:wg:oauth:2.0:oob",
-        )
+#obtenemos el usuario
+query_params = st.query_params
+user_id = query_params.get("user_id", [None])[0]
 
-    # Cargar credenciales de cliente
-    mastodon = Mastodon(
-        client_id="mastodon_clientcred.secret",
-        api_base_url="https://mastodon.social"
-    )
-
-    usuario_nombre = None
-
-    # Intentar usar token previo
-    if "mastodon_token" in st.session_state:
-        try:
-            mastodon = Mastodon(
-                access_token=st.session_state.mastodon_token,
-                api_base_url="https://mastodon.social",
-            )
-            usuario_nombre = mastodon.me()["acct"]  # valida token
-            st.success(f"✅ Sesión iniciada como {usuario_nombre}")
-        except Exception:
-            st.warning("⚠️ Token inválido o expirado. Inicia sesión de nuevo.")
-            del st.session_state["mastodon_token"]
-
-    # Si no hay token válido → mostrar login
-    if not usuario_nombre:
-        login_url = mastodon.auth_request_url(scopes=["read"])
-        st.markdown(f"[🔑 Iniciar sesión con Mastodon]({login_url})")
-
-        auth_code = st.text_input("Pega aquí el código de autorización de Mastodon")
-
-        if auth_code:
-            try:
-                access_token = mastodon.log_in(
-                    code=auth_code,
-                    scopes=["read"],
-                    redirect_uri="urn:ietf:wg:oauth:2.0:oob",
-                )
-                st.session_state.mastodon_token = access_token
-                st.rerun()
-            except Exception as e:
-                st.error(f"Error al autenticar: {e}")
-
-    # Si tenemos token válido → mostrar info
-    if usuario_nombre:
-        st.write(f"👤 Usuario: {usuario_nombre}")
-
-        try:
-            posts = mastodon.account_statuses(mastodon.me()["id"], limit=1)
-            if posts:
-                texto = re.sub(r"<[^>]+>", "", posts[0]["content"])
-                st.write(f"📝 Último toot: {texto}")
-
-                analisis = analizar_emocion(texto)
-                emocion = analisis.output
-                if emocion:
-                    st.markdown(f"**Emoción detectada:** `{emocion}`")
-            else:
-                st.warning("⚠️ No se encontró ningún toot para analizar.")
-        except Exception as e:
-            st.error(f"Error al obtener toots: {e}")
-
-elif modo == "Chatbot local":
-    query_params = st.query_params
-    user_id = query_params.get("user_id", [None])[0]
-
-    if user_id:
+if user_id:
+    try:
         res_name = requests.get(f"http://localhost:8000/user/{user_id}/name")
         res_name.raise_for_status()
         user_data = res_name.json()
         usuario_nombre = user_data["name"]
+    except Exception as e:
+        st.error(f"❌ No se pudo obtener el nombre del usuario: {e}")
+        st.stop()
 
-        if os.path.exists("estado_emocional.json"):
-            with open("estado_emocional.json", "r", encoding="utf-8") as f:
-                datos = json.load(f)
-            user_data = datos.get(str(user_id), None)
-            if user_data:
-                emocion = user_data["emocion"]
+    if os.path.exists("estado_emocional.json"):
+        with open("estado_emocional.json", "r", encoding="utf-8") as f:
+            datos = json.load(f)
+        user_data = datos.get(str(user_id), None)
+        if user_data:
+            emocion = user_data["emocion"]
+        
+    if emocion:
+        st.markdown(f"**Emocion Detectada:** {emocion}")
+        
+    else:
+        st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
+        st.stop()
 
-        if emocion:
-            st.markdown(f"**Emoción detectada (local):** `{emocion}`")
-        else:
-            st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
-            st.stop()
-
-        st.markdown(f"**Emoción detectada:** `{emocion}`")
-
-if usuario_nombre and emocion:
     # === Cargar titulos desde JSON ===
     def cargar_titulos():
         try:
