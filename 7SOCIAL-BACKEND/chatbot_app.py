@@ -16,7 +16,7 @@ usuario_nombre = None
 
 #obtenemos el usuario
 query_params = st.query_params
-user_id = query_params.get("user_id", [None])[0]
+user_id = query_params.get("user_id")
 
 if user_id:
     try:
@@ -36,7 +36,7 @@ if user_id:
             emocion = user_data["emocion"]
         
     if emocion:
-        st.markdown(f"**Emocion Detectada:** {emocion}")
+        st.markdown(f"**Emocion Detectada:** `{emocion}`")
         
     else:
         st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")

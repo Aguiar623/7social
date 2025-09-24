@@ -17,6 +17,29 @@
                 },
                 "Cultural Techniques": {
                     "calificacion": 4
+                },
+                "Un asunto pendiente": {
+                    "calificacion": 4
+                },
+                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "xXx": {
+                    "calificacion": 5
+                },
+                "My Bloody Valentine": {
+                    "calificacion": 4
+                },
+                "Carry on Up the Khyber": {
+                    "calificacion": 4
+                },
+                "C'est tout pour moi": {
+                    "calificacion": 4
+                },
+                "Invincible": {
+                    "calificacion": 4
                 }
             }
         }
@@ -862,6 +885,69 @@
         "joy": {
             "Libro": {
                 "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "faber": {
+        "others": {
+            "Libro": {
+                "Siete estrategias para sacar partido a los libros de autoayuda": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Black Violin": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "juandamian": {
+        "joy": {
+            "Libro": {
+                "\"And Pass the Ammunition,\"": {
+                    "calificacion": 4
+                },
+                "Cultural Techniques": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Carry on Up the Khyber": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "vanessa": {
+        "joy": {
+            "Película": {
+                "Carry on Up the Khyber": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "edwar": {
+        "joy": {
+            "Película": {
+                "xXx": {
+                    "calificacion": 4
+                }
+            },
+            "Libro": {
+                "Crónicas marcianas": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "joan": {
+        "others": {
+            "Película": {
+                "My Bloody Valentine": {
                     "calificacion": 4
                 }
             }
