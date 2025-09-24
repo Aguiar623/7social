@@ -424,9 +424,6 @@
             "Película": {
                 "Pass the Ammo": {
                     "calificacion": 4
-                },
-                "Glücksritterinnen": {
-                    "calificacion": 5
                 }
             },
             "Evento": {
@@ -496,9 +493,6 @@
                 }
             },
             "Película": {
-                "Glücksritterinnen": {
-                    "calificacion": 4
-                },
                 "Skin: A History of Nudity in the Movies": {
                     "calificacion": 5
                 },
@@ -672,9 +666,6 @@
                     "calificacion": 4
                 },
                 "Willy Fog en viaje al centro de la Tierra": {
-                    "calificacion": 4
-                },
-                "Glücksritterinnen": {
                     "calificacion": 4
                 },
                 "The Mechanics of Love": {
@@ -991,6 +982,452 @@
                     "calificacion": 5
                 },
                 "Jay Webb": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "danialvarado": {
+        "joy": {
+            "Libro": {
+                "Emailicious": {
+                    "calificacion": 4
+                },
+                "Odisea nº 22": {
+                    "calificacion": 4
+                },
+                "La ciudad y los perros: Biografía de una novela": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Julianes Sturz in den Dschungel": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Mike Delguidice": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "isabella": {
+        "sadness": {
+            "Libro": {
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 5
+                },
+                "Un asunto pendiente": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Agatha Christie: A Life in Pictures": {
+                    "calificacion": 5
+                },
+                "Rich and Famous": {
+                    "calificacion": 5
+                },
+                "The Gateway": {
+                    "calificacion": 5
+                },
+                "Electrick Children": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Jay Webb": {
+                    "calificacion": 5
+                },
+                "Joe Bonamassa": {
+                    "calificacion": 5
+                },
+                "Pittsburgh Pirates vs. Detroit Tigers": {
+                    "calificacion": 5
+                },
+                "Deltron 3030 - 25th Anniversary": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "francisco": {
+        "joy": {
+            "Libro": {
+                "Mario Lavista": {
+                    "calificacion": 5
+                },
+                "Movie Mania Crosswords to Keep You Sharp": {
+                    "calificacion": 5
+                },
+                "Los Darcy de Derbyshire": {
+                    "calificacion": 5
+                },
+                "Más allá del principio del placer: y otros escritos sobre la moral": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "C'est tout pour moi": {
+                    "calificacion": 5
+                },
+                "A Date with Miss Fortune": {
+                    "calificacion": 5
+                },
+                "A Man Called Peter": {
+                    "calificacion": 5
+                },
+                "Invincible": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
+                    "calificacion": 5
+                },
+                "Nate Bargatze: Big Dumb Eyes World Tour": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "kevin": {
+        "sadness": {
+            "Libro": {
+                "Constitución y prototipos de inteligencia artificial en el proceso": {
+                    "calificacion": 5
+                },
+                "Conoce a Gabriel Garcia Marquez": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "The Objective": {
+                    "calificacion": 5
+                },
+                "Kuffs": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Texas Rangers vs. Cleveland Guardians": {
+                    "calificacion": 5
+                },
+                "Dave Matthews Tribute Band": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "monica": {
+        "joy": {
+            "Libro": {
+                "Friedrich Nietzsche o el experimento de la vida": {
+                    "calificacion": 4
+                },
+                "El Arte de la Guerra para la Batalla Espiritual": {
+                    "calificacion": 5
+                },
+                "Zen en el arte de escribir": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                },
+                "Smokey and the Bandit": {
+                    "calificacion": 5
+                },
+                "How the Garcia Girls Spent Their Summer": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
+                    "calificacion": 5
+                },
+                "East Nash Grass": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "nilson": {
+        "fear": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 4
+                },
+                "Chasing Rainbows": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Wer reißt denn gleich vorm Teufel aus": {
+                    "calificacion": 4
+                },
+                "Monster from Green Hell": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Whitechapel Rituals of Hate Tour with special guests Bodysnatcher , AngelMaker and Disembodied Tyrant": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "cristian": {
+        "others": {
+            "Libro": {
+                "Hannibal": {
+                    "calificacion": 4
+                },
+                "Plato and Socrates (RLE: Plato)": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Alice & the White Hair": {
+                    "calificacion": 4
+                },
+                "Superman/Batman: Public Enemies": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "jennifer": {
+        "others": {
+            "Libro": {
+                "Hannibal": {
+                    "calificacion": 4
+                },
+                "Conejito esta triste": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Alice & the White Hair": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Black Violin": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "sandra": {
+        "fear": {
+            "Libro": {
+                "Guía para invertir": {
+                    "calificacion": 5
+                },
+                "La gente y la cultura de la República Dominicana (The People and Culture of the Dominican Republic)": {
+                    "calificacion": 5
+                },
+                "Official Gazette Of The United States Patent Office": {
+                    "calificacion": 5
+                },
+                "The Close Relationship between Nietzsche's Two Most Important Books": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Monster from Green Hell": {
+                    "calificacion": 5
+                },
+                "Spa Night": {
+                    "calificacion": 5
+                },
+                "Stop! Or My Mom Will Shoot": {
+                    "calificacion": 5
+                },
+                "Ben 10: Secret of the Omnitrix": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Crypta": {
+                    "calificacion": 5
+                },
+                "Mountain Beer And Wine Festival At Penn's Peak": {
+                    "calificacion": 5
+                },
+                "South Bend Cubs vs. Beloit Sky Carp": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "santiago": {
+        "others": {
+            "Libro": {
+                "Hannibal": {
+                    "calificacion": 4
+                },
+                "Descubra los misterios del Código Da Vinci": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Furia": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Black Violin": {
+                    "calificacion": 5
+                },
+                "ANDREW DUHON": {
+                    "calificacion": 5
+                },
+                "Pictures at an Exhibition + ASO": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "camilo": {
+        "others": {
+            "Libro": {
+                "Crónicas Heridas Abiertas - Memorias De Un Apropiador": {
+                    "calificacion": 5
+                },
+                "Guía para hacerse rico sin cancelar sus tarjetas de crédito": {
+                    "calificacion": 5
+                },
+                "¿Qué es la espiritualidad bíblica?": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Aquaman and the Lost Kingdom": {
+                    "calificacion": 5
+                },
+                "The Vagabond": {
+                    "calificacion": 5
+                },
+                "Trapped": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ANDREW DUHON": {
+                    "calificacion": 5
+                },
+                "Pictures at an Exhibition + ASO": {
+                    "calificacion": 5
+                },
+                "Grand Ole Opry": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "cristina": {
+        "sadness": {
+            "Libro": {
+                "El archivo de Sherlock Holmes": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Agatha Christie: A Life in Pictures": {
+                    "calificacion": 5
+                },
+                "The Vagabond King": {
+                    "calificacion": 5
+                },
+                "Otto - Der Außerfriesische": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Ancient Aliens": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "felipe": {
+        "sadness": {
+            "Libro": {
+                "Dante's Divine Comedy": {
+                    "calificacion": 5
+                },
+                "El Aleph": {
+                    "calificacion": 5
+                },
+                "Biblioteca Americana": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Anti-Social": {
+                    "calificacion": 5
+                },
+                "The Wedding Singer": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Dirty Heads & Jake Owen": {
+                    "calificacion": 5
+                },
+                "Houston Texans vs. Arizona Cardinals": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "carlos": {
+        "joy": {
+            "Libro": {
+                "La Galatea": {
+                    "calificacion": 5
+                },
+                "La magia del orden (La magia del orden 1)": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                },
+                "Bis": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Nate Bargatze: Big Dumb Eyes World Tour": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "sofia": {
+        "anger": {
+            "Libro": {
+                "Anna Karenina in Our Time": {
+                    "calificacion": 5
+                },
+                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
+                    "calificacion": 5
+                },
+                "La Facultad de Medicina de Valencia. Cinco siglos de historia": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Max Havoc: Ring of Fire": {
+                    "calificacion": 5
+                },
+                "The X-Ray Fiend": {
                     "calificacion": 5
                 }
             }
