@@ -4,12 +4,13 @@ import { toast } from 'react-toastify';
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const handleToggle = async () => {
     if (!isOpen) {
       // Obtener el user_id desde el localStorage
-      const userData = JSON.parse(localStorage.getItem("userData"));
-      const userId = userData ? userData.id : null; // userData tenga el campo id
+      const storeData = JSON.parse(localStorage.getItem("userData"));
+      const userId = storeData ? storeData.id : null; // userData tenga el campo id
 
       if (!userId) {
         toast.error("Debes iniciar sesión para acceder al chatbot.");
@@ -21,6 +22,8 @@ const ChatbotWidget = () => {
         if (response.ok) {
           const data = await response.json();
           if (data.count >= 3) {
+            console.log("✅ userData antes de abrir el iframe:", storeData);
+            setUserData(storeData);
             setIsOpen(true); // Abrir el chatbot
           } else {
             toast.error("Debes escribir al menos 3 publicaciones para acceder al chatbot.");
@@ -39,12 +42,12 @@ const ChatbotWidget = () => {
 
   return (
     <div className="chatbot-container">
-      {isOpen && (
+      {isOpen && userData && (
         <div className="chatbot-window">
           {/* Aquí pasamos el user_id como parámetro en la URL */}
           <iframe
             title="Chatbot"
-            src={`http://localhost:8501/chatbot?user_id=${localStorage.getItem("user_id")}`} // Pasamos user_id aquí
+            src={`http://localhost:8501/?user_id=${userData?.id}`} // Pasamos user_id aquí
             frameBorder="0"
             className="chatbot-iframe"
           />
