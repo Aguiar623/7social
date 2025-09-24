@@ -68,12 +68,12 @@
 }
 
 .create-post-box input::placeholder {
-  color:#090909;
+  color:#817d7d;
   opacity: 1;
 }
 
 .create-post-box textarea::placeholder {
-  color: #090909;
+  color: #817d7d;
   opacity: 1;
 }
 
@@ -89,7 +89,7 @@
   margin: 0 auto;
   margin-bottom: 20px;
   background-color: white;
-  color:black
+  color:black;
 }
 
 .post-textarea {
