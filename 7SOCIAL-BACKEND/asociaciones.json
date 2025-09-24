@@ -952,5 +952,48 @@
                 }
             }
         }
+    },
+    "camila": {
+        "sadness": {
+            "Libro": {
+                "Correspondencia con Horacio Quiroga": {
+                    "calificacion": 5
+                },
+                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
+                    "calificacion": 4
+                },
+                "Cumbres Borrascosas": {
+                    "calificacion": 4
+                },
+                "Paraguay en la historia, la literatura y la memoria": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Skin: A History of Nudity in the Movies": {
+                    "calificacion": 5
+                },
+                "Agatha Christie: A Life in Pictures": {
+                    "calificacion": 5
+                },
+                "The Wild Blue Yonder": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Algonquin Commons Theatre presents:  HELP! A Tribute to the Beatles": {
+                    "calificacion": 5
+                },
+                "BERTHA: Grateful Drag": {
+                    "calificacion": 5
+                },
+                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
+                    "calificacion": 5
+                },
+                "Jay Webb": {
+                    "calificacion": 5
+                }
+            }
+        }
     }
 }

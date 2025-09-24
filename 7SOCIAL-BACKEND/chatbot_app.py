@@ -324,8 +324,6 @@ if user_id:
                 filtradas = [titulo for titulo, _ in recomendaciones_ordenadas if titulo not in ya_populares]
 
                 st.session_state.recomendaciones_slope = filtradas
-        else:    
-            st.write("⚠️ No hay suficientes items preferidos para activar colaborativo (se requieren ≥ 2).")
 
     st.session_state.usar_colaborativo = usar_colaborativo
     st.session_state.titulos_populares.setdefault(tipo, [])
