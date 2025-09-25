@@ -1,878 +1,5 @@
 {
-    "prueba": {
-        "fear": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                },
-                "Cultural Techniques": {
-                    "calificacion": 4
-                }
-            }
-        },
-        "joy": {
-            "Libro": {
-                "Historia de Las Imagenes Para Niños": {
-                    "calificacion": 5
-                },
-                "Cultural Techniques": {
-                    "calificacion": 4
-                },
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "xXx": {
-                    "calificacion": 5
-                },
-                "My Bloody Valentine": {
-                    "calificacion": 4
-                },
-                "Carry on Up the Khyber": {
-                    "calificacion": 4
-                },
-                "C'est tout pour moi": {
-                    "calificacion": 4
-                },
-                "Invincible": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "Yeferson Aguiar": {
-        "joy": {
-            "Libro": {
-                "Crónicas marcianas": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "Yeferson30": {
-        "joy": {
-            "Libro": {
-                "Crónicas marcianas": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "diego123_": {
-        "others": {
-            "Libro": {
-                "Walden, la vida en los bosques / Walden, Life in the Woods": {
-                    "calificacion": 4,
-                    "Un asunto pendiente": {
-                        "calificacion": 5
-                    }
-                }
-            }
-        },
-        "sadness": {
-            "Película": {
-                "The Mechanics of Love": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "Ronaldoalam": {
-        "sadness": {
-            "Película": {
-                "The Mechanics of Love": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "nora547": {
-        "sadness": {
-            "Libro": {
-                "Historia de Las Imagenes Para Niños": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "The Mechanics of Love": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "felipenunez": {
-        "fear": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Himlen falder": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "Sam Barber: North America Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "anitavalencia": {
-        "joy": {
-            "Libro": {
-                "Cultural Techniques": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "xXx": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "Mike Delguidice": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "ninapaz": {
-        "anger": {
-            "Libro": {
-                "El poder del ahora": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "Champagne Charlie": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "Sam Barber: North America Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "lopezmelissa": {
-        "surprise": {
-            "Libro": {
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "jeisonlopez234": {
-        "fear": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Wer reißt denn gleich vorm Teufel aus": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "juanholguin23": {
-        "anger": {
-            "Libro": {
-                "El poder del ahora": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Pass the Ammo": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "alejandro24267": {
-        "joy": {
-            "Libro": {
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "xXx": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "Mike Delguidice": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "luisalavarez03": {
-        "others": {
-            "Libro": {
-                "Walden, la vida en los bosques / Walden, Life in the Woods": {
-                    "calificacion": 5
-                },
-                "Siete estrategias para sacar partido a los libros de autoayuda": {
-                    "calificacion": 5
-                },
-                "Writing the Revolution": {
-                    "calificacion": 5
-                },
-                "El poder del ahora": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "My Bloody Valentine": {
-                    "calificacion": 5
-                },
-                "Pass the Ammo": {
-                    "calificacion": 5
-                },
-                "Champagne Charlie": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "jennigarcia": {
-        "joy": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                },
-                "El poder del ahora": {
-                    "calificacion": 5
-                },
-                "\"And Pass the Ammunition,\"": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "My Bloody Valentine": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "oscarcalderon12": {
-        "sadness": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                },
-                "Sam Barber: North America Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "santiagosalda": {
-        "anger": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "El poder del ahora": {
-                    "calificacion": 4
-                },
-                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 4
-                },
-                "Champagne Charlie": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "Sam Barber: North America Tour": {
-                    "calificacion": 5
-                },
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "erikreyes45": {
-        "fear": {
-            "Libro": {
-                "Cultural Techniques": {
-                    "calificacion": 4
-                },
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "Himlen falder": {
-                    "calificacion": 4
-                },
-                "Wer reißt denn gleich vorm Teufel aus": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 4
-                },
-                "Sam Barber: North America Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "stivenfernandez": {
-        "fear": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "Cultural Techniques": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Himlen falder": {
-                    "calificacion": 5
-                },
-                "Wer reißt denn gleich vorm Teufel aus": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                },
-                "Sam Barber: North America Tour": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "franciscojotape": {
-        "joy": {
-            "Libro": {
-                "Cultural Techniques": {
-                    "calificacion": 4
-                },
-                "El poder del ahora": {
-                    "calificacion": 5
-                },
-                "Un asunto pendiente": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Pass the Ammo": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "Mike Delguidice": {
-                    "calificacion": 5
-                },
-                "Tacarra Williams": {
-                    "calificacion": 4
-                },
-                "Nate Bargatze: Big Dumb Eyes World Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "nataliagallego": {
-        "sadness": {
-            "Libro": {
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "Correspondencia con Horacio Quiroga": {
-                    "calificacion": 4
-                },
-                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 5
-                },
-                "Skin: A History of Nudity in the Movies": {
-                    "calificacion": 5
-                },
-                "The Mechanics of Love": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 5
-                },
-                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
-                    "calificacion": 4
-                },
-                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "lauraz34": {
-        "fear": {
-            "Libro": {
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 4
-                },
-                "Correspondencia con Horacio Quiroga": {
-                    "calificacion": 4
-                },
-                "Chasing Rainbows": {
-                    "calificacion": 4
-                },
-                "National Union Catalog of Manuscript Collections": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Skin: A History of Nudity in the Movies": {
-                    "calificacion": 5
-                },
-                "DORA - Flucht in die Musik": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
-                    "calificacion": 4
-                },
-                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
-                    "calificacion": 4
-                },
-                "Ozomatli": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "diegoc467": {
-        "anger": {
-            "Libro": {
-                "El poder del ahora": {
-                    "calificacion": 4
-                },
-                "The Nature Books of Henry David Thoreau – 6 Titles in One Volume (Illustrated Edition)": {
-                    "calificacion": 4
-                },
-                "Anna Karenina in Our Time": {
-                    "calificacion": 4
-                },
-                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
-                    "calificacion": 4
-                },
-                "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "Champagne Charlie": {
-                    "calificacion": 4
-                },
-                "Pass the Ammo": {
-                    "calificacion": 5
-                },
-                "Les amants du tage": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 4
-                },
-                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "dianbovi": {
-        "surprise": {
-            "Libro": {
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 4
-                },
-                "Correspondencia con Horacio Quiroga": {
-                    "calificacion": 4
-                },
-                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
-                    "calificacion": 5
-                },
-                "Los cuadernos malditos de Federico Gamboa": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 5
-                },
-                "Saint Amour": {
-                    "calificacion": 4
-                },
-                "Bye Bye Berlusconi!": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
-                    "calificacion": 4
-                },
-                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
-                    "calificacion": 5
-                },
-                "Ozomatli": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "sandralopez": {
-        "joy": {
-            "Libro": {
-                "Crónicas marcianas": {
-                    "calificacion": 4
-                },
-                "\"And Pass the Ammunition,\"": {
-                    "calificacion": 5
-                },
-                "Un asunto pendiente": {
-                    "calificacion": 4
-                },
-                "Espiritualidad emocionalmente sana - Guía de estudio": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "My Bloody Valentine": {
-                    "calificacion": 4
-                },
-                "Willy Fog en viaje al centro de la Tierra": {
-                    "calificacion": 4
-                },
-                "Carry on Up the Khyber": {
-                    "calificacion": 5
-                },
-                "C'est tout pour moi": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
-                    "calificacion": 4
-                },
-                "Rainbow Kitten Surprise: Thanks For Coming Tour": {
-                    "calificacion": 4
-                },
-                "Ozomatli": {
-                    "calificacion": 4
-                },
-                "East Nash Grass": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "natavillegas": {
-        "others": {
-            "Libro": {
-                "Siete estrategias para sacar partido a los libros de autoayuda": {
-                    "calificacion": 4
-                },
-                "Plato and Socrates (RLE: Plato)": {
-                    "calificacion": 4
-                },
-                "Boletín mensual de información económica 1986. Enero. Volumen X, número 1": {
-                    "calificacion": 4
-                },
-                "Hannibal": {
-                    "calificacion": 4
-                },
-                "Shakespeare and the First Hamlet": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "My Bloody Valentine": {
-                    "calificacion": 4
-                },
-                "xXx": {
-                    "calificacion": 4
-                },
-                "Willy Fog en viaje al centro de la Tierra": {
-                    "calificacion": 4
-                },
-                "The Mechanics of Love": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "Black Violin": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "alezgonzales": {
-        "joy": {
-            "Libro": {
-                "Cultural Techniques": {
-                    "calificacion": 4
-                },
-                "\"And Pass the Ammunition,\"": {
-                    "calificacion": 4
-                },
-                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "xXx": {
-                    "calificacion": 4
-                },
-                "Carry on Up the Khyber": {
-                    "calificacion": 5
-                },
-                "Willy Fog en viaje al centro de la Tierra": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "East Nash Grass": {
-                    "calificacion": 5
-                },
-                "Ozomatli": {
-                    "calificacion": 4
-                },
-                "Viagra Boys - The Infinite Anxiety Tour of 2025": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "camimunoz": {
-        "anger": {
-            "Libro": {
-                "Anna Karenina in Our Time": {
-                    "calificacion": 4
-                },
-                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
-                    "calificacion": 4
-                },
-                "Resumen Completo - El Poder Del Ahora (The Power Of Now) - Basado En El Libro De Eckhart Tolle": {
-                    "calificacion": 4
-                },
-                "La Facultad de Medicina de Valencia. Cinco siglos de historia": {
-                    "calificacion": 4
-                }
-            },
-            "Película": {
-                "Champagne Charlie": {
-                    "calificacion": 4
-                },
-                "Pass the Ammo": {
-                    "calificacion": 4
-                },
-                "Max Havoc: Ring of Fire": {
-                    "calificacion": 4
-                },
-                "Two for the Road": {
-                    "calificacion": 4
-                }
-            },
-            "Evento": {
-                "The Queens: 4 Legends, 1 Stage": {
-                    "calificacion": 4
-                },
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 4
-                },
-                "4th ANNUAL HONKY TONKTOBERFEST Hosted by WILD EARP": {
-                    "calificacion": 4
-                }
-            }
-        }
-    },
-    "yeisonzapat": {
-        "sadness": {
-            "Libro": {
-                "Correspondencia con Horacio Quiroga": {
-                    "calificacion": 4
-                },
-                "Paraguay en la historia, la literatura y la memoria": {
-                    "calificacion": 4
-                },
-                "Cumbres Borrascosas": {
-                    "calificacion": 4
-                },
-                "Historia de la filosofía": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Skin: A History of Nudity in the Movies": {
-                    "calificacion": 5
-                },
-                "My Bloody Valentine": {
-                    "calificacion": 5
-                },
-                "The Wild Blue Yonder": {
-                    "calificacion": 5
-                },
-                "Agatha Christie: A Life in Pictures": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "Jay Webb": {
-                    "calificacion": 5
-                },
-                "PhaseOne": {
-                    "calificacion": 5
-                },
-                "The Paper Kites": {
-                    "calificacion": 5
-                },
-                "Algonquin Commons Theatre presents:  HELP! A Tribute to the Beatles": {
-                    "calificacion": 5
-                },
-                "BERTHA: Grateful Drag": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "matzaryb": {
-        "surprise": {
-            "Libro": {
-                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
-                    "calificacion": 4
-                },
-                "Como Crecer Cuando ya has Crecido: Una Guia Practica y Sencilla Para Lograr la Armonia, la Paz y el Equilibrio en la Edad Adulta = How to Grow Up When": {
-                    "calificacion": 5
-                },
-                "Current Catalog": {
-                    "calificacion": 5
-                },
-                "La Facultad de Medicina de Valencia. Cinco siglos de historia": {
-                    "calificacion": 5
-                },
-                "Gabriel García Márquez. Nuevas lecturas": {
-                    "calificacion": 5
-                },
-                "Espiritualidad sin hipocresía": {
-                    "calificacion": 5
-                },
-                "Los cuadernos malditos de Federico Gamboa": {
-                    "calificacion": 5
-                }
-            },
-            "Película": {
-                "Les amants du tage": {
-                    "calificacion": 5
-                },
-                "Saint Amour": {
-                    "calificacion": 5
-                },
-                "Scared Shrekless": {
-                    "calificacion": 5
-                },
-                "Agatha Christie: A Life in Pictures": {
-                    "calificacion": 5
-                },
-                "Francine": {
-                    "calificacion": 5
-                },
-                "The Fourth Dimension": {
-                    "calificacion": 5
-                }
-            },
-            "Evento": {
-                "ALESTORM FALL 2025 TOUR": {
-                    "calificacion": 5
-                },
-                "BGCC: Derek Richards with Kathleen Dunbar & Brandt Tobler": {
-                    "calificacion": 5
-                },
-                "Ozomatli": {
-                    "calificacion": 5
-                },
-                "Hollywood Nights - The Bob Seger Experience": {
-                    "calificacion": 5
-                },
-                "The Format, Phantom Planet": {
-                    "calificacion": 5
-                }
-            }
-        }
-    },
-    "pruebanew": {
+    "2": {
         "joy": {
             "Libro": {
                 "\"And Pass the Ammunition,\"": {
@@ -881,7 +8,7 @@
             }
         }
     },
-    "faber": {
+    "5": {
         "others": {
             "Libro": {
                 "Siete estrategias para sacar partido a los libros de autoayuda": {
@@ -895,7 +22,7 @@
             }
         }
     },
-    "juandamian": {
+    "6": {
         "joy": {
             "Libro": {
                 "\"And Pass the Ammunition,\"": {
@@ -912,7 +39,7 @@
             }
         }
     },
-    "vanessa": {
+    "7": {
         "joy": {
             "Película": {
                 "Carry on Up the Khyber": {
@@ -921,7 +48,7 @@
             }
         }
     },
-    "edwar": {
+    "8": {
         "joy": {
             "Película": {
                 "xXx": {
@@ -935,7 +62,7 @@
             }
         }
     },
-    "joan": {
+    "9": {
         "others": {
             "Película": {
                 "My Bloody Valentine": {
@@ -944,7 +71,7 @@
             }
         }
     },
-    "camila": {
+    "16": {
         "sadness": {
             "Libro": {
                 "Correspondencia con Horacio Quiroga": {
@@ -987,7 +114,7 @@
             }
         }
     },
-    "danialvarado": {
+    "17": {
         "joy": {
             "Libro": {
                 "Emailicious": {
@@ -1012,7 +139,7 @@
             }
         }
     },
-    "isabella": {
+    "18": {
         "sadness": {
             "Libro": {
                 "Magic, Witchcraft, and Ghosts in the Greek and Roman Worlds": {
@@ -1052,7 +179,7 @@
             }
         }
     },
-    "francisco": {
+    "19": {
         "joy": {
             "Libro": {
                 "Mario Lavista": {
@@ -1092,7 +219,7 @@
             }
         }
     },
-    "kevin": {
+    "20": {
         "sadness": {
             "Libro": {
                 "Constitución y prototipos de inteligencia artificial en el proceso": {
@@ -1120,7 +247,7 @@
             }
         }
     },
-    "monica": {
+    "21": {
         "joy": {
             "Libro": {
                 "Friedrich Nietzsche o el experimento de la vida": {
@@ -1154,7 +281,7 @@
             }
         }
     },
-    "nilson": {
+    "22": {
         "fear": {
             "Libro": {
                 "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
@@ -1179,7 +306,7 @@
             }
         }
     },
-    "cristian": {
+    "23": {
         "others": {
             "Libro": {
                 "Hannibal": {
@@ -1199,7 +326,7 @@
             }
         }
     },
-    "jennifer": {
+    "24": {
         "others": {
             "Libro": {
                 "Hannibal": {
@@ -1221,7 +348,7 @@
             }
         }
     },
-    "sandra": {
+    "25": {
         "fear": {
             "Libro": {
                 "Guía para invertir": {
@@ -1264,7 +391,7 @@
             }
         }
     },
-    "santiago": {
+    "26": {
         "others": {
             "Libro": {
                 "Hannibal": {
@@ -1292,7 +419,7 @@
             }
         }
     },
-    "camilo": {
+    "27": {
         "others": {
             "Libro": {
                 "Crónicas Heridas Abiertas - Memorias De Un Apropiador": {
@@ -1329,7 +456,7 @@
             }
         }
     },
-    "cristina": {
+    "28": {
         "sadness": {
             "Libro": {
                 "El archivo de Sherlock Holmes": {
@@ -1354,7 +481,7 @@
             }
         }
     },
-    "felipe": {
+    "29": {
         "sadness": {
             "Libro": {
                 "Dante's Divine Comedy": {
@@ -1383,9 +510,25 @@
                     "calificacion": 5
                 }
             }
+        },
+        "others": {
+            "Libro": {
+                "Toma el control de tu vida. (Libro de autoayuda, determinación, mata la tristeza, crecimiento personal, superación, perseverancia, motivación persona, ansiedad))": {
+                    "calificacion": 5
+                },
+                "El Arte de la Guerra para la Batalla Espiritual": {
+                    "calificacion": 5
+                },
+                "Hannibal": {
+                    "calificacion": 5
+                },
+                "Conejito esta triste": {
+                    "calificacion": 4
+                }
+            }
         }
     },
-    "carlos": {
+    "30": {
         "joy": {
             "Libro": {
                 "La Galatea": {
@@ -1410,7 +553,7 @@
             }
         }
     },
-    "sofia": {
+    "31": {
         "anger": {
             "Libro": {
                 "Anna Karenina in Our Time": {
@@ -1433,7 +576,7 @@
             }
         }
     },
-    "jaime": {
+    "32": {
         "anger": {
             "Libro": {
                 "Julio Cortazar, el perseguidor de la libertad": {
@@ -1470,7 +613,7 @@
             }
         }
     },
-    "ricardo": {
+    "33": {
         "joy": {
             "Libro": {
                 "Dante's Divine Comedy": {
@@ -1498,7 +641,7 @@
             }
         }
     },
-    "vanesa": {
+    "34": {
         "sadness": {
             "Libro": {
                 "Cumbres Borrascosas": {
@@ -1523,7 +666,7 @@
             }
         }
     },
-    "david": {
+    "35": {
         "others": {
             "Libro": {
                 "Sherlock Holmes - The Hero With a Thousand Faces: Volume 1": {
@@ -1548,7 +691,7 @@
             }
         }
     },
-    "luisa": {
+    "36": {
         "sadness": {
             "Libro": {
                 "El silencio de los corderos (Hannibal Lecter 2)": {
@@ -1574,6 +717,51 @@
                     "calificacion": 5
                 },
                 "Josh Johnson: The Flowers Tour": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "37": {
+        "others": {
+            "Libro": {
+                "El título en la literatura y las artes": {
+                    "calificacion": 4
+                },
+                "El Arte de la Guerra": {
+                    "calificacion": 5
+                },
+                "Cómo ser un buen líder": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Aquaman and the Lost Kingdom": {
+                    "calificacion": 5
+                },
+                "Medicine Man": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "MEDUZA & James Hype Present Our House": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "38": {
+        "others": {
+            "Libro": {
+                "Hannibal": {
+                    "calificacion": 5
+                },
+                "Conejito esta triste": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Aquaman and the Lost Kingdom": {
                     "calificacion": 5
                 }
             }

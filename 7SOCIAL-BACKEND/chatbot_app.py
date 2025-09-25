@@ -236,7 +236,7 @@ if user_id:
         titulos_tipo_list = df[df["tipo"] == tipo]["titulo"].dropna().unique().tolist()
         if not titulos_tipo_list and isinstance(titulos, dict):
             titulos_tipo_list = titulos.get(f"titulos_{clave_tipo}", [])
-    titulos_ya_calificados = df[df["usuario"] == usuario_nombre]["titulo"].tolist()
+    titulos_ya_calificados = df[df["usuario"] == user_id]["titulo"].tolist()
 
     def obtener_recomendaciones_populares(df_local, usuario, titulos_disponibles, top_n=5):
         if df_local.empty:
@@ -566,8 +566,8 @@ if user_id:
                         asociaciones = json.load(f)
 
                 if calificacion >= 4:
-                    asociaciones.setdefault(usuario_nombre, {}).setdefault(emocion, {}).setdefault(tipo, {})
-                    asociaciones[usuario_nombre][emocion][tipo][titulo_calificado] = {"calificacion": calificacion}
+                    asociaciones.setdefault(str(user_id), {}).setdefault(emocion, {}).setdefault(tipo, {})
+                    asociaciones[str(user_id)][emocion][tipo][titulo_calificado] = {"calificacion": calificacion}
                     with open(asociaciones_path, "w", encoding="utf-8") as f:
                         json.dump(asociaciones, f, indent=4, ensure_ascii=False)
                     st.success(f"¡Gracias por calificar con {calificacion} estrellas!")
