@@ -1432,5 +1432,151 @@
                 }
             }
         }
+    },
+    "jaime": {
+        "anger": {
+            "Libro": {
+                "Julio Cortazar, el perseguidor de la libertad": {
+                    "calificacion": 5
+                },
+                "Aventuras de viaje: Acampar: Figuras bidimensionales ebook": {
+                    "calificacion": 5
+                },
+                "Pequeño Cerdo Capitalista. Inversores/ Small Capitalist Pig. Investors": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Max Havoc: Ring of Fire": {
+                    "calificacion": 5
+                },
+                "The X-Ray Fiend": {
+                    "calificacion": 5
+                },
+                "Candy Boy": {
+                    "calificacion": 5
+                },
+                "The Shepherd of the Hills": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Sabor A Mí": {
+                    "calificacion": 5
+                },
+                "Washington Nationals vs. San Diego Padres": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "ricardo": {
+        "joy": {
+            "Libro": {
+                "Dante's Divine Comedy": {
+                    "calificacion": 5
+                },
+                "Aquelarre (The Coven)": {
+                    "calificacion": 5
+                },
+                "Operacion Almiar": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                },
+                "Verj": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mission Bayfest Saturday Single Day - Sublime, Steel Pulse..": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "vanesa": {
+        "sadness": {
+            "Libro": {
+                "Cumbres Borrascosas": {
+                    "calificacion": 5
+                },
+                "The Art of War": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Letters to Juliet": {
+                    "calificacion": 5
+                },
+                "Damaged": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Jay Webb": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "david": {
+        "others": {
+            "Libro": {
+                "Sherlock Holmes - The Hero With a Thousand Faces: Volume 1": {
+                    "calificacion": 4
+                },
+                "The Enchanted Screen": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Aquaman and the Lost Kingdom": {
+                    "calificacion": 4
+                },
+                "Miracle in Lane 2": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "ANDREW DUHON": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "luisa": {
+        "sadness": {
+            "Libro": {
+                "El silencio de los corderos (Hannibal Lecter 2)": {
+                    "calificacion": 5
+                },
+                "Un mundo feliz / Brave New World": {
+                    "calificacion": 5
+                },
+                "Sangre turbia (Cormoran Strike 5)": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Electric Love": {
+                    "calificacion": 5
+                },
+                "Bonnie & Bonnie": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "The Grass Roots": {
+                    "calificacion": 5
+                },
+                "Josh Johnson: The Flowers Tour": {
+                    "calificacion": 5
+                }
+            }
+        }
     }
 }
