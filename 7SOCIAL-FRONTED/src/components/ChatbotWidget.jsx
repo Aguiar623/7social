@@ -22,7 +22,7 @@ const ChatbotWidget = () => {
         if (response.ok) {
           const data = await response.json();
           if (data.count >= 3) {
-            console.log("✅ userData antes de abrir el iframe:", storeData);
+            console.log("userData antes de abrir el iframe:", storeData);
             setUserData(storeData);
             setIsOpen(true); // Abrir el chatbot
           } else {
