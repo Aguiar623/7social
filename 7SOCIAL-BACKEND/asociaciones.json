@@ -763,6 +763,292 @@
             "Película": {
                 "Aquaman and the Lost Kingdom": {
                     "calificacion": 5
+                },
+                "Medicine Man": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Andrew Duhon": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "39": {
+        "joy": {
+            "Libro": {
+                "Aquelarre (The Coven)": {
+                    "calificacion": 4
+                },
+                "Patriarcas y profetas": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 4
+                },
+                "A Date with Miss Fortune": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mission Bayfest Saturday Single Day - Sublime, Steel Pulse..": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "40": {
+        "anger": {
+            "Libro": {
+                "Julio Cortazar, el perseguidor de la libertad": {
+                    "calificacion": 4
+                },
+                "Rousseau's Reader": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Max Havoc: Ring of Fire": {
+                    "calificacion": 5
+                },
+                "Candy Boy": {
+                    "calificacion": 5
+                },
+                "The Shepherd of the Hills": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "43": {
+        "fear": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 4
+                },
+                "Guía para invertir": {
+                    "calificacion": 4
+                },
+                "La gente y la cultura de la República Dominicana (The People and Culture of the Dominican Republic)": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Ben 10: Secret of the Omnitrix": {
+                    "calificacion": 5
+                },
+                "Wer reißt denn gleich vorm Teufel aus": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Whitechapel Rituals of Hate Tour with special guests Bodysnatcher , AngelMaker and Disembodied Tyrant": {
+                    "calificacion": 5
+                },
+                "Mo Lowda & The Humble with French Cassettes": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "44": {
+        "sadness": {
+            "Libro": {
+                "Cumbres borrascosas": {
+                    "calificacion": 4
+                },
+                "Biblioteca Americana": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Agatha Christie: A Life in Pictures": {
+                    "calificacion": 4
+                }
+            },
+            "Evento": {
+                "Jay Webb": {
+                    "calificacion": 4
+                }
+            }
+        }
+    },
+    "45": {
+        "joy": {
+            "Libro": {
+                "La magia del orden (La magia del orden 1)": {
+                    "calificacion": 4
+                },
+                "Patriarcas y profetas": {
+                    "calificacion": 4
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mission Bayfest Saturday Single Day - Sublime, Steel Pulse..": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "46": {
+        "joy": {
+            "Libro": {
+                "La magia del orden (La magia del orden 1)": {
+                    "calificacion": 4
+                },
+                "Aquelarre (The Coven)": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                },
+                "Blitz": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "East Nash Grass": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "47": {
+        "sadness": {
+            "Libro": {
+                "Conoce a Gabriel Garcia Marquez": {
+                    "calificacion": 5
+                },
+                "Constitución y prototipos de inteligencia artificial en el proceso": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Bonnie & Bonnie": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "48": {
+        "joy": {
+            "Libro": {
+                "La magia del orden (La magia del orden 1)": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "49": {
+        "sadness": {
+            "Película": {
+                "Damaged": {
+                    "calificacion": 5
+                },
+                "Halvdan Viking": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Jay Webb": {
+                    "calificacion": 5
+                },
+                "Ancient Aliens": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "50": {
+        "fear": {
+            "Libro": {
+                "Gabriel Garci ́a Ma ́rquez's One Hundred Years of Solitude": {
+                    "calificacion": 5
+                },
+                "Guía para invertir": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Ben 10: Secret of the Omnitrix": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Whitechapel Rituals of Hate Tour with special guests Bodysnatcher , AngelMaker and Disembodied Tyrant": {
+                    "calificacion": 5
+                },
+                "Crypta": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "51": {
+        "sadness": {
+            "Libro": {
+                "Conoce a Gabriel Garcia Marquez": {
+                    "calificacion": 5
+                },
+                "Constitución y prototipos de inteligencia artificial en el proceso": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Saints and Soldiers: The Void": {
+                    "calificacion": 5
+                },
+                "Batman: Return of the Caped Crusaders": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "52": {
+        "sadness": {
+            "Libro": {
+                "Conoce a Gabriel Garcia Marquez": {
+                    "calificacion": 5
+                },
+                "SUN TZU THE BILLIONAIRE™": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Keith Lemon: The Film": {
+                    "calificacion": 5
+                }
+            }
+        }
+    },
+    "53": {
+        "joy": {
+            "Libro": {
+                "La divina comedia": {
+                    "calificacion": 5
+                },
+                "Suave Es la Noche": {
+                    "calificacion": 5
+                }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
                 }
             }
         }
