@@ -54,7 +54,7 @@ if user_id:
         user_data = res_name.json()
         usuario_nombre = user_data["name"]
     except Exception as e:
-        st.error(f"❌ No se pudo obtener el nombre del usuario: {e}")
+        st.error(f"No se pudo obtener el nombre del usuario: {e}")
         st.stop()
 
     if os.path.exists("estado_emocional.json"):
@@ -71,12 +71,18 @@ if user_id:
         st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
         st.stop()
 
+pedir_recomendacion = False
+
     # --- Input de chat ---
 if user_input := st.chat_input("Escribe aquí tu consulta..."):
     with st.chat_message("user"):
         st.markdown(user_input)
     
     st.session_state.messages.append({"role": "user", "content": user_input})
+
+    # --- Detectar si pide recomendación ---
+    palabras_recomendacion = ["recomiendame", "un", "quiero", "libro", "película", "evento"]
+    pedir_recomendacion = any(palabra in user_input.lower() for palabra in palabras_recomendacion)
 
     # Crear prompt con emoción incluida
     prompt = (
@@ -101,6 +107,7 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
     with st.chat_message("assistant"):
         st.markdown(texto)
 
+if pedir_recomendacion:
     # Detectar tipo de recomendación
     tipo_detectado = "Película"
     if "libro" in user_input.lower():
