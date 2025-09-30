@@ -6,16 +6,27 @@ import random
 from datetime import datetime
 import pandas as pd
 from urllib.parse import quote
-from openai import OpenAI
+import cohere
+from dotenv import load_dotenv
+
+load_dotenv()
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(COHERE_API_KEY)
 
 st.title("7Chatbot")
 st.write("Recomendaciones según tu **emoción actual**.")
 
-client = OpenAI(base_url="http://localhost:11434/v1", api_key="NO_KEY")  # Llama local
-
 # --- Inicializar estado de chat ---
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "system", "content": "Eres un asistente que recomienda libros, películas o eventos según la emoción detectada."}]
+    st.session_state.messages = [{
+    "role": "system",
+    "content": (
+        "Eres un asistente que **solo recomienda libros, películas o eventos según la emoción del usuario**. "
+        "Si el usuario dice algo que no sea relacionado con recomendaciones, responde con: "
+        "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.' "
+        "Nunca hables de otros temas ni inventes información. Mantén tus respuestas breves y enfocadas."
+    )
+}]
 
 # Mostrar historial de chat
 for message in st.session_state.messages:
@@ -34,8 +45,6 @@ if isinstance(user_id, (list, tuple)):
     user_id = user_id[0] if user_id else None
 if user_id is not None:
     user_id = str(user_id)
-
-st.write(f"🆔 user_id detectado: {user_id}")
 
 if user_id:
     try:
@@ -61,28 +70,32 @@ if user_id:
         st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
         st.stop()
 
-# --- Input de chat ---
+    # --- Input de chat ---
 if user_input := st.chat_input("Escribe aquí tu consulta..."):
-    # Añadir mensaje del usuario al historial
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # Crear prompt con emoción incluida
-    prompt = f"Usuario: {user_input}\nEmoción detectada: {emocion}\nResponde de forma breve y recomienda algo."
-
-    # Enviar a Llama
-    llama_response = client.chat.completions.create(
-        model="llama3.1",
+    prompt = (
+        f"{st.session_state.messages[0]['content']}\n\n"
+        f"Usuario: {user_input}\n"
+        f"Emoción detectada: {emocion}\n"
+        "Responde solo con una recomendación de libro, película o evento. "
+        "Si la solicitud no es sobre recomendación, responde exactamente: "
+        "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.'"
+    )
+    
+    response = co.chat(
+        model="command-a-03-2025",
         messages=[
-            *st.session_state.messages,
-            {"role": "user", "content": prompt}
-        ]
+            {"role": "system", "content": st.session_state.messages[0]["content"]},
+            {"role": "user", "content": prompt}]
     )
 
-    respuesta_llama = llama_response.choices[0].message.content
+    respuesta_ai = response.output_text
 
     # Mostrar respuesta
     with st.chat_message("assistant"):
-        st.markdown(respuesta_llama)
+        st.markdown(respuesta_ai)
 
     # Detectar tipo de recomendación
     tipo_detectado = "Película"
@@ -92,7 +105,7 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
         tipo_detectado = "Evento"
 
     # Guardar mensaje del asistente y tipo
-    st.session_state.messages.append({"role": "assistant", "content": respuesta_llama})
+    st.session_state.messages.append({"role": "assistant", "content": respuesta_ai})
     st.session_state.messages.append({"role": "assistant", "content": f"📌 Entendido, buscaré un **{tipo_detectado}** para ti."})
 
     # === Cargar titulos desde JSON ===
@@ -215,14 +228,14 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
             return pd.DataFrame()
 
         rows = []
-        for usuario, emociones in data.items():
+        for user_id, emociones in data.items():
             for emocion_key, tipos in emociones.items():
                 for tipo_item, titulos in tipos.items():
                     for titulo, detalles in titulos.items():
                         calificacion = detalles.get("calificacion")
                         if calificacion is not None:
                             rows.append({
-                                "usuario": user,
+                                "usuario": user_id,
                                 "emocion": emocion_key,
                                 "tipo": tipo_item,
                                 "titulo": titulo,
