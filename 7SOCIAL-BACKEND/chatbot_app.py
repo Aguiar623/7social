@@ -1,14 +1,26 @@
 import streamlit as st
-import json, re, os
+import json,os,requests
 import os
 import requests
 import random
 from datetime import datetime
 import pandas as pd
 from urllib.parse import quote
+from openai import OpenAI
 
 st.title("7Chatbot")
 st.write("Recomendaciones según tu **emoción actual**.")
+
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="NO_KEY")  # Llama local
+
+# --- Inicializar estado de chat ---
+if "messages" not in st.session_state:
+    st.session_state.messages = [{"role": "system", "content": "Eres un asistente que recomienda libros, películas o eventos según la emoción detectada."}]
+
+# Mostrar historial de chat
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
 emocion = None  # inicializamos las variables
 user_id = None
@@ -17,6 +29,13 @@ usuario_nombre = None
 #obtenemos el usuario
 query_params = st.query_params
 user_id = query_params.get("user_id")
+
+if isinstance(user_id, (list, tuple)):
+    user_id = user_id[0] if user_id else None
+if user_id is not None:
+    user_id = str(user_id)
+
+st.write(f"🆔 user_id detectado: {user_id}")
 
 if user_id:
     try:
@@ -41,6 +60,40 @@ if user_id:
     else:
         st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
         st.stop()
+
+# --- Input de chat ---
+if user_input := st.chat_input("Escribe aquí tu consulta..."):
+    # Añadir mensaje del usuario al historial
+    st.session_state.messages.append({"role": "user", "content": user_input})
+
+    # Crear prompt con emoción incluida
+    prompt = f"Usuario: {user_input}\nEmoción detectada: {emocion}\nResponde de forma breve y recomienda algo."
+
+    # Enviar a Llama
+    llama_response = client.chat.completions.create(
+        model="llama3.1",
+        messages=[
+            *st.session_state.messages,
+            {"role": "user", "content": prompt}
+        ]
+    )
+
+    respuesta_llama = llama_response.choices[0].message.content
+
+    # Mostrar respuesta
+    with st.chat_message("assistant"):
+        st.markdown(respuesta_llama)
+
+    # Detectar tipo de recomendación
+    tipo_detectado = "Película"
+    if "libro" in user_input.lower():
+        tipo_detectado = "Libro"
+    elif "evento" in user_input.lower():
+        tipo_detectado = "Evento"
+
+    # Guardar mensaje del asistente y tipo
+    st.session_state.messages.append({"role": "assistant", "content": respuesta_llama})
+    st.session_state.messages.append({"role": "assistant", "content": f"📌 Entendido, buscaré un **{tipo_detectado}** para ti."})
 
     # === Cargar titulos desde JSON ===
     def cargar_titulos():
@@ -169,7 +222,7 @@ if user_id:
                         calificacion = detalles.get("calificacion")
                         if calificacion is not None:
                             rows.append({
-                                "usuario": usuario,
+                                "usuario": user,
                                 "emocion": emocion_key,
                                 "tipo": tipo_item,
                                 "titulo": titulo,
@@ -202,7 +255,7 @@ if user_id:
     if "recomendaciones_slope" not in st.session_state:
         st.session_state.recomendaciones_slope = []
 
-    tipo = st.selectbox("¿Qué te gustaría que te recomiende hoy?", ("Libro", "Película", "Evento"))
+    tipo = tipo_detectado
 
     mapa_tipos = {
     "libro": "libros",
