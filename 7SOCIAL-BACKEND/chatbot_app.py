@@ -91,7 +91,7 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
             {"role": "user", "content": prompt}]
     )
 
-    respuesta_ai = response.output_text
+    respuesta_ai = response
 
     # Mostrar respuesta
     with st.chat_message("assistant"):
