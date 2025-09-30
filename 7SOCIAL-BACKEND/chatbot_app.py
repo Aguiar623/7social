@@ -22,16 +22,17 @@ if "messages" not in st.session_state:
     "role": "system",
     "content": (
         "Eres un asistente que **solo recomienda libros, películas o eventos según la emoción del usuario**. "
-        "Si el usuario dice algo que no sea relacionado con recomendaciones, responde con: "
+        "Si el usuario dice algo como saludo responde natural, no pidas la emocion ya el chat la toma y si dice algo que no sea relacionado con recomendaciones, responde con: "
         "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.' "
-        "Nunca hables de otros temas ni inventes información. Mantén tus respuestas breves y enfocadas."
+        "Nunca hables de otros temas solo saludo y eso pero ni inventes información. Mantén tus respuestas breves y enfocadas."
     )
 }]
 
 # Mostrar historial de chat
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    if message["role"] != "system":
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
 emocion = None  # inicializamos las variables
 user_id = None
@@ -72,15 +73,17 @@ if user_id:
 
     # --- Input de chat ---
 if user_input := st.chat_input("Escribe aquí tu consulta..."):
+    with st.chat_message("user"):
+        st.markdown(user_input)
+    
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # Crear prompt con emoción incluida
     prompt = (
-        f"{st.session_state.messages[0]['content']}\n\n"
         f"Usuario: {user_input}\n"
         f"Emoción detectada: {emocion}\n"
-        "Responde solo con una recomendación de libro, película o evento. "
-        "Si la solicitud no es sobre recomendación, responde exactamente: "
+        "Responde solo con una recomendación de libro, película o evento si el usuario lo solicita "
+        "Si no es una solicitud de recomendación, responde con algo natural que continue la conversacion, y si se desvia mucho responde exactamente: "
         "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.'"
     )
     
@@ -91,11 +94,12 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
             {"role": "user", "content": prompt}]
     )
 
-    respuesta_ai = response
+    respuesta_ai = response.message.content
+    texto = "".join([r.text for r in respuesta_ai if r.type == "text"])
 
     # Mostrar respuesta
     with st.chat_message("assistant"):
-        st.markdown(respuesta_ai)
+        st.markdown(texto)
 
     # Detectar tipo de recomendación
     tipo_detectado = "Película"
@@ -105,8 +109,8 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
         tipo_detectado = "Evento"
 
     # Guardar mensaje del asistente y tipo
-    st.session_state.messages.append({"role": "assistant", "content": respuesta_ai})
-    st.session_state.messages.append({"role": "assistant", "content": f"📌 Entendido, buscaré un **{tipo_detectado}** para ti."})
+    st.session_state.messages.append({"role": "assistant", "content": texto})
+    st.session_state.messages.append({"role": "assistant", "content": f"Entendido, buscaré un **{tipo_detectado}** para ti."})
 
     # === Cargar titulos desde JSON ===
     def cargar_titulos():
