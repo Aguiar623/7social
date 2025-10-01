@@ -31,7 +31,6 @@ if "messages" not in st.session_state:
 emocion = None  # inicializamos las variables
 user_id = None
 usuario_nombre = None
-tipo_detectado = None
 
 #obtenemos el usuario
 query_params = st.query_params
@@ -84,6 +83,10 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
             tipo_detectado = "Evento"    
      
         st.session_state.messages.append({"role": "assistant", "content": f"Entendido, buscaré un **{tipo_detectado}** para ti."})
+    
+        if tipo_detectado:
+            st.session_state["tipo_detectado"] = tipo_detectado
+    
     else:
         response = co.chat(
             model="command-a-03-2025",
@@ -104,7 +107,8 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
-if tipo_detectado in locals() and tipo_detectado:
+if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
+    tipo = st.session_state["tipo_detectado"]
     
     # === Cargar titulos desde JSON ===
     def cargar_titulos():
