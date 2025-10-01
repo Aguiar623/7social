@@ -21,10 +21,10 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{
     "role": "system",
     "content": (
-        "Eres un asistente que **solo recomienda libros, películas o eventos según la emoción del usuario**. "
+        "Eres un asistente que solo saluda**. "
         "Si el usuario dice algo como saludo responde natural, no pidas la emocion ya el chat la toma y si dice algo que no sea relacionado con recomendaciones, responde con: "
         "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.' "
-        "Nunca hables de otros temas solo saludo y eso pero ni inventes información. Mantén tus respuestas breves y enfocadas."
+        "Nunca hables de otros temas solo saludo, no inventes información. Mantén tus respuestas breves y enfocadas."
     )
 }]
 
@@ -269,8 +269,6 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
         st.session_state.fuente_actual = "populares"
     if "recomendaciones_slope" not in st.session_state:
         st.session_state.recomendaciones_slope = []
-
-    tipo = tipo_detectado
 
     mapa_tipos = {
     "libro": "libros",
