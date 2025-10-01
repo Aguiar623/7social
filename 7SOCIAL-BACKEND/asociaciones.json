@@ -1059,6 +1059,16 @@
                 "La magia del orden (La magia del orden 1)": {
                     "calificacion": 4
                 }
+            },
+            "Película": {
+                "Invincible": {
+                    "calificacion": 5
+                }
+            },
+            "Evento": {
+                "Mission Bayfest Saturday Single Day - Sublime, Steel Pulse..": {
+                    "calificacion": 5
+                }
             }
         }
     }
