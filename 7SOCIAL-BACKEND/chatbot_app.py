@@ -14,17 +14,22 @@ COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 co = cohere.ClientV2(COHERE_API_KEY)
 
 st.title("7Chatbot")
-st.write("Recomendaciones según tu **emoción actual**.")
+st.write("Recomendaciones segun tu **emoción actual**.")
 
 # --- Inicializar estado de chat ---
 if "messages" not in st.session_state:
     st.session_state.messages = [{
     "role": "system",
-    "content": (
-        "Eres un asistente que solo saluda**. "
-        "Si el usuario dice algo como saludo responde natural, no pidas la emocion ya el chat la toma y si dice algo que no sea relacionado con recomendaciones, responde con: "
-        "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.' "
-        "Nunca hables de otros temas solo saludo, no inventes información. Mantén tus respuestas breves y enfocadas."
+    "content": ("""Eres un asistente especializado en **recomendaciones de libros, películas o eventos** según la emoción detectada del usuario.
+
+    Reglas:
+    1. Si el usuario saluda (ejemplo: hola, buenas, etc.), responde con un saludo breve y natural.
+    2. Si el usuario pide un libro, película o evento, responde confirmando que lo buscarás.
+    3. Si el usuario habla de cualquier otro tema que no sea saludo ni recomendación, responde exactamente con:
+    "Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción."
+    4. Nunca inventes información ni hables de otros temas.
+    5. Tus respuestas deben ser **breves, claras y enfocadas**.
+    """
     )
 }]
 
@@ -71,7 +76,7 @@ if user_input := st.chat_input("Escribe aquí tu consulta..."):
 
     # --- Detectar si pide recomendación ---
     pide_libro = "libro" in user_input.lower()
-    pide_pelicula = "película" in user_input.lower()
+    pide_pelicula = "pelicula" in user_input.lower()
     pide_evento = "evento" in user_input.lower()
 
     if pide_libro or pide_pelicula or pide_evento:
@@ -272,7 +277,12 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
 
     mapa_tipos = {
     "libro": "libros",
-    "película": "peliculas",
+    "libros": "libros",
+    "película": "películas",
+    "pelicula": "películas",
+    "películas": "películas",
+    "peliculas": "películas",
+    "eventos": "eventos",
     "evento": "eventos"
     }
     clave_tipo = mapa_tipos.get(tipo.lower(), None)
