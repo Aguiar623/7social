@@ -28,15 +28,10 @@ if "messages" not in st.session_state:
     )
 }]
 
-# Mostrar historial de chat
-for message in st.session_state.messages:
-    if message["role"] != "system":
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
 emocion = None  # inicializamos las variables
 user_id = None
 usuario_nombre = None
+tipo_detectado = None
 
 #obtenemos el usuario
 query_params = st.query_params
@@ -71,54 +66,46 @@ if user_id:
         st.error(f"No se encontró emoción para el usuario {usuario_nombre}.")
         st.stop()
 
-pedir_recomendacion = False
-
     # --- Input de chat ---
 if user_input := st.chat_input("Escribe aquí tu consulta..."):
-    with st.chat_message("user"):
-        st.markdown(user_input)
-    
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # --- Detectar si pide recomendación ---
-    palabras_recomendacion = ["recomiendame", "un", "quiero", "libro", "película", "evento"]
-    pedir_recomendacion = any(palabra in user_input.lower() for palabra in palabras_recomendacion)
+    pide_libro = "libro" in user_input.lower()
+    pide_pelicula = "película" in user_input.lower()
+    pide_evento = "evento" in user_input.lower()
 
-    # Crear prompt con emoción incluida
-    prompt = (
-        f"Usuario: {user_input}\n"
-        f"Emoción detectada: {emocion}\n"
-        "Responde solo con una recomendación de libro, película o evento si el usuario lo solicita "
-        "Si no es una solicitud de recomendación, responde con algo natural que continue la conversacion, y si se desvia mucho responde exactamente: "
-        "'Lo siento, solo puedo recomendar libros, películas o eventos según tu emoción.'"
-    )
-    
-    response = co.chat(
-        model="command-a-03-2025",
-        messages=[
-            {"role": "system", "content": st.session_state.messages[0]["content"]},
-            {"role": "user", "content": prompt}]
-    )
+    if pide_libro or pide_pelicula or pide_evento:
+        if pide_libro:
+            tipo_detectado = "Libro"
+        elif pide_pelicula:
+            tipo_detectado = "Película"
+        else:
+            tipo_detectado = "Evento"    
+     
+        st.session_state.messages.append({"role": "assistant", "content": f"Entendido, buscaré un **{tipo_detectado}** para ti."})
+    else:
+        response = co.chat(
+            model="command-a-03-2025",
+            messages=[
+                {"role": "system", "content": st.session_state.messages[0]["content"]},
+                {"role": "user", "content": user_input}]
+        )
 
-    respuesta_ai = response.message.content
-    texto = "".join([r.text for r in respuesta_ai if r.type == "text"])
-
-    # Mostrar respuesta
-    with st.chat_message("assistant"):
-        st.markdown(texto)
-
-if pedir_recomendacion:
-    # Detectar tipo de recomendación
-    tipo_detectado = "Película"
-    if "libro" in user_input.lower():
-        tipo_detectado = "Libro"
-    elif "evento" in user_input.lower():
-        tipo_detectado = "Evento"
+        respuesta_ai = response.message.content
+        texto = "".join([r.text for r in respuesta_ai if r.type == "text"])
 
     # Guardar mensaje del asistente y tipo
-    st.session_state.messages.append({"role": "assistant", "content": texto})
-    st.session_state.messages.append({"role": "assistant", "content": f"Entendido, buscaré un **{tipo_detectado}** para ti."})
+        st.session_state.messages.append({"role": "assistant", "content": texto})
 
+# --- Mostrar historial completo ---
+    for message in st.session_state.messages:
+        if message["role"] != "system":
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+
+if tipo_detectado in locals() and tipo_detectado:
+    
     # === Cargar titulos desde JSON ===
     def cargar_titulos():
         try:
