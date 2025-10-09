@@ -39,7 +39,7 @@ const ChatbotWidget = () => {
       setIsOpen(false); // Cierra si ya estaba abierto
     }
   };
-
+  
   return (
     <div className="chatbot-container">
       {isOpen && userData && (
