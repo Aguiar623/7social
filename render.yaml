@@ -3,7 +3,6 @@ services:
   - type: web
     name: 7social-backend
     env: python
-    pythonVersion: 3.11.9
     rootDir: 7SOCIAL-BACKEND
     buildCommand: pip install -r requirements.txt
     startCommand: python app.py
