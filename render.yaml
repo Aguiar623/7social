@@ -4,7 +4,7 @@ services:
     name: 7social-backend
     env: python
     rootDir: 7SOCIAL-BACKEND
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install --prefer-binary -r requirements.txt
     startCommand: python app.py
     autoDeploy: true
     plan: free
