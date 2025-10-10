@@ -1,9 +1,12 @@
+import spacy
 import unicodedata
 import re
-from transformers import pipeline
+from pysentimiento import create_analyzer
+from langdetect import detect
 
-# --- modelo de emociones Hugging Face ---
-analyzer = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores=True)
+nlp = spacy.load("es_core_news_lg")
+analyzer = create_analyzer(task="emotion", lang="es")
+
 
 class AnalisisWrapper:
     def __init__(self, output, probas, texto_total):
@@ -11,12 +14,14 @@ class AnalisisWrapper:
         self.probas = probas
         self.texto_total = texto_total
 
+
 def normalizar_texto(texto: str) -> str:
     texto = unicodedata.normalize("NFD", texto)
     texto = texto.encode("ascii", "ignore").decode("utf-8")
     texto = texto.lower()
     texto = re.sub(r"\s+", " ", texto).strip()
     return texto
+
 
 def analizar_emocion(posts):
     if isinstance(posts, str):
@@ -27,12 +32,11 @@ def analizar_emocion(posts):
         elif all(isinstance(p, str) for p in posts):
             texto_total = " ".join(normalizar_texto(p) for p in posts)
         else:
-            raise ValueError("La lista debe contener solo strings o diccionarios con 'content'")
+            raise ValueError(
+                "La lista debe contener solo strings o diccionarios con content"
+            )
     else:
         raise TypeError("La entrada debe ser string o lista")
 
-    resultado = analyzer(texto_total)[0]
-    emocion_principal = max(resultado, key=lambda x: x["score"])["label"]
-    probabilidades = {r["label"]: r["score"] for r in resultado}
-
-    return AnalisisWrapper(emocion_principal, probabilidades, texto_total)
+    resultado = analyzer.predict(texto_total)
+    return AnalisisWrapper(resultado.output, resultado.probas, texto_total)
