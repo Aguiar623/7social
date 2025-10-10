@@ -1,0 +1,20 @@
+# Imagen base con Python
+FROM python:3.9
+
+# Crea usuario sin root (requerido por Hugging Face)
+RUN useradd -m -u 1000 user
+USER user
+ENV PATH="/home/user/.local/bin:$PATH"
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos y las dependencias
+COPY --chown=user ./requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+# Copia el resto del código
+COPY --chown=user . /app
+
+# Comando para ejecutar FastAPI con uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
