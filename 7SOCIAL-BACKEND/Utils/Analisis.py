@@ -1,10 +1,6 @@
-import spacy
 import unicodedata
 import re
 from transformers import pipeline
-from langdetect import detect
-
-nlp = spacy.load("es_core_news_lg")
 
 # --- modelo de emociones Hugging Face ---
 analyzer = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", return_all_scores=True)
