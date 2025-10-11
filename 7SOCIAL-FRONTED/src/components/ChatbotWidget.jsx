@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const STREAMLIT_URL = "https://huggingface.co/spaces/yeferson3256457/7chatbot";
 
   const handleToggle = async () => {
     if (!isOpen) {
@@ -47,7 +48,7 @@ const ChatbotWidget = () => {
           {/* Aquí pasamos el user_id como parámetro en la URL */}
           <iframe
             title="Chatbot"
-            src={`https://yeferson3256457-7social-back.hf.space/?user_id=${userData?.id}`} // Pasamos user_id aquí
+            src={`${STREAMLIT_URL}/?user_id=${userData?.id}`} // Pasamos user_id aquí
             frameBorder="0"
             className="chatbot-iframe"
           />
