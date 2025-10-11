@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
-  const STREAMLIT_URL = "https://huggingface.co/spaces/yeferson3256457/7chatbot";
+  const STREAMLIT_URL = "https://yeferson3256457-7chatbot.hf.space";
 
   const handleToggle = async () => {
     if (!isOpen) {
