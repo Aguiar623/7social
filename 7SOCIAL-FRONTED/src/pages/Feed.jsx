@@ -29,11 +29,11 @@ export const Feed = () => {
     
   // Cargar publicaciones al inicio
   useEffect(() => {
+    console.log("🌐 Base URL usada por axios:", api.defaults.baseURL);
     fetchFeed();
   }, []);
   
   const fetchFeed = () => {
-    console.log("URL base del backend:", api.defaults.baseURL);
     api.get("/feed")
       .then((response) => {
         console.log("Datos recibidos:", response.data);
