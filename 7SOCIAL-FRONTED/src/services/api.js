@@ -2,5 +2,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://127.0.0.1:8000", // Dirección del backend
+  baseURL: "https://yeferson3256457-7social-back.hf.space", // Dirección del backend
 });

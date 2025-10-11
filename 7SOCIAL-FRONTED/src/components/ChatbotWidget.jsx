@@ -18,7 +18,7 @@ const ChatbotWidget = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:8000/user/${userId}/posts_count`);
+        const response = await fetch(`https://yeferson3256457-7social-back.hf.space/user/${userId}/posts_count`);
         if (response.ok) {
           const data = await response.json();
           if (data.count >= 3) {
@@ -47,7 +47,7 @@ const ChatbotWidget = () => {
           {/* Aquí pasamos el user_id como parámetro en la URL */}
           <iframe
             title="Chatbot"
-            src={`http://localhost:8501/?user_id=${userData?.id}`} // Pasamos user_id aquí
+            src={`https://yeferson3256457-7social-back.hf.space/?user_id=${userData?.id}`} // Pasamos user_id aquí
             frameBorder="0"
             className="chatbot-iframe"
           />
