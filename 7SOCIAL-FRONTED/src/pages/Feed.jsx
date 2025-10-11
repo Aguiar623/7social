@@ -33,6 +33,7 @@ export const Feed = () => {
   }, []);
   
   const fetchFeed = () => {
+    console.log("URL base del backend:", api.defaults.baseURL);
     api.get("/feed")
       .then((response) => {
         console.log("Datos recibidos:", response.data);
