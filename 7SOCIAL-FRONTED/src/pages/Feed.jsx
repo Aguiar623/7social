@@ -34,7 +34,7 @@ export const Feed = () => {
   }, []);
   
   const fetchFeed = () => {
-    api.get("/feed")
+    api.get("https://yeferson3256457-7social-back.hf.space/feed")
       .then((response) => {
         console.log("Datos recibidos:", response.data);
         setFeedData(response.data);
@@ -64,7 +64,7 @@ export const Feed = () => {
   
     if (editPost) {
       // Actualizar publicación existente
-      api.put(`/feed/${editPost.id}`, postData, {
+      api.put(`https://yeferson3256457-7social-back.hf.space/feed/${editPost.id}`, postData, {
         params: { user_id: userId }  // Pasar el user_id como parámetro de consulta
       })
         .then((response) => {
@@ -81,7 +81,7 @@ export const Feed = () => {
         });
     } else {
       // Crear nueva publicación
-      api.post("/feed", postData)
+      api.post("https://yeferson3256457-7social-back.hf.space/feed", postData)
         .then((response) => {
           setFeedData([response.data, ...feedData]); // Agregar nueva publicación al feed
           setNewPost({ title: "", content: "" }); // Limpiar formulario
@@ -108,7 +108,7 @@ export const Feed = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Enviar la solicitud DELETE con el user_id en la URL
-        api.delete(`/feed/${postId}?user_id=${userId}`)
+        api.delete(`https://yeferson3256457-7social-back.hf.space/feed/${postId}?user_id=${userId}`)
           .then(() => {
             setFeedData(feedData.filter((post) => post.id !== postId)); // Actualizar el feed local
             Swal.fire('Eliminado', 'El Post ha sido Eliminado', 'success');
