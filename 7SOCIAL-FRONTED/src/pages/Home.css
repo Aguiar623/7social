@@ -1,4 +1,4 @@
-  /* --- RESET GENERAL --- */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ html, body {
   box-sizing: border-box;
 }
 
-/* --- TÍTULO --- */
+/* --- TITULO --- */
 .titulo-home {
   width: 100%;
   text-align: center;
@@ -60,7 +60,7 @@ html, body {
 }
 
 .carousel-image {
-  width: 100%;
+  width: 50%;
   height: 350px;
   object-fit: cover;
   flex-shrink: 0;
