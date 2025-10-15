@@ -42,23 +42,26 @@ const ChatbotWidget = () => {
   };
   
   return (
-    <div className="chatbot-container">
+     <div className="fixed bottom-6 right-6 flex flex-col items-end z-50">
       {isOpen && userData && (
-        <div className="chatbot-window">
-          {/* Aquí pasamos el user_id como parámetro en la URL */}
+        <div className="mb-2 bg-white rounded-xl shadow-xl overflow-hidden w-[350px] h-[500px] border border-gray-200">
           <iframe
             title="Chatbot"
-            src={`${STREAMLIT_URL}/?user_id=${userData?.id}`} // Pasamos user_id aquí
+            src={`${STREAMLIT_URL}/?user_id=${userData?.id}`}
             frameBorder="0"
-            className="chatbot-iframe"
+            className="w-full h-full"
           />
         </div>
       )}
-      <button className="chatbot-toggle" onClick={handleToggle}>
+      <button
+        onClick={handleToggle}
+        className="bg-blue-600 text-white text-3xl p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
+      >
         {isOpen ? "✖️" : "💬"}
       </button>
     </div>
   );
 };
+
 
 export default ChatbotWidget;
