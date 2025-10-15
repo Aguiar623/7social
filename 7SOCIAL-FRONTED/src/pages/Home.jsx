@@ -138,7 +138,9 @@ const Home = () => {
               <button
                 type="button"
                 className="login-button"
-                onClick={() => setIsRegistering(false)} // Volver al formulario de inicio de sesión
+                onClick={() => {setIsRegistering(false);
+                  document.querySelector("form")?.reset();
+                }} // Volver al formulario de inicio de sesion
               >
                 <FaMeteor /> Volver a Iniciar Sesión
               </button>
@@ -161,7 +163,9 @@ const Home = () => {
               <button
                 type="button"
                 className="login-button"
-                onClick={() => setIsRegistering(true)} // Cambiar al formulario de registro
+                onClick={() => {setIsRegistering(true);
+                  document.querySelector("form")?.reset();
+                }} // Cambiar al formulario de registro
               >
                 <FaRegIdCard /> Registrarme
               </button> 
