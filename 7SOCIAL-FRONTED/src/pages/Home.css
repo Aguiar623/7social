@@ -56,12 +56,12 @@ html, body {
 .carousel-track {
   display: flex;
   width: calc(200%);
-  animation: scroll 15s infinite linear;
+  animation: scroll 13s infinite linear;
 }
 
 .carousel-image {
   width: 30%;
-  height: 340px;
+  height: 360px;
   object-fit: cover;
   flex-shrink: 0;
 }
