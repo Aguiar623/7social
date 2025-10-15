@@ -139,7 +139,7 @@ const Home = () => {
                 type="button"
                 className="login-button"
                 onClick={() => {setIsRegistering(false);
-                  document.querySelector("form")?.reset();
+                  document.querySelector("form-group")?.reset();
                 }} // Volver al formulario de inicio de sesion
               >
                 <FaMeteor /> Volver a Iniciar Sesión
@@ -164,7 +164,7 @@ const Home = () => {
                 type="button"
                 className="login-button"
                 onClick={() => {setIsRegistering(true);
-                  document.querySelector("form")?.reset();
+                  document.querySelector("form-group")?.reset();
                 }} // Cambiar al formulario de registro
               >
                 <FaRegIdCard /> Registrarme
