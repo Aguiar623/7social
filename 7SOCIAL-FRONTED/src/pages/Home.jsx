@@ -100,12 +100,6 @@ const Home = () => {
           <img src="/images/social-2.jpg" alt="Imagen 2" className="carousel-image" />
           <img src="/images/social-3.png" alt="Imagen 3" className="carousel-image" />
           <img src="/images/social-4.png" alt="Imagen 4" className="carousel-image" />
-        
-          <img src="/images/social-1.jpg" alt="Imagen 1" className="carousel-image" />
-          <img src="/images/social-2.jpg" alt="Imagen 2" className="carousel-image" />
-          <img src="/images/social-3.png" alt="Imagen 3" className="carousel-image" />
-          <img src="/images/social-4.png" alt="Imagen 4" className="carousel-image" />
-        
         </div>
       </div>
       {/* Barra de inicio de sesión o registro */}

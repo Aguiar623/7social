@@ -55,24 +55,28 @@ html, body {
 
 .carousel-track {
   display: flex;
-  width: calc(200%);
-  animation: scroll 13s infinite linear;
+  width: 400%; /* 4 imágenes, cada una ocupa 100% */
+  animation: scroll 16s linear infinite;
 }
 
 .carousel-image {
   width: 30%;
-  height: 360px;
+  height: 370px;
   object-fit: cover;
   flex-shrink: 0;
 }
 
+/* Animación continua */
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(0); }      /* Mantiene la primera un poco */
+  25%  { transform: translateX(-100%); }
+  45%  { transform: translateX(-100%); }
+  50%  { transform: translateX(-200%); }
+  70%  { transform: translateX(-200%); }
+  75%  { transform: translateX(-300%); }
+  95%  { transform: translateX(-300%); }
+  100% { transform: translateX(0); }      /* Vuelve al inicio sin mostrar gris */
 }
 
 /* --- LOGIN / REGISTRO --- */
