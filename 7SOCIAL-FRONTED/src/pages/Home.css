@@ -57,6 +57,7 @@ html, body {
   display: flex;
   width: 400%; /* 4 imágenes, cada una ocupa 100% */
   animation: scroll 16s linear infinite;
+  will-change: transform;
 }
 
 .carousel-image {
@@ -66,17 +67,28 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Animación continua */
 @keyframes scroll {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }      /* Mantiene la primera un poco */
-  25%  { transform: translateX(-100%); }
+  0%   { transform: translateX(0); }       /* 1ª imagen */
+  20%  { transform: translateX(0); }
+
+  25%  { transform: translateX(-100%); }  /* 2ª imagen */
   45%  { transform: translateX(-100%); }
-  50%  { transform: translateX(-200%); }
+
+  50%  { transform: translateX(-200%); }  /* 3ª imagen */
   70%  { transform: translateX(-200%); }
-  75%  { transform: translateX(-300%); }
-  95%  { transform: translateX(-300%); }
-  100% { transform: translateX(0); }      /* Vuelve al inicio sin mostrar gris */
+
+  75%  { transform: translateX(-300%); }  /* 4ª imagen */
+  100% { transform: translateX(-300%); }  /* termina en última imagen */
+}
+
+/* pausarlo al pasar el raton (util en desktop) */
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* responsive: menos alto en moviles */
+@media (max-width: 768px) {
+  .carousel-image { height: 220px; }
 }
 
 /* --- LOGIN / REGISTRO --- */
