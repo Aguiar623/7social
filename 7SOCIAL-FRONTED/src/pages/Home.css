@@ -55,23 +55,24 @@ html, body {
 
 .carousel-track {
   display: flex;
-  width: 400%;
-  animation: scroll 12s infinite linear;
+  width: calc(200%);
+  animation: scroll 15s infinite linear;
 }
 
 .carousel-image {
   width: 30%;
-  height: 350px;
+  height: 340px;
   object-fit: cover;
   flex-shrink: 0;
 }
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-100%); }
-  50% { transform: translateX(-200%); }
-  75% { transform: translateX(-300%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* --- LOGIN / REGISTRO --- */
