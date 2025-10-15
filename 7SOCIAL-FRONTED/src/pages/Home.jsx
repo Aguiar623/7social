@@ -108,7 +108,7 @@ const Home = () => {
         {isRegistering ? (
           <>
             <h2><FaRegIdCard /> Registrarse</h2>
-            <form onSubmit={handleRegisterSubmit}>
+            <form key="register" form onSubmit={handleRegisterSubmit}>
               <div className="form-group">
                 <label htmlFor="name"><FaUserAlt /> Nombre</label>
                 <input type="text" id="register-name" placeholder="Ingresa tu nombre" />
@@ -138,9 +138,7 @@ const Home = () => {
               <button
                 type="button"
                 className="login-button"
-                onClick={() => {setIsRegistering(false);
-                  document.querySelector("form-group")?.reset();
-                }} // Volver al formulario de inicio de sesion
+                onClick={() => setIsRegistering(false)} // Volver al formulario de inicio de sesion
               >
                 <FaMeteor /> Volver a Iniciar Sesión
               </button>
@@ -149,7 +147,7 @@ const Home = () => {
         ) : (
           <>
             <h2><FaMeteor /> Iniciar Sesión</h2>
-            <form onSubmit={handleLoginSubmit}>
+            <form key="login" form onSubmit={handleLoginSubmit}>
               <div className="form-group">
                 <label htmlFor="username"><FaUserFriends /> Usuario</label>
                 <input type="text" id="username" placeholder="Ingresa tu usuario" />
@@ -163,9 +161,7 @@ const Home = () => {
               <button
                 type="button"
                 className="login-button"
-                onClick={() => {setIsRegistering(true);
-                  document.querySelector("form-group")?.reset();
-                }} // Cambiar al formulario de registro
+                onClick={() => setIsRegistering(true)} // Cambiar al formulario de registro
               >
                 <FaRegIdCard /> Registrarme
               </button> 
