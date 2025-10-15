@@ -88,142 +88,90 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-700 text-white p-4">
-      {/* Título */}
-      <h1 className="flex items-center gap-2 text-3xl md:text-4xl font-bold mb-6">
-        <AiFillAliwangwang size={40} />
-        7social
-      </h1>
-
-      {/* Contenedor principal responsive */}
-      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
-        {/* Carrete de imágenes */}
-        <div className="w-full md:w-1/2 relative">
-          <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-            {["/images/social-1.jpg", "/images/social-2.jpg", "/images/social-3.png", "/images/social-4.png"].map(
-              (src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Imagen ${i + 1}`}
-                  className="w-full h-64 md:h-full object-cover snap-center"
-                />
-              )
-            )}
-          </div>
-        </div>
-
-        {/* Panel de login / registro */}
-        <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-gray-900">
-          {loading && <div className="text-center mb-4 animate-pulse">Cargando...</div>}
-
-          {isRegistering ? (
-            <>
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <FaRegIdCard /> Registrarse
-              </h2>
-              <form onSubmit={handleLoginSubmit} className="flex flex-col gap-3">
-                <input
-                  type="text"
-                  id="register-name"
-                  placeholder="Nombre"
-                  className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400"
-                />
-                <input
-                  type="text"
-                  id="register-username"
-                  placeholder="Usuario"
-                  className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400"
-                />
-                <input
-                  type="email"
-                  id="register-email"
-                  placeholder="Correo"
-                  className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400"
-                />
-                <input
-                  type="text"
-                  id="register-age"
-                  placeholder={age ? `${age} años` : "Edad"}
-                  readOnly
-                  onClick={() => hiddenDateRef.current.showPicker()}
-                  className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400"
-                />
-                <input
-                  type="date"
-                  ref={hiddenDateRef}
-                  className="hidden"
-                  onChange={handleDateChange}
-                />
-                <div className="relative">
-                  <input
-                    type={showRegisterPassword ? "text" : "password"}
-                    id="register-password"
-                    placeholder="Contraseña"
-                    className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400 w-full"
-                  />
-                  <span
-                    onClick={() => setShowRegisterPassword(!showRegisterPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
-                  >
-                    {showRegisterPassword ? "🙈" : "👁️"}
-                  </span>
-                </div>
-                <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 p-2 rounded mt-2">
-                  <FaPaperPlane className="inline-block mr-2" /> Registrarse
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsRegistering(false)}
-                  className="bg-gray-600 hover:bg-gray-700 p-2 rounded mt-2"
-                >
-                  <FaMeteor className="inline-block mr-2" /> Volver a Iniciar Sesión
-                </button>
-              </form>
-            </>
-          ) : (
-            <>
-              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <FaMeteor /> Iniciar Sesión
-              </h2>
-              <form onSubmit={handleLoginSubmit} className="flex flex-col gap-3">
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Usuario"
-                  className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400"
-                />
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    placeholder="Contraseña"
-                    className="p-2 rounded bg-gray-700 focus:ring-2 focus:ring-indigo-400 w-full"
-                  />
-                  <span
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
-                  >
-                    {showPassword ? "🙈" : "👁️"}
-                  </span>
-                </div>
-                <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 p-2 rounded mt-2">
-                  <FaPaperPlane className="inline-block mr-2" /> Iniciar Sesión
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsRegistering(true)}
-                  className="bg-gray-600 hover:bg-gray-700 p-2 rounded mt-2"
-                >
-                  <FaRegIdCard className="inline-block mr-2" /> Registrarme
-                </button>
-              </form>
-            </>
-          )}
+  <>  
+    <div className="titulo-home">
+      <h1><AiFillAliwangwang size={40}/>7social</h1>
+      </div>
+    <div className="home-container">
+      {/* Carrete de imágenes */}
+      <div className="carousel">
+        <div className="carousel-track">
+          <img src="/images/social-1.jpg" alt="Imagen 1" className="carousel-image" />
+          <img src="/images/social-2.jpg" alt="Imagen 2" className="carousel-image" />
+          <img src="/images/social-3.png" alt="Imagen 3" className="carousel-image" />
+          <img src="/images/social-4.png" alt="Imagen 4" className="carousel-image" />
         </div>
       </div>
+      {/* Barra de inicio de sesión o registro */}
+      <div className="login-bar">
+        {loading && <div className="loading-spinner">Cargando...</div>} {/* Indicador de carga */}
+        {isRegistering ? (
+          <>
+            <h2><FaRegIdCard /> Registrarse</h2>
+            <form onSubmit={handleRegisterSubmit}>
+              <div className="form-group">
+                <label htmlFor="name"><FaUserAlt /> Nombre</label>
+                <input type="text" id="register-name" placeholder="Ingresa tu nombre" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="username"><FaUserFriends /> Usuario</label>
+                <input type="text" id="register-username" placeholder="Ingresa tu usuario" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email"><FaEnvelope /> Correo Electrónico</label>
+                <input type="email" id="register-email" placeholder="Ingresa tu correo" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="age"><FaBirthdayCake /> Edad</label>
+                <input type="text" id="register-age" placeholder="Selecciona fecha" value={age ?`${age} años` : ""}
+                readOnly onClick={() => hiddenDateRef.current.showPicker()}
+                />
+                <input type="date" ref={hiddenDateRef} style={{ position: "absolute", opacity: 0, pointerEvents: "none"  }} onChange={handleDateChange}
+              />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password"><FaKey /> Contraseña</label>
+                <input type={showRegisterPassword ? "text" : "password"} id="register-password" placeholder="Ingresa tu contraseña" />
+                <span className="toggle-eye1" onClick={ ()=> setShowRegisterPassword(!showRegisterPassword)}>{showRegisterPassword ? "🙈" : "👁️"}</span>
+              </div>
+              <button type="submit" className="login-button"><FaPaperPlane /> Registrarse</button>
+              <button
+                type="button"
+                className="login-button"
+                onClick={() => setIsRegistering(false)} // Volver al formulario de inicio de sesión
+              >
+                <FaMeteor /> Volver a Iniciar Sesión
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+            <h2><FaMeteor /> Iniciar Sesión</h2>
+            <form onSubmit={handleLoginSubmit}>
+              <div className="form-group">
+                <label htmlFor="username"><FaUserFriends /> Usuario</label>
+                <input type="text" id="username" placeholder="Ingresa tu usuario" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password"><FaKey /> Contraseña</label>
+                <input type={showPassword ? "text" : "password"} id="password" placeholder="Ingresa tu contraseña" />
+                <span className="toggle-eye" onClick={ ()=> setShowPassword(!showPassword)}>{showPassword ? "🙈" : "👁️"}</span>
+              </div>
+              <button type="submit" className="login-button"><FaPaperPlane /> Iniciar Sesión</button>
+              <button
+                type="button"
+                className="login-button"
+                onClick={() => setIsRegistering(true)} // Cambiar al formulario de registro
+              >
+                <FaRegIdCard /> Registrarme
+              </button> 
+            </form>
+          </>
+        )}
+      </div>
     </div>
-  );
+</>
+);
 };
 
 export default Home;
