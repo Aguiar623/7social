@@ -13,10 +13,15 @@ El sistema combina procesamiento del lenguaje natural, análisis afectivo y algo
 Estructura del proyecto:
 
 FrontEnd
+
 Carpetas
+
 SRC/ -> Raiz del proyecto
+
 Sub Carpetas
+
 Components/ -> en esta carpeta se encuentran 2 componentes importantes para la red social y el sistema de recomendacion.
+
 Post.jsx -> Este componente representa las publicaciones (posts) dentro de la red social 7Social.
 Cada publicación se compone de un título y un contenido textual. Es el núcleo de la interacción entre usuarios, ya que estas publicaciones sirven como insumo para el análisis emocional y la recopilación de datos que alimentan el sistema de recomendación.
 En otras palabras, lo que los usuarios escriben aquí se analiza emocionalmente más adelante en el chatbot para ofrecer recomendaciones personalizadas.
