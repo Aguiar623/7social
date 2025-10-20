@@ -40,12 +40,12 @@ El widget:
 
 Componente ChatbotWidget.css -> es el diseño que se le aplica al chatbot
 
-CONTEXT/ -> SE ENCUENTRA UN COMPONENTE DE AUTENTICACION DE LA RED SOCIAL
+- CONTEXT/ -> SE ENCUENTRA UN COMPONENTE DE AUTENTICACION DE LA RED SOCIAL
 
 Componente Authcontext.jsx -> Este módulo implementa el contexto de autenticación global para la aplicación 7Social (frontend).
 Permite que cualquier componente del proyecto conozca si el usuario está autenticado, pueda iniciar o cerrar sesión y sincronizar ese estado con el almacenamiento local del navegador (localStorage), Este contexto se usa en componentes como el Login, ChatbotWidget y Navbar, para controlar el acceso a funciones que requieren usuario autenticado.
 
-PAGES/ -> SE ENCUENTRAN LOS COMPONENTES PRINCIPALES DE LA INTERFAZ
+- PAGES/ -> SE ENCUENTRAN LOS COMPONENTES PRINCIPALES DE LA INTERFAZ
 
 Componente Feed.jsx -> El componente Feed es el módulo central del frontend de 7Social, encargado de gestionar el muro de publicaciones donde los usuarios pueden compartir textos, reflexiones o emociones.
 Este módulo también sirve como base de datos emocional, ya que los textos escritos alimentan el análisis afectivo del chatbot integrado en la misma interfaz.
@@ -67,39 +67,40 @@ Su función principal es recuperar los datos almacenados localmente tras el inic
 
 Componente Profile.css -> es el diseño que se le aplica a la sesion de informacion personal
 
-SERVICE/ -> Se encuentra el enrutador hacia las peticiones del backend
+- SERVICE/ -> Se encuentra el enrutador hacia las peticiones del backend
 
 Componente api.js -> Este módulo define la configuración del cliente HTTP principal para el frontend de 7Social, usando Axios para realizar todas las peticiones al backend.
 Permite centralizar la gestión de solicitudes HTTP (login, registro, publicaciones, calificaciones, etc.) y garantiza que todas apunten al mismo servidor base. (esta se encuentra actualmente apuntando al servidor en linea, para probar en local deben apuntar hacia la misma localhost)
 
 DENTRO DE LA SUBCARPETA SRC POR FUERA DE LAS SUBCARPETAS SE ENCUENTRAN LOS SIGUIENTE ELEMENTOS:
 
--App.jsx -> Este archivo constituye el punto de entrada principal del frontend de 7Social.
+- App.jsx -> Este archivo constituye el punto de entrada principal del frontend de 7Social.
 Define la estructura de navegación, la autenticación global, las rutas principales y los componentes persistentes (como la barra de navegación y las notificaciones).
 
--App.css -> es el diseño que se le aplica a la navegacion y componentes persistentes
+- App.css -> es el diseño que se le aplica a la navegacion y componentes persistentes
 
-Index.css -> Este archivo define los estilos globales del frontend de 7Social, combinando:
+- Index.css -> Este archivo define los estilos globales del frontend de 7Social, combinando:
 
 Estilos personalizados que controlan la tipografía, colores y disposición general de la interfaz.
 
 Se carga automáticamente desde el punto de entrada principal (main.jsx) para aplicarse a toda la aplicación React.
 
-Main.jsx -> Punto de entrada del frontend
+- Main.jsx -> Punto de entrada del frontend
 
 POR FUERA DE LA CARPETA SRC SE ENCUENTRAN LOS SIGUIENTES ELEMENTOS:
 
-default-avatar.jpg -> es una imagen la cual se utiliza en el perfil de la persona en la red social y se ubica en la parte del perfil ademas de el feed principal al lado izquierdo.
+- default-avatar.jpg -> es una imagen la cual se utiliza en el perfil de la persona en la red social y se ubica en la parte del perfil ademas de el feed principal al lado izquierdo.
 
-eslint.config.js,index.html -> archivos de configuracion del proyecto
+- eslint.config.js,index.html -> archivos de configuracion del proyecto
 
-package.json,package-lock.json -> librerias utilizadas para construir el proyecto
+- package.json,package-lock.json -> librerias utilizadas para construir el proyecto
 
-Versel.json -> archivo de configuracion para alinear la navegacion del enrutador que se encuentra en el servidor donde esta subido el front
+- Versel.json -> archivo de configuracion para alinear la navegacion del enrutador que se encuentra en el servidor donde esta subido el front
 
-PAGINA ONLINE DEL PROYECTO: https://7social-v3tt.vercel.app
+- PAGINA ONLINE DEL PROYECTO: https://7social-v3tt.vercel.app
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*BACKEND*
 
-Backend
 
 Funcionamiento General
 
