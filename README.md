@@ -9,3 +9,43 @@ Frontend (7Social App): interfaz social y de interacción del usuario.
 Backend (Chatbot Emocional y Sistema de Recomendación): lógica de análisis emocional, generación de contenido afectivo y filtrado colaborativo.
 
 El sistema combina procesamiento del lenguaje natural, análisis afectivo y algoritmos de recomendación inteligentes para crear una experiencia emocionalmente adaptativa.
+
+Estructura del proyecto:
+
+FrontEnd
+Carpetas
+SRC/ -> Raiz del proyecto
+Sub Carpetas
+Components/ -> en esta carpeta se encuentran 2 componentes importantes para la red social y el sistema de recomendacion.
+Post.jsx -> Este componente representa las publicaciones (posts) dentro de la red social 7Social.
+Cada publicación se compone de un título y un contenido textual. Es el núcleo de la interacción entre usuarios, ya que estas publicaciones sirven como insumo para el análisis emocional y la recopilación de datos que alimentan el sistema de recomendación.
+En otras palabras, lo que los usuarios escriben aquí se analiza emocionalmente más adelante en el chatbot para ofrecer recomendaciones personalizadas.
+
+
+
+
+
+
+Funcionamiento General
+
+Usuario inicia sesión en la app móvil (7Social).
+
+Escribe una publicación o conversa con el chatbot emocional.
+
+El backend analiza el texto con pysentimiento y spaCy, detectando emociones y contexto.
+
+Según la emoción, el sistema consulta las APIs externas:
+
+🎬 OMDb → películas.
+
+📚 Google Books → libros.
+
+🎟️ Ticketmaster → eventos.
+
+El sistema guarda las calificaciones en asociaciones.json.
+
+A partir de 3 calificaciones altas (≥ 4 estrellas), se activa el filtrado colaborativo.
+
+Las siguientes recomendaciones se ajustan al perfil emocional + patrones de comunidad.
+
+Toda la experiencia se adapta al estado emocional detectado.
