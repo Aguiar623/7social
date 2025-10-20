@@ -92,7 +92,9 @@ POR FUERA DE LA CARPETA SRC SE ENCUENTRAN LOS SIGUIENTES ELEMENTOS:
 default-avatar.jpg -> es una imagen la cual se utiliza en el perfil de la persona en la red social y se ubica en la parte del perfil ademas de el feed principal al lado izquierdo.
 
 eslint.config.js,index.html -> archivos de configuracion del proyecto
+
 package.json,package-lock.json -> librerias utilizadas para construir el proyecto
+
 Versel.json -> archivo de configuracion para alinear la navegacion del enrutador que se encuentra en el servidor donde esta subido el front
 
 PAGINA ONLINE DEL PROYECTO: https://7social-v3tt.vercel.app
