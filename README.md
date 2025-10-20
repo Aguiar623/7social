@@ -103,11 +103,11 @@ POR FUERA DE LA CARPETA SRC SE ENCUENTRAN LOS SIGUIENTES ELEMENTOS:
 
 Carpetas
 
-.Streamlit
+- .Streamlit
 
 Archivo config.toml -> Este archivo define la configuración visual del entorno de Streamlit para el backend de 7Social, personalizando completamente la apariencia de la interfaz según los colores y estilos de la marca del proyecto. (solo aplica para entornos locales)
 
-
+- TODO...
 
 
 Funcionamiento General
