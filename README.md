@@ -16,11 +16,11 @@ El sistema combina procesamiento del lenguaje natural, análisis afectivo y algo
 
 Carpetas
 
-SRC/ -> Raiz del proyecto
+- SRC/ -> Raiz del proyecto
 
 Subcarpetas
 
-COMPONENTS/ -> SE ENCUENTRAN 3 COMPONENTES ESCENCIALES PARA EL SISTEMA EMOCIONAL Y DE RECOMENDACION
+- COMPONENTS/ -> SE ENCUENTRAN 3 COMPONENTES ESCENCIALES PARA EL SISTEMA EMOCIONAL Y DE RECOMENDACION
 
 Componente Post.jsx -> Este componente representa las publicaciones (posts) dentro de la red social 7Social.
 Cada publicación se compone de un título y un contenido textual. Es el núcleo de la interacción entre usuarios, ya que estas publicaciones sirven como insumo para el análisis emocional y la recopilación de datos que alimentan el sistema de recomendación.
