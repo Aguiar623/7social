@@ -101,12 +101,20 @@ POR FUERA DE LA CARPETA SRC SE ENCUENTRAN LOS SIGUIENTES ELEMENTOS:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 *BACKEND*
 
+Carpetas
+
+.Streamlit
+
+Archivo config.toml -> Este archivo define la configuración visual del entorno de Streamlit para el backend de 7Social, personalizando completamente la apariencia de la interfaz según los colores y estilos de la marca del proyecto. (solo aplica para entornos locales)
+
+
+
 
 Funcionamiento General
 
 Usuario inicia sesión en la app móvil (7Social).
 
-Escribe una publicación o conversa con el chatbot emocional.
+Escribe minimo 3 publicaciónes en la red social
 
 El backend analiza el texto con pysentimiento y spaCy, detectando emociones y contexto.
 
