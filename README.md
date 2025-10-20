@@ -26,7 +26,17 @@ Post.jsx -> Este componente representa las publicaciones (posts) dentro de la re
 Cada publicación se compone de un título y un contenido textual. Es el núcleo de la interacción entre usuarios, ya que estas publicaciones sirven como insumo para el análisis emocional y la recopilación de datos que alimentan el sistema de recomendación.
 En otras palabras, lo que los usuarios escriben aquí se analiza emocionalmente más adelante en el chatbot para ofrecer recomendaciones personalizadas.
 
+ChatbotWidget.jsx -> Este componente es el widget flotante del chatbot emocional dentro de la interfaz de 7Social.
+Su propósito es conectar el frontend (React) con el chatbot en Streamlit que se ejecuta en Hugging Face Spaces.
+El widget:
 
+1.Verifica si el usuario ha iniciado sesión.
+
+2.Consulta el backend (/user/{id}/posts_count) para asegurarse de que el usuario tenga al menos 3 publicaciones antes de permitirle usar el chatbot (esto fomenta la interacción dentro de la red).
+
+3.Si cumple con la condición, abre un iframe con el chatbot emocional, pasando el user_id como parámetro en la URL (?user_id=).
+
+4.Si no, muestra notificaciones usando react-toastify.
 
 
 
