@@ -112,13 +112,16 @@ Archivo config.toml -> Este archivo define la configuración visual del entorno 
 
 Funcionamiento General
 
-Usuario inicia sesión en la app móvil (7Social).
+Usuario inicia sesión en la app wev (7Social).
 
 Escribe minimo 3 publicaciónes en la red social
 
 El backend analiza el texto con pysentimiento y spaCy, detectando emociones y contexto.
 
-Según la emoción, el sistema consulta las APIs externas:
+Se abre el chatbot desde el widget a mano derecha
+
+el chatbot recupera la emocion, el usuario saluda y pide una 
+recomentacion , el sistema consulta las APIs externas:
 
 OMDb → películas.
 
