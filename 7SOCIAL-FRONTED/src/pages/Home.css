@@ -16,7 +16,7 @@
     text-align: center; /* Centrar el texto */
     background-color: #f5f5f5; /* Fondo claro */
     padding: 30px 10px;
-    z-index: 1000; /* Para que esté por encima del resto */
+    z-index: 1000; /* Para que este por encima del resto */
   }  
   
   .titulo-home h1 {
@@ -59,40 +59,40 @@
   }
   
   .home-button:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    background-color: #0056b3; /* Azul mas oscuro al pasar el mouse */
   }
 
 /* Contenedor del carrete */
   .carousel {
     flex: 2;
-    max-width: 600px; /* Ajusta el ancho máximo */
+    max-width: 600px; /* Ajusta el ancho maximo */
     overflow: hidden; /* Oculta las imágenes que no están visibles */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
   }
 
-/* Track para las imágenes */
+/* Track para las imagenes */
   .carousel-track {
     display: flex;
     width: 100%;
-    animation: scroll 10s infinite linear; /* Animación para desplazamiento */
+    animation: scroll 10s infinite linear; /* Animacion para desplazamiento */
   }
 
-/* Imágenes dentro del track */
+/* Imagenes dentro del track */
   .carousel-image {
     width: 100%; /* Cada imagen ocupa el ancho del contenedor */
     max-height: 400px;
-    flex-shrink: 0; /* Evita que las imágenes se redimensionen */
+    flex-shrink: 0; /* Evita que las imagenes se redimensionen */
     object-fit: cover;
   }
 
-/* Animación de desplazamiento */
+/* Animacion de desplazamiento */
   @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-300%); /* Ajusta dependiendo del número de imágenes */
+    transform: translateX(-300%); /* Ajusta dependiendo del numero de imágenes */
     }
   }
 
@@ -193,7 +193,6 @@
       cursor: pointer;
       font-size: 18px;
     }
-
 
   .toggle-eye1 {
       position: absolute;

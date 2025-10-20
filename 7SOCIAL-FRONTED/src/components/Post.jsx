@@ -1,4 +1,3 @@
-// src/components/Post.jsx
 export const Post = ({ title, content }) => {
     return (
       <div className="post">

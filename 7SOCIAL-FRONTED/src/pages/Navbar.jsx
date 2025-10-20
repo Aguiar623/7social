@@ -7,8 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { toast } from 'react-toastify';
 
 const logoutFunction = () => {
-  // Aquí podrías eliminar datos de la sesión, por ejemplo:
-  localStorage.removeItem("userToken"); // Elimina un token de autenticación si lo usas
+  localStorage.removeItem("userToken"); // Elimina el token de autenticación
   toast.success("Has cerrado sesión exitosamente.");
   setTimeout(() => {
   window.location.href = "/"; // Redirige al inicio
@@ -19,7 +18,7 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
 
   if (!isAuthenticated) {
-    return null; // No muestra el Navbar si no está autenticado
+    return null; // No muestra el Navbar si no esta autenticado
   }
   
   return (

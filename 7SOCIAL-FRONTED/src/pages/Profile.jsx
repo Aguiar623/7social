@@ -5,7 +5,7 @@ const Profile = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userData")); // Usa la clave consistente "userData"
+    const user = JSON.parse(localStorage.getItem("userData"));
     if (user) {
       setUserData(user);
       console.log("Datos del usuario desde localStorage:", user);
