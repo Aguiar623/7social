@@ -1,5 +1,4 @@
 7Social — Plataforma de Recomendación Emocional Basada en Texto
--Descripción General-
 
 7Social es una plataforma social enfocada exclusivamente en texto, donde los usuarios pueden expresar cómo se sienten, interactuar con un chatbot emocional, y recibir recomendaciones personalizadas de libros, películas y eventos en función de su estado emocional y comportamiento dentro del sistema.
 
