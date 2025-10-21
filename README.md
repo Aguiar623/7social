@@ -206,6 +206,7 @@ Las siguientes recomendaciones se ajustan al perfil emocional + patrones de comu
 Toda la experiencia se adapta al estado emocional detectado.
 
 **Requerimientos**
+
 El proyecto requiere un entorno de desarrollo basado en Python 3.10 o superior, además de un conjunto de librerías que garantizan la correcta ejecución del sistema backend, el análisis emocional y la conexión con bases de datos.
 Estas dependencias están definidas en el archivo requirements.txt, el cual permite una instalación automática mediante el gestor de paquetes pip.
 Node.js v16 o superior (recomendado v18).
