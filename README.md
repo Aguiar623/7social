@@ -237,9 +237,11 @@ Editor de código recomendado	VS Code	VS Code con extensiones: Python, Prettier,
 
 
 **Instalacion**
+
 Para la instalación del entorno, se recomienda seguir los pasos descritos a continuación:
 
 **BACKEND**
+
 - 1.Clonar el repositorio desde GitHub:
 
 git clone https://github.com/Aguiar623/7social.git
@@ -269,6 +271,7 @@ DATABASE_URL = "postgresql://usuario:contraseña@localhost/nombre_bd"
 uvicorn main:app --reload
 
 **FRONTEND**
+
 - 1.Clonar el repositorio desde github y entra en la carpeta del frontend:
 
 git clone https://github.com/Aguiar623/7social.git
