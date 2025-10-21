@@ -17,10 +17,10 @@ def ejecutar_analisis(user_id):
         posts = res_posts.json()
 
         if not posts:
-            print("⚠️ No hay publicaciones recientes.")
+            print("No hay publicaciones recientes.")
             return False
         
-        # Realizar el análisis de emociones basado en las publicaciones
+        # Realizar el analisis de emociones basado en las publicaciones
         analisis = analizar_emocion(posts)
 
         if not analisis:
@@ -34,10 +34,10 @@ def ejecutar_analisis(user_id):
             with open("estado_emocional.json", "r", encoding="utf-8") as f:
                 resultados_existentes = json.load(f)
         except FileNotFoundError:
-            # Si el archivo no existe, creamos un diccionario vacío
+            # Si el archivo no existe, creamos un diccionario vacio
             resultados_existentes = {}
 
-        # Agregar el nuevo análisis al diccionario
+        # Agregar el nuevo analisis al diccionario
         resultados_existentes[user_id] = {
             "usuario": usuario_nombre,  # Ahora usamos el nombre del usuario
             "emocion": emocion,
@@ -48,10 +48,10 @@ def ejecutar_analisis(user_id):
         with open("estado_emocional.json", "w", encoding="utf-8") as f:
             json.dump(resultados_existentes, f, ensure_ascii=False, indent=2)
 
-        print(f"✅ Análisis automático completado para el usuario {usuario_nombre} ({user_id})")
+        print(f"Análisis automático completado para el usuario {usuario_nombre} ({user_id})")
         return True
 
     except Exception as e:
-        print(f"❌ Error en el análisis: {e}")
+        print(f"Error en el análisis: {e}")
         return False
 

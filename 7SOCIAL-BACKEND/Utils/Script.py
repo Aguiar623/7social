@@ -43,7 +43,7 @@ for toot in toots:
     # etiquetas HTML, limpiamos
     texto = re.sub(r"<[^>]+>", "", toot["content"])
 
-    # Analizar emoción
+    # Analizar emocion
     if texto:
         analisis = analizar_emocion(texto)
         if analisis:

@@ -4,7 +4,7 @@ from pydantic import BaseModel, EmailStr
 class PostCreate(BaseModel):
     title: str
     content: str
-    user_id: int  # Relaciona la publicación con un usuario
+    user_id: int  # Relaciona la publicacion con un usuario
 
 # Modelo para devolver publicaciones en las respuestas
 class PostResponse(BaseModel):
@@ -12,10 +12,10 @@ class PostResponse(BaseModel):
     title: str
     content: str
     user_id: int  # Incluye el ID del usuario
-    username: str  # Opcional: incluir el nombre de usuario para mostrarlo directamente
+    username: str  # incluir el nombre de usuario para mostrarlo directamente
 
     class Config:
-        from_attributes = True  # Habilita la conversión de objetos ORM a Pydantic
+        from_attributes = True  # Habilita la conversion de objetos ORM a Pydantic
 
 # Modelos para el registro
 class UserCreate(BaseModel):

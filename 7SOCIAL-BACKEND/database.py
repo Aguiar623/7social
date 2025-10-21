@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker , declarative_base
 
-# URL de conexión a PostgreSQL
+# URL de conexion a PostgreSQL
 DATABASE_URL = "postgresql://postgres:dunklow5566@localhost/postgres"
 
 # Crear el motor de la base de datos
@@ -12,7 +12,7 @@ try:
         print("conexion ok.")
 except Exception as e:
     print("error de conexion:" , e)
-# Crear una sesión para interactuar con la base de datos
+# Crear una sesion para interactuar con la base de datos
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Declarative Base

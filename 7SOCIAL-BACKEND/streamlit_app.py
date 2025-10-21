@@ -353,8 +353,8 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
         calificaciones_usuario = calificaciones_usuario[calificaciones_usuario.index.isin(titulos_tipo_list)]
         items_preferidos = calificaciones_usuario[calificaciones_usuario >= 4]
 
-        #st.write(f"🔎 Ítems preferidos para {tipo}: {len(items_preferidos)}")
-        #st.write(f"📋 Lista: {items_preferidos.to_dict()}")
+        #st.write(f" Ítems preferidos para {tipo}: {len(items_preferidos)}")
+        #st.write(f" Lista: {items_preferidos.to_dict()}")
 
         if len(items_preferidos) >= 2:
             diferencias, frecuencias = {}, {}
@@ -553,7 +553,7 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
 
     while intentos < max_intentos and st.session_state.recomendacion_index < len(st.session_state.recomendaciones_ordenadas):
         candidato = st.session_state.recomendaciones_ordenadas[st.session_state.recomendacion_index]
-        #st.write(f"🎯 Intentando API para: {candidato}")
+        #st.write(f" Intentando API para: {candidato}")
         try:
             if tipo == "Libro":
                 rec = buscar_api_libro(candidato)
@@ -565,7 +565,7 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
                 rec = None
         except Exception as e:
             rec = None
-            #st.write("⚠️ Error llamando API para candidato:", candidato, e)
+            #st.write(" Error llamando API para candidato:", candidato, e)
 
         if rec:
             rec["fuente"] = fuente
@@ -575,14 +575,14 @@ if "tipo_detectado" in st.session_state and st.session_state["tipo_detectado"]:
             found = True
             break
         else:
-            #st.write(f"⚠️ No hay detalles para '{candidato}', probando siguiente...")
+            #st.write(f" No hay detalles para '{candidato}', probando siguiente...")
             st.session_state.historial_mostrados.add(candidato)
             st.session_state.recomendacion_index += 1
             intentos += 1
 
     if not found:
     # Si no obtuvimos nada en MAX intentos, regeneramos aleatorias limpias y rerun
-        st.write("⚠️ No se encontraron recomendaciones válidas en la lista actual. Generando aleatorias...")
+        st.write(" No se encontraron recomendaciones válidas en la lista actual. Generando aleatorias...")
         lista_global = titulos.get(f"titulos_{clave_tipo}", [])
         excluidos_global = set(st.session_state.historial_mostrados) | set(titulos_ya_calificados)
         aleatorios_raw = [t for t in lista_global if t not in excluidos_global]
